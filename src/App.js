@@ -1,13 +1,12 @@
-import { Button } from "./components/Button/Button";
+import { Root } from './Routes/Root'
+import { Contexto } from "./Context/data"
 
 export function App() {
   return (
     <>
-      <h1>Hello World</h1>
-      <Button />
-      <Button />
-      <Button />
-      <Button />
+    <Contexto>
+      <Root/>
+    </Contexto>
     </>
   );
 }
