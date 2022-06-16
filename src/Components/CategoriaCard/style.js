@@ -1,10 +1,9 @@
 import styled from "styled-components";
 
 export const Cards = styled.div`
-  width: 26.7rem;
-  height: 18.3rem;
+  width: 42.2rem;
+  height: 30.4rem;
   background-color: var(--secondary-color);
-
   transition: 0.5s;
 
   &:hover {
@@ -15,7 +14,7 @@ export const Cards = styled.div`
 
 export const CardImagem = styled.img`
   width: 100%;
-  height: 15rem;
+  height: 26.8rem;
   border: var(--primary-color);
 `;
 
@@ -29,4 +28,4 @@ export const CardLink = styled.a`
   color: var(--background);
   font-size: 1.8rem;
   padding-top: 0.5rem;
-`
+`;
