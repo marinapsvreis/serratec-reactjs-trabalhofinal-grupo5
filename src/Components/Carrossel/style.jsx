@@ -18,8 +18,19 @@ export const CarrosselStyle = styled.div`
     justify-content: space-around;
 
     .boxPessoaDesc {
-      width: 60%;
+      width: 60%;  
     }
+
+    img{
+      width: 13em;
+      height: 13em;
+      border: 7px solid var(--secondary-color);
+    }
+
+    @media only screen and (max-width: 768px) {
+      height: 30em;
+      flex-direction: column;
+  }
   }
 
   .navegacaoCarrosel {
