@@ -18,7 +18,7 @@ export const Catalogo = () => {
       await api.get("categoria").then(response => setCategoria(response.data))
     }
     getCategoria()
-  })
+  }, [display])
   
   function handleDisplay(newDisplay) {
     setDisplay(newDisplay);
