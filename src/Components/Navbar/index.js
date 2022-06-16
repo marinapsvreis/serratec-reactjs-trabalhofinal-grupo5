@@ -1,21 +1,25 @@
 import React from "react"
+import Logo from "../../Sources/serra-funko-icon.png";
+import './style.css'
+import { NavbarSection, NavbarContainer, NavbarLista, NavbarItem, HamburguerButton, LinkHome, NomeLogo, ButtonLogin } from "./style";
+import {Link} from "react-router-dom"
 
 export const Navbar = () => {
   return (
-    <section id="nav-bar">
-      <nav class="container">
-        <a id="link-logo" href="./index.html"
-          ><img src="./assets/imgs/serra-funko-icon.png" alt="logo" width="40px" />
-          <p>Serra Funko</p>
-        </a>
-        <ul>
-          <a href="./catalogo.html"><li>Produtos</li></a>
-          <a href="./sobre.html"><li>Sobre</li></a>
-          <a href="./contato.html"><li>Contato</li></a>
-          <a class="btn-login" href="./login.html"><li>Login</li></a>
-        </ul>
+    <NavbarSection>
+      <NavbarContainer>
+        <Link to="/" style={{textDecoration: "none"}}><LinkHome><img src={Logo} alt="logo" width="40px" />
+          <NomeLogo>Serra Funko</NomeLogo></LinkHome></Link>
+          <NavbarLista>
+          
+          <Link to="/" style={{textDecoration: "none"}}><NavbarItem>Produtos</NavbarItem></Link>
+          <Link to="/" style={{textDecoration: "none"}}><NavbarItem>Sobre</NavbarItem></Link>
+          <Link to="/" style={{textDecoration: "none"}}><NavbarItem>Contato</NavbarItem></Link>
+          <Link to="/" style={{textDecoration: "none"}}><NavbarItem><ButtonLogin>Login</ButtonLogin></NavbarItem></Link>
+          
+        </NavbarLista>
 
-        <button
+        <HamburguerButton
           id="icon-menu"
           class="navbar-toggler second-button shadow-none"
           type="button"
@@ -28,8 +32,8 @@ export const Navbar = () => {
           <div id="animated-icon2" class="animated-icon2">
             <span></span><span></span><span></span><span></span>
           </div>
-        </button>
-      </nav>
-    </section>
+        </HamburguerButton>
+      </NavbarContainer>
+    </NavbarSection>
   )
 }

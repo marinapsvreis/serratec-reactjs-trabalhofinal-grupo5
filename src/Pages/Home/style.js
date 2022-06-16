@@ -2,17 +2,18 @@ import styled from 'styled-components'
 
 export const ImageDesktop = styled.img`
     margin-top: 2rem;
-    display: none;
+    display: block;
+    max-width: 877px;
 `;
 
 export const ImageMobile = styled.img`
-    display: block;
+    display: none;
     margin-top: 2rem;
     width: 100vw;
 `;
 
 export const BotoesContainer = styled.div`
-    display: flex;
+    display: none;
     flex-direction: column;
     margin-top: 3rem;
     gap: 2rem;
