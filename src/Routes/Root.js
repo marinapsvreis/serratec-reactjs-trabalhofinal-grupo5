@@ -9,8 +9,8 @@ export const Root = () => {
     <BrowserRouter>
       <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/catalogo" element={<Catalogo />} />
       <Route path="/sobre" element={<Sobre />} />
+      <Route path="/catalogo" element={<Catalogo />} />
       </Routes>
     </BrowserRouter>
   )
