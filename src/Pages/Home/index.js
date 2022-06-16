@@ -3,22 +3,23 @@ import FotoHomeDesk from "../../Sources/Bonecos-FunkoPop.png";
 import FotoHomeMobile from "../../Sources/bonecos-funko-mobile.png";
 import { Container, Titulo, Subtitulo } from "../global-style.js"
 import { BotoesContainer, BotoesLinha, BotaoLaranja, BotaoRoxo, ImageDesktop, ImageMobile} from "./style.js"
-
+import { Navbar } from "../../Components/Navbar";
 
 export const Home = () => {
   return (
     <>
+    <Navbar/>
     <Container>
       <div className='row'>
         <Titulo>Encontre o seu personagem favorito</Titulo>
         <Subtitulo><em>e complete sua coleção</em></Subtitulo>
       </div>
       <ImageMobile
-        src={FotoHomeDesk}
+        src={FotoHomeMobile}
         alt="Bonecos FunkoPop"
       />
       <ImageDesktop
-        src={FotoHomeMobile}
+        src={FotoHomeDesk}
         alt="Bonecos FunkoPop"
       />
       <BotoesContainer id="buttons-home">
