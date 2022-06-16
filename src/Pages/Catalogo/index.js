@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   CardContainer,
   CatalogoTitulo,
@@ -6,48 +6,20 @@ import {
   ReturnButton,
 } from "./style";
 import { CategoriaCard } from "../../Components/CategoriaCard/CategoriaCard";
+import {api} from "../../Services/api"
 
 export const Catalogo = () => {
-  const [categorias] = useState([
-    {
-      nome: "Funkos Star Wars",
-      descricao: "Filmes",
-      imgLink: "https://m.media-amazon.com/images/I/61MDv8vAIpL._AC_SX425_.jpg",
-    },
-    {
-      nome: "Funkos Genshin Impact",
-      descricao: "Jogo",
-      imgLink:
-        "https://www.lojatsc.com.br/wp-content/uploads/2022/03/Funko-Pop-Genshin-Impact-Aether-160.png",
-    },
-    {
-      nome: "Funkos Herois DC",
-      descricao: "Quadrinhos/Filmes",
-      imgLink:
-        "https://www.lojatsc.com.br/wp-content/uploads/2022/03/Funko-Pop-Genshin-Impact-Aether-160.png",
-    },
-    {
-      nome: "Funkos Overwatch",
-      descricao: "Jogo",
-      imgLink:
-        "https://www.lojatsc.com.br/wp-content/uploads/2022/03/Funko-Pop-Genshin-Impact-Aether-160.png",
-    },
-    {
-      nome: "Funkos Disney",
-      descricao: "Filmes",
-      imgLink:
-        "https://www.lojatsc.com.br/wp-content/uploads/2022/03/Funko-Pop-Genshin-Impact-Aether-160.png",
-    },
-    {
-      nome: "Funkos Harry Potter",
-      descricao: "Filmes/Livros",
-      imgLink:
-        "https://www.lojatsc.com.br/wp-content/uploads/2022/03/Funko-Pop-Genshin-Impact-Aether-160.png",
-    },
-  ]);
+  const [categorias,setCategoria] = useState([]);
 
   const [display, setDisplay] = useState(null);
 
+  useEffect(() => {
+    const getCategoria = async () => {
+      await api.get("categoria").then(response => setCategoria(response.data))
+    }
+    getCategoria()
+  })
+  
   function handleDisplay(newDisplay) {
     setDisplay(newDisplay);
   }

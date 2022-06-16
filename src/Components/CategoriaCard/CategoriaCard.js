@@ -92,7 +92,7 @@ export const CategoriaCard = (props) => {
   function handleClick() {
     props.funcaoFiltro(() =>
       produtos
-        .filter((produto) => produto.categoria === categoria.nome)
+        .filter((produto) => produto.categoria === categoria.nomeCategoria)
         .map((res) => (
           <>
             <ProdutoCard produto={res} abrirProduto={props.funcaoFiltro}></ProdutoCard>
@@ -106,7 +106,7 @@ export const CategoriaCard = (props) => {
       <a onClick={handleClick}>
         <CardImagem src={`${categoria.imgLink}`} />
       </a>
-      <CardLink onClick={handleClick}>{categoria.nome}</CardLink>
+      <CardLink onClick={handleClick}>{categoria.nomeCategoria}</CardLink>
     </Cards>
   );
 };
