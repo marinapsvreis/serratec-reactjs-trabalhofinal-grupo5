@@ -9,7 +9,6 @@ export const Sobre = (props) => {
     return (
         <>
         <SobreMain>
-        <Navbar/>
         <Container className='sobre'>
             <Titulo className='titulo'>Sobre</Titulo>
             <SobreDescricao>

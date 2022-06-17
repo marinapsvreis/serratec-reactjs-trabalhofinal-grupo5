@@ -6,12 +6,10 @@ import { Sobre } from '../Pages/Sobre/Index'
 
 export const Root = () => {
   return (
-    <BrowserRouter>
       <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/sobre" element={<Sobre />} />
       <Route path="/catalogo" element={<Catalogo />} />
       </Routes>
-    </BrowserRouter>
   )
 }

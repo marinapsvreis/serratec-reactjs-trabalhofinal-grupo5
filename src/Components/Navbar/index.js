@@ -12,8 +12,8 @@ export const Navbar = () => {
           <NomeLogo>Serra Funko</NomeLogo></LinkHome></Link>
           <NavbarLista>
           
-          <Link to="/" style={{textDecoration: "none"}}><NavbarItem>Produtos</NavbarItem></Link>
-          <Link to="/" style={{textDecoration: "none"}}><NavbarItem>Sobre</NavbarItem></Link>
+          <Link to="/catalogo" style={{textDecoration: "none"}}><NavbarItem>Produtos</NavbarItem></Link>
+          <Link to="/sobre" style={{textDecoration: "none"}}><NavbarItem>Sobre</NavbarItem></Link>
           <Link to="/" style={{textDecoration: "none"}}><NavbarItem>Contato</NavbarItem></Link>
           <Link to="/" style={{textDecoration: "none"}}><NavbarItem><ButtonLogin>Login</ButtonLogin></NavbarItem></Link>
           
