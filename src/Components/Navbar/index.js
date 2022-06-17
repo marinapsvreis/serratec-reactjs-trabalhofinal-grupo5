@@ -1,7 +1,7 @@
 import React from "react"
 import {useState} from 'react';
 import Logo from "../../Sources/serra-funko-icon.png";
-import { NavbarSection, NavbarContainer, NavbarLista, NavbarItem, LinkHome, NomeLogo, ButtonLogin } from "./style";
+import { NavbarSection, NavbarContainer, NavbarLista, NavbarItem, LinkHome, NomeLogo, ButtonLogin, MenuOption, MenuOptionLogin } from "./style";
 import "./style.css"
 import {Link} from "react-router-dom"
 
@@ -24,7 +24,7 @@ export const Navbar = () => {
           <Link to="/catalogo" style={{textDecoration: "none"}}><NavbarItem>Produtos</NavbarItem></Link>
           <Link to="/sobre" style={{textDecoration: "none"}}><NavbarItem>Sobre</NavbarItem></Link>
           <Link to="/contato" style={{textDecoration: "none"}}><NavbarItem>Contato</NavbarItem></Link>
-          <Link to="/" style={{textDecoration: "none"}}><NavbarItem><ButtonLogin>Login</ButtonLogin></NavbarItem></Link>
+          <Link to="/login" style={{textDecoration: "none"}}><NavbarItem><ButtonLogin>Login</ButtonLogin></NavbarItem></Link>
           
         </NavbarLista>
 
@@ -46,11 +46,11 @@ export const Navbar = () => {
 
         <div id="navMenu" className={isActive? 'active': ''}>
           <div id="menu-options">
-          <Link to="/catalogo" style={{textDecoration: "none"}}><p className="menu-option">Home</p></Link>
-          <Link to="/catalogo" style={{textDecoration: "none"}}><p className="menu-option">Produtos</p></Link>
-          <Link to="/catalogo" style={{textDecoration: "none"}}><p className="menu-option">Sobre</p></Link>
-          <Link to="/catalogo" style={{textDecoration: "none"}}><p className="menu-option">Contato</p></Link>
-          <Link to="/catalogo" style={{textDecoration: "none"}}><p className="menu-option btn-login">Login</p></Link>    
+          <Link to="/" style={{textDecoration: "none"}}><MenuOption onClick={activeMenu}>Home</MenuOption></Link>
+          <Link to="/catalogo" style={{textDecoration: "none"}}onClick={activeMenu}><MenuOption>Produtos</MenuOption></Link>
+          <Link to="/sobre" style={{textDecoration: "none"}}onClick={activeMenu}><MenuOption>Sobre</MenuOption></Link>
+          <Link to="/contato" style={{textDecoration: "none"}}onClick={activeMenu}><MenuOption>Contato</MenuOption></Link>
+          <Link to="/login" style={{textDecoration: "none"}}><MenuOptionLogin onClick={activeMenu}>Login</MenuOptionLogin></Link>    
           </div>
         </div>
       </NavbarContainer>
