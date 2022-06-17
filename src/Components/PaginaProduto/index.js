@@ -6,10 +6,10 @@ export const PaginaProduto = ({produto}) => {
 
     return(
         <ProdutoDiv>
-            <ProdutoImg src={`${produto.nomeImagemProduto}`}></ProdutoImg>
+            <ProdutoImg src="https://static3.tcdn.com.br/img/img_prod/460977/pop_albus_dumbledore_harry_potter_15_funko_3981_1_20201211171908.jpg"></ProdutoImg>
             <ProdutoDescricao>
                 {produto.nomeProduto} <br/>
-                {produto.descricaoProduto} <br/>
+                Quantidade no estoque: {produto.qtdEstoqueProduto} itens <br/>
                 R${produto.valorUnitario} <br/>
                 <ProdutoButton>Adicionar ao carrinho</ProdutoButton>
             </ProdutoDescricao>
