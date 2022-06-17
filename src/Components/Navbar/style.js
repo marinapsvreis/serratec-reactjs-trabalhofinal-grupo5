@@ -17,15 +17,21 @@ export const NavbarSection = styled.section`
 
 export const NavbarContainer = styled.nav`
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     width: 100vw;
+    @media (min-width: 1024px) {
+        margin-inline: 50px;
+    }
 `;
 
 export const NavbarLista = styled.ul`
-    display: flex;
-    gap: 2rem;
-    margin-bottom: 0;
+    display: none;
+    @media (min-width: 1024px) {
+        display: flex;
+        gap: 2rem;
+        margin-bottom: 0;
+    }
 `;
 
 export const NavbarItem = styled.li`
@@ -37,10 +43,6 @@ export const NavbarItem = styled.li`
     &:hover{
         transform: scale(130%);
     }
-`;
-
-export const HamburguerButton = styled.button`
-    display: none;
 `;
 
 export const LinkHome = styled.div`

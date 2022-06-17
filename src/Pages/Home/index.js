@@ -1,18 +1,18 @@
 import React from "react"
+import {Link} from "react-router-dom"
 import FotoHomeDesk from "../../Sources/Bonecos-FunkoPop.png";
 import FotoHomeMobile from "../../Sources/bonecos-funko-mobile.png";
-import { Container, Titulo, Subtitulo } from "../global-style.js"
+import { Container, Titulo, Subtitulo, ContainerTituloSubtitulo } from "../global-style.js"
 import { BotoesContainer, BotoesLinha, BotaoLaranja, BotaoRoxo, ImageDesktop, ImageMobile} from "./style.js"
-import { Navbar } from "../../Components/Navbar";
 
 export const Home = () => {
   return (
     <>
     <Container>
-      <div className='row'>
+      <ContainerTituloSubtitulo>
         <Titulo>Encontre o seu personagem favorito</Titulo>
         <Subtitulo><em>e complete sua coleção</em></Subtitulo>
-      </div>
+      </ContainerTituloSubtitulo>
       <ImageMobile
         src={FotoHomeMobile}
         alt="Bonecos FunkoPop"
@@ -23,12 +23,12 @@ export const Home = () => {
       />
       <BotoesContainer id="buttons-home">
         <BotoesLinha>
-          <BotaoRoxo href="./catalogo.html">Produtos</BotaoRoxo>
-          <BotaoRoxo href="./sobre.html">Sobre</BotaoRoxo>
+        <Link to="/catalogo" style={{textDecoration: "none"}}><BotaoRoxo>Produtos</BotaoRoxo></Link>
+        <Link to="/sobre" style={{textDecoration: "none"}}><BotaoRoxo>Sobre</BotaoRoxo></Link>
         </BotoesLinha>
         <BotoesLinha>
-          <BotaoRoxo href="./contato.html">Contato</BotaoRoxo>
-          <BotaoLaranja className="btn-login" href="./login.html">Login</BotaoLaranja>
+        <Link to="/" style={{textDecoration: "none"}}><BotaoRoxo>Contato</BotaoRoxo></Link>
+        <Link to="/" style={{textDecoration: "none"}}><BotaoLaranja>Login</BotaoLaranja></Link>
         </BotoesLinha>
       </BotoesContainer>
       </Container>

@@ -2,21 +2,34 @@ import styled from 'styled-components'
 
 export const ImageDesktop = styled.img`
     margin-top: 2rem;
-    display: block;
+    display: none;
     max-width: 877px;
+
+    @media (min-width: 1024px){
+        display: block;
+        padding-inline: 2%;    
+    }
 `;
 
 export const ImageMobile = styled.img`
-    display: none;
+    display: block;
     margin-top: 2rem;
     width: 100vw;
+
+    @media (min-width: 1024px){
+        display: none;    
+    }
 `;
 
 export const BotoesContainer = styled.div`
-    display: none;
+    display: flex;
     flex-direction: column;
     margin-top: 3rem;
     gap: 2rem;
+    
+    @media (min-width: 1024px){
+        display: none;   
+    }
 `;
 
 export const BotoesLinha = styled.div`
@@ -25,7 +38,7 @@ export const BotoesLinha = styled.div`
     gap: 2rem;
 `;
 
-export const BotaoRoxo = styled.a`
+export const BotaoRoxo = styled.div`
     background-color: var(--secondary-color);
     text-decoration: none;
     color: var(--background);
@@ -45,7 +58,7 @@ export const BotaoRoxo = styled.a`
     }
 `;
 
-export const BotaoLaranja = styled.a`
+export const BotaoLaranja = styled.div`
     background-color: var(--primary-color);
     text-decoration: none;
     color: var(--background);

@@ -1,7 +1,6 @@
 import React from 'react';
 import Carrossel from '../../Components/Carrossel';
 import Footer from '../../Components/Footer';
-import { Navbar } from '../../Components/Navbar';
 import { Container, Titulo } from '../global-style';
 import { SobreDescricao, SobreMain } from './style';
 

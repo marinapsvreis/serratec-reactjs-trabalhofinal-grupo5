@@ -1,11 +1,13 @@
 import React from "react"
 import Logo from "../../Sources/serra-funko-icon.png";
-import './style.css'
-import { NavbarSection, NavbarContainer, NavbarLista, NavbarItem, HamburguerButton, LinkHome, NomeLogo, ButtonLogin } from "./style";
+import { NavbarSection, NavbarContainer, NavbarLista, NavbarItem, LinkHome, NomeLogo, ButtonLogin } from "./style";
+import "./style.css"
+import "./script.js"
 import {Link} from "react-router-dom"
 
 export const Navbar = () => {
   return (
+    <>
     <NavbarSection>
       <NavbarContainer>
         <Link to="/" style={{textDecoration: "none"}}><LinkHome><img src={Logo} alt="logo" width="40px" />
@@ -19,9 +21,9 @@ export const Navbar = () => {
           
         </NavbarLista>
 
-        <HamburguerButton
+        <button
           id="icon-menu"
-          class="navbar-toggler second-button shadow-none"
+          className="navbar-toggler second-button shadow-none"
           type="button"
           data-toggle="collapse"
           data-target="#navbarSupportedContent23"
@@ -29,11 +31,23 @@ export const Navbar = () => {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <div id="animated-icon2" class="animated-icon2">
+          <div id="animated-icon2" className="animated-icon2">
             <span></span><span></span><span></span><span></span>
           </div>
-        </HamburguerButton>
+        </button>
+
+        <div id="navMenu" className="">
+          <div id="menu-options">
+            <a className="menu-option" href="./index.html">Home</a>
+            <a className="menu-option" href="./catalogo.html">Produtos</a>
+            <a className="menu-option" href="./sobre.html">Sobre</a>
+            <a className="menu-option" href="./contato.html">Contato</a>
+            <a className="menu-option btn-login" href="./login.html">Login</a>
+          </div>
+        </div>
       </NavbarContainer>
     </NavbarSection>
+    <script src="./script.js"></script>
+    </>
   )
 }
