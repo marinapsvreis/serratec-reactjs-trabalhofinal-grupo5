@@ -24,7 +24,7 @@ export const Navbar = () => {
           <Link to="/catalogo" style={{textDecoration: "none"}}><NavbarItem>Produtos</NavbarItem></Link>
           <Link to="/sobre" style={{textDecoration: "none"}}><NavbarItem>Sobre</NavbarItem></Link>
           <Link to="/contato" style={{textDecoration: "none"}}><NavbarItem>Contato</NavbarItem></Link>
-          <Link to="/" style={{textDecoration: "none"}}><NavbarItem><ButtonLogin>Login</ButtonLogin></NavbarItem></Link>
+          <Link to="/login" style={{textDecoration: "none"}}><NavbarItem><ButtonLogin>Login</ButtonLogin></NavbarItem></Link>
           
         </NavbarLista>
 
