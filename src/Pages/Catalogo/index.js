@@ -9,16 +9,16 @@ import {api} from "../../Services/api"
 import { Titulo } from "../global-style";
 
 export const Catalogo = () => {
-  const [categorias,setCategoria] = useState([]);
+  const [categorias,setCategorias] = useState([]);
 
   const [display, setDisplay] = useState(null);
 
   useEffect(() => {
     const getCategoria = async () => {
-      await api.get("categoria").then(response => setCategoria(response.data))
+      await api.get("categoria").then(response => setCategorias(response.data))
     }
     getCategoria()
-  }, [display])
+  }, [categorias])
   
   function handleDisplay(newDisplay) {
     setDisplay(newDisplay);
@@ -32,7 +32,7 @@ export const Catalogo = () => {
     );
   }
 
-  if (display == null) {
+  if (display == null && categorias.length !== 0) {
     displayToMain()
   }
 

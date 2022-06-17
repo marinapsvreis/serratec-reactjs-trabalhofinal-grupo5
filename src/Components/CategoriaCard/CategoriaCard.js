@@ -13,7 +13,6 @@ export const CategoriaCard = (props) => {
       await api.get("produto").then(response => setProdutos(response.data))
     }
     getProduto()
-    console.log(produtos)
   }, [categoria])
 
   function handleClick() {
