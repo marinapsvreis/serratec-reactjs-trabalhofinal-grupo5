@@ -37,26 +37,6 @@
   gap: 5rem;
 }
 
-#navMenu #menu-options .menu-option {
-  width: 70vw;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  font-size: 3rem;
-  text-decoration: none;
-  color: var(--background);
-
-  background-color: var(--primary-color);
-  border-radius: 1rem;
-}
-
-#navMenu.active #menu-options .menu-option:hover {
-  background-color: var(--secondary-color);
-}
-
 .animated-icon2 span:nth-child(1) {
   top: 0px;
 }

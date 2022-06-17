@@ -68,3 +68,41 @@ export const ButtonLogin = styled.div`
     padding-inline: 1rem;
     border-radius: 0.5rem;
 `;
+
+export const MenuOption = styled.button`
+    width: 70vw;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 3rem;
+    text-decoration: none;
+    color: var(--background);
+
+    background-color: var(--primary-color);
+    border-radius: 1rem;
+    &:hover{
+        background-color: var(--secondary-color);
+    }
+`;
+
+export const MenuOptionLogin = styled.button`
+    width: 70vw;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 3rem;
+    text-decoration: none;
+    color: var(--background);
+
+    background-color: var(--secondary-color);
+    border-radius: 1rem;
+    &:hover{
+        background-color: var(--primary-color);
+    }
+`;
