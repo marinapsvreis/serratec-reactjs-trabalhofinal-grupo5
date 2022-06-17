@@ -6,6 +6,7 @@ import ImagemMarina from "../../Sources/img/marina-carrossel.jpg"
 import ImagemPedro from "../../Sources/img/pedro-carrossel.png"
 import ImagemSophia from "../../Sources/img/sophia-carrossel.jpg"
 import ImagemKaua from "../../Sources/img/kaua-carrossel.jpg"
+import ImagemEster from "../../Sources/img/ester-carossel.jpg"
 import Seta1 from "../../Sources/icons/icons8-arrow-50.png"
 import Seta2 from "../../Sources/icons/icons8-arrow-50.png"
 
@@ -71,7 +72,7 @@ function Carrossel(props) {
           </div>
         </div> : null}
         {itemAtivo === 1 ? <div className="itemCarrosel">
-        <img src="" alt="Ester" />
+        <img src={ImagemEster} alt="Ester" />
           <div className="boxPessoaDesc">
           <SobreDescricao className="descCard">
             Ester é estudante de Desenvolvimento de Sotware. Curte tocar violão, sair com amigos, estudar
