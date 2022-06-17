@@ -8,7 +8,6 @@ import { Navbar } from "../../Components/Navbar";
 export const Home = () => {
   return (
     <>
-    <Navbar/>
     <Container>
       <div className='row'>
         <Titulo>Encontre o seu personagem favorito</Titulo>

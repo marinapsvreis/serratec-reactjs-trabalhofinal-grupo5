@@ -8,7 +8,6 @@ import { Registro } from '../Pages/Registro'
 
 export const Root = () => {
   return (
-    <BrowserRouter>
       <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/sobre" element={<Sobre />} />
@@ -16,6 +15,5 @@ export const Root = () => {
       <Route path="/login" element={<Login/>}/>
       <Route path="/registro" element={<Registro/>}/>
       </Routes>
-    </BrowserRouter>
   )
 }
