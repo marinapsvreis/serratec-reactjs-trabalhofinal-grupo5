@@ -50,7 +50,7 @@ export const Navbar = () => {
           <Link to="/catalogo" style={{textDecoration: "none"}}onClick={activeMenu}><MenuOption>Produtos</MenuOption></Link>
           <Link to="/sobre" style={{textDecoration: "none"}}onClick={activeMenu}><MenuOption>Sobre</MenuOption></Link>
           <Link to="/contato" style={{textDecoration: "none"}}onClick={activeMenu}><MenuOption>Contato</MenuOption></Link>
-          <Link to="/login" style={{textDecoration: "none"}}><MenuOptionLogin>Login</MenuOptionLogin></Link>    
+          <Link to="/login" style={{textDecoration: "none"}}><MenuOptionLogin onClick={activeMenu}>Login</MenuOptionLogin></Link>    
           </div>
         </div>
       </NavbarContainer>
