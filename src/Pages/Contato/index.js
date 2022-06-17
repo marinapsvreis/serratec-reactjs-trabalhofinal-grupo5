@@ -2,15 +2,17 @@ import React from "react"
 import { Container, Titulo} from "../global-style.js"
 import "./style.js"
 import "./style.css"
-import { ContainerDireito, ContainerEsquerdo, Formulario, FormularioBotao, FormularioInput, FormularioTextArea} from "./style.js"
+import { ContainerDireito, ContainerEsquerdo, ContainerSobre, Formulario, FormularioBotao, FormularioInput, FormularioTextArea} from "./style.js"
+import { Map } from "../../Components/Map"
 
 export const Contato = () => {
 
   return (
     <>
-    <Container>
+    <ContainerSobre>
       <ContainerEsquerdo>
-          <Titulo>Endereço</Titulo>        
+          <Titulo>Endereço</Titulo>
+          <Map/>        
       </ContainerEsquerdo>
       <ContainerDireito>
           <Titulo>Contato</Titulo>
@@ -42,7 +44,7 @@ export const Contato = () => {
             />
           </Formulario>
       </ContainerDireito>
-    </Container>
+    </ContainerSobre>
     </>
   )
 }

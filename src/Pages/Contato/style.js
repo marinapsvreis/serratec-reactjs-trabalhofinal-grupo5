@@ -1,13 +1,30 @@
 import styled from 'styled-components'
 
+export const ContainerSobre = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10rem;
+    margin-top: 10rem; 
+
+    @media (min-width: 1024px) {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      height: 92.5vh;
+      margin-top: 1rem; 
+      padding-inline: 50px;
+    }
+`;
+
 export const ContainerEsquerdo = styled.div`
-    padding-block: 5rem;
+    padding-bottom: 5rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     @media (min-width: 1024px) {
-      align-items: center;
-      height: 92.5vh;
+    width: 800px;
     }
 `;
 
@@ -15,23 +32,16 @@ export const ContainerDireito = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-      align-items: center;
     @media (min-width: 1024px) {
-      height: 92.5vh;
+    width: 800px;
     }
 `;
 
 export const Formulario = styled.form`
-    padding-inline: 2rem;
     height: 35.5rem;
-
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-
-    @media (min-width: 1024px) {
-      width: 40vw;
-    }
 `;
 
 export const FormularioInput = styled.input`
