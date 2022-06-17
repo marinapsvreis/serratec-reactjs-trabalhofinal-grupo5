@@ -27,7 +27,7 @@ export const Home = () => {
         <Link to="/sobre" style={{textDecoration: "none"}}><BotaoRoxo>Sobre</BotaoRoxo></Link>
         </BotoesLinha>
         <BotoesLinha>
-        <Link to="/" style={{textDecoration: "none"}}><BotaoRoxo>Contato</BotaoRoxo></Link>
+        <Link to="/contato" style={{textDecoration: "none"}}><BotaoRoxo>Contato</BotaoRoxo></Link>
         <Link to="/" style={{textDecoration: "none"}}><BotaoLaranja>Login</BotaoLaranja></Link>
         </BotoesLinha>
       </BotoesContainer>
