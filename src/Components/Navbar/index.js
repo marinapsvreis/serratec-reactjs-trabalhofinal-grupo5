@@ -23,7 +23,7 @@ export const Navbar = () => {
           
           <Link to="/catalogo" style={{textDecoration: "none"}}><NavbarItem>Produtos</NavbarItem></Link>
           <Link to="/sobre" style={{textDecoration: "none"}}><NavbarItem>Sobre</NavbarItem></Link>
-          <Link to="/" style={{textDecoration: "none"}}><NavbarItem>Contato</NavbarItem></Link>
+          <Link to="/contato" style={{textDecoration: "none"}}><NavbarItem>Contato</NavbarItem></Link>
           <Link to="/" style={{textDecoration: "none"}}><NavbarItem><ButtonLogin>Login</ButtonLogin></NavbarItem></Link>
           
         </NavbarLista>
@@ -46,11 +46,11 @@ export const Navbar = () => {
 
         <div id="navMenu" className={isActive? 'active': ''}>
           <div id="menu-options">
-            <a className="menu-option" href="./index.html">Home</a>
-            <a className="menu-option" href="./catalogo.html">Produtos</a>
-            <a className="menu-option" href="./sobre.html">Sobre</a>
-            <a className="menu-option" href="./contato.html">Contato</a>
-            <a className="menu-option btn-login" href="./login.html">Login</a>
+          <Link to="/catalogo" style={{textDecoration: "none"}}><p className="menu-option">Home</p></Link>
+          <Link to="/catalogo" style={{textDecoration: "none"}}><p className="menu-option">Produtos</p></Link>
+          <Link to="/catalogo" style={{textDecoration: "none"}}><p className="menu-option">Sobre</p></Link>
+          <Link to="/catalogo" style={{textDecoration: "none"}}><p className="menu-option">Contato</p></Link>
+          <Link to="/catalogo" style={{textDecoration: "none"}}><p className="menu-option btn-login">Login</p></Link>    
           </div>
         </div>
       </NavbarContainer>

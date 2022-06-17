@@ -5,6 +5,11 @@ import ImagemBreno from "../../Sources/img/breno-carrossel.jpg"
 import ImagemMarina from "../../Sources/img/marina-carrossel.jpg"
 import ImagemPedro from "../../Sources/img/pedro-carrossel.png"
 import ImagemSophia from "../../Sources/img/sophia-carrossel.jpg"
+import ImagemKaua from "../../Sources/img/kaua-carrossel.jpg"
+import ImagemEster from "../../Sources/img/ester-carossel.jpg"
+import Seta1 from "../../Sources/icons/icons8-arrow-50.png"
+import Seta2 from "../../Sources/icons/icons8-arrow-50.png"
+
 
 function Carrossel(props) {
   const [itemAtivo, setItemAtivo] = useState(0);
@@ -30,6 +35,26 @@ function Carrossel(props) {
     setItemAtivo(e => id)
     setContador(e => 4)
   }
+
+  function voltarImagem() {
+    if(itemAtivo === 0) {
+      setItemAtivo(e => 5)
+      setContador(e => 4)
+    } else {
+      setItemAtivo(e => e - 1)
+      setContador(e => 4)
+    }
+  }
+
+  function avancarImagem() {
+    if(itemAtivo === 5) {
+      setItemAtivo(e => 0)
+      setContador(e => 4)
+    } else {
+      setItemAtivo(e => e + 1)
+      setContador(e => 4)
+    }
+  }
   
   return (
     <>
@@ -47,7 +72,7 @@ function Carrossel(props) {
           </div>
         </div> : null}
         {itemAtivo === 1 ? <div className="itemCarrosel">
-        <img src="" alt="Ester" />
+        <img src={ImagemEster} alt="Ester" />
           <div className="boxPessoaDesc">
           <SobreDescricao className="descCard">
             Ester é estudante de Desenvolvimento de Sotware. Curte tocar violão, sair com amigos, estudar
@@ -59,7 +84,7 @@ function Carrossel(props) {
           
         </div> : null}
         {itemAtivo === 2 ? <div className="itemCarrosel">
-          <img src="" alt="Kaua" />
+          <img src={ImagemKaua} alt="Kaua" />
           <div className="boxPessoaDesc">
           <SobreDescricao className="descCard">
             Kauã Cassiano, 18 anos. Residente do SERRATEC e estagiário em Blockchain no Inmetro. Um jogador de 
@@ -80,7 +105,7 @@ function Carrossel(props) {
           
         </div> : null}
         {itemAtivo === 4 ? <div className="itemCarrosel">
-          <img src={ImagemPedro} alt="Sophia" />
+          <img src={ImagemPedro} alt="Pedro" />
           <div className="boxPessoaDesc">
           <SobreDescricao className="descCard">
             Pedro Henrique, 19 anos, atualmente realizando a Residência em Software do Serratec além de cursar engenhraria da computação.
@@ -99,12 +124,20 @@ function Carrossel(props) {
           </div>
         </div> : null}
         <div className="navegacaoCarrosel">
-          <span className={itemAtivo === 0 ? 'botaoCarroselAtivo' : 'botaoCarrosel'} onClick={() => alterarImagem(0)}></span>
-          <span className={itemAtivo === 1 ? 'botaoCarroselAtivo' : 'botaoCarrosel'} onClick={() => alterarImagem(1)}></span>
-          <span className={itemAtivo === 2 ? 'botaoCarroselAtivo' : 'botaoCarrosel'} onClick={() => alterarImagem(2)}></span>
-          <span className={itemAtivo === 3 ? 'botaoCarroselAtivo' : 'botaoCarrosel'} onClick={() => alterarImagem(3)}></span>
-          <span className={itemAtivo === 4 ? 'botaoCarroselAtivo' : 'botaoCarrosel'} onClick={() => alterarImagem(4)}></span>
-          <span className={itemAtivo === 5 ? 'botaoCarroselAtivo' : 'botaoCarrosel'} onClick={() => alterarImagem(5)}></span>
+          <div className="left" onClick={voltarImagem}>
+            <img src={Seta2} alt="seta" />
+          </div>
+          <div className="middle">
+            <span className={itemAtivo === 0 ? 'botaoCarroselAtivo' : 'botaoCarrosel'} onClick={() => alterarImagem(0)}></span>
+            <span className={itemAtivo === 1 ? 'botaoCarroselAtivo' : 'botaoCarrosel'} onClick={() => alterarImagem(1)}></span>
+            <span className={itemAtivo === 2 ? 'botaoCarroselAtivo' : 'botaoCarrosel'} onClick={() => alterarImagem(2)}></span>
+            <span className={itemAtivo === 3 ? 'botaoCarroselAtivo' : 'botaoCarrosel'} onClick={() => alterarImagem(3)}></span>
+            <span className={itemAtivo === 4 ? 'botaoCarroselAtivo' : 'botaoCarrosel'} onClick={() => alterarImagem(4)}></span>
+            <span className={itemAtivo === 5 ? 'botaoCarroselAtivo' : 'botaoCarrosel'} onClick={() => alterarImagem(5)}></span>
+          </div>
+          <div className="right" onClick={avancarImagem}>
+            <img src={Seta1} alt="right" />
+          </div>
         </div>
       </CarrosselStyle>
     </>
