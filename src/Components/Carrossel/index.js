@@ -8,24 +8,29 @@ import ImagemSophia from "../../Sources/img/sophia-carrossel.jpg"
 
 function Carrossel(props) {
   const [itemAtivo, setItemAtivo] = useState(0);
+  const [contador, setContador] = useState(4)
+  const timer = () => setContador(contador - 1)
 
   useEffect(() => {
-    setInterval(() => {
+    if(contador <= 0) {
+      setContador(e => 4)
       setItemAtivo(e => e + 1)
-      
-    }, 5000);
+      if(itemAtivo >= 5) {
+        setItemAtivo(e => 0)
+        return
+      }
+      return
+    }
+    const id = setInterval(timer, 1000)
+    return () => clearInterval(id)
     
-  }, []);
+  }, [contador]);
 
-  if(itemAtivo===6){
-    setItemAtivo(0)
+  function alterarImagem(id) {
+    setItemAtivo(e => id)
+    setContador(e => 4)
   }
-
-  function alterarImagem() {
-    console.log('clicou')
-  }
-
-  console.log("item ativo: " + itemAtivo);
+  
   return (
     <>
     
@@ -42,7 +47,7 @@ function Carrossel(props) {
           </div>
         </div> : null}
         {itemAtivo === 1 ? <div className="itemCarrosel">
-          <p>Imagem Pessoa 2</p>
+        <img src="" alt="Ester" />
           <div className="boxPessoaDesc">
           <SobreDescricao className="descCard">
             Ester é estudante de Desenvolvimento de Sotware. Curte tocar violão, sair com amigos, estudar
@@ -54,7 +59,7 @@ function Carrossel(props) {
           
         </div> : null}
         {itemAtivo === 2 ? <div className="itemCarrosel">
-          <p>Imagem Pessoa 3</p>
+          <img src="" alt="Kaua" />
           <div className="boxPessoaDesc">
           <SobreDescricao className="descCard">
             Kauã Cassiano, 18 anos. Residente do SERRATEC e estagiário em Blockchain no Inmetro. Um jogador de 
@@ -94,12 +99,12 @@ function Carrossel(props) {
           </div>
         </div> : null}
         <div className="navegacaoCarrosel">
-          <span className={itemAtivo === 0 ? 'botaoCarroselAtivo' : 'botaoCarrosel'} onClick={alterarImagem}></span>
-          <span className={itemAtivo === 1 ? 'botaoCarroselAtivo' : 'botaoCarrosel'} onClick={alterarImagem}></span>
-          <span className={itemAtivo === 2 ? 'botaoCarroselAtivo' : 'botaoCarrosel'} onClick={alterarImagem}></span>
-          <span className={itemAtivo === 3 ? 'botaoCarroselAtivo' : 'botaoCarrosel'} onClick={alterarImagem}></span>
-          <span className={itemAtivo === 4 ? 'botaoCarroselAtivo' : 'botaoCarrosel'} onClick={alterarImagem}></span>
-          <span className={itemAtivo === 5 ? 'botaoCarroselAtivo' : 'botaoCarrosel'} onClick={alterarImagem}></span>
+          <span className={itemAtivo === 0 ? 'botaoCarroselAtivo' : 'botaoCarrosel'} onClick={() => alterarImagem(0)}></span>
+          <span className={itemAtivo === 1 ? 'botaoCarroselAtivo' : 'botaoCarrosel'} onClick={() => alterarImagem(1)}></span>
+          <span className={itemAtivo === 2 ? 'botaoCarroselAtivo' : 'botaoCarrosel'} onClick={() => alterarImagem(2)}></span>
+          <span className={itemAtivo === 3 ? 'botaoCarroselAtivo' : 'botaoCarrosel'} onClick={() => alterarImagem(3)}></span>
+          <span className={itemAtivo === 4 ? 'botaoCarroselAtivo' : 'botaoCarrosel'} onClick={() => alterarImagem(4)}></span>
+          <span className={itemAtivo === 5 ? 'botaoCarroselAtivo' : 'botaoCarrosel'} onClick={() => alterarImagem(5)}></span>
         </div>
       </CarrosselStyle>
     </>

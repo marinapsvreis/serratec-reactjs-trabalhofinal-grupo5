@@ -7,23 +7,35 @@ export const Container = styled.section`
     margin-top: 15rem;
     align-items: center;
     width: 100vw;
-    height: 100vh;
 `;
+
+export const ContainerTituloSubtitulo = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 95vw;
+`;
+
+
 
 export const Titulo = styled.h1`
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    margin-top: 15rem;
-    align-items: center;
-    width: 100vw;
 
+    align-items: center;
+
+    position: relative;
     display: inline;
     color: var(--secondary-color);
     text-transform: uppercase;
     text-align: center;
     font-size: 2.2rem;
-    width: 100vw;
+
+    @media (min-width: 1024px) {
+        margin-top: 12rem;
+    }
 `;
 
 export const Subtitulo = styled.h3`
