@@ -4,11 +4,12 @@ import { ProdutoButton, ProdutoDescricao, ProdutoDiv, ProdutoImg } from "./style
 
 export const PaginaProduto = ({produto, imagem}) => {
 
+    console.log(imagem)
     
 
     return(
         <ProdutoDiv>
-            <ProdutoImg src={process.env.PUBLIC_URL + imagem+".png"}></ProdutoImg>
+            <ProdutoImg src={process.env.PUBLIC_URL + "/img" + imagem}></ProdutoImg>
             <ProdutoDescricao>
                 {produto.nomeProduto} <br/>
                 Quantidade no estoque: {produto.qtdEstoqueProduto} itens <br/>
