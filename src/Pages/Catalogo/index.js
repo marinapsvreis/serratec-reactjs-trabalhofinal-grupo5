@@ -38,13 +38,10 @@ export const Catalogo = () => {
   return (
     <CatalogoContainer>
       <Container className="container">
-        <BotaoContainer>
-        <ReturnButton onClick={displayToMain}>
-          Voltar
-        </ReturnButton>
-        </BotaoContainer>
-      
         <Titulo className="titulo">Catalogo de Produtos</Titulo>
+        <ReturnButton onClick={displayToMain}>
+          Voltar 
+        </ReturnButton>
         <CardContainer>{display}</CardContainer>
       </Container>
     </CatalogoContainer>

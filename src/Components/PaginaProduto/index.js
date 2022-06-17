@@ -11,7 +11,7 @@ export const PaginaProduto = ({produto, imagem}) => {
             <ProdutoImg src={process.env.PUBLIC_URL + imagem+".png"}></ProdutoImg>
             <ProdutoDescricao>
                 {produto.nomeProduto} <br/>
-                {produto.descricaoProduto} <br/>
+                Quantidade no estoque: {produto.qtdEstoqueProduto} itens <br/>
                 R${produto.valorUnitario} <br/>
                 <ProdutoButton>Adicionar ao carrinho</ProdutoButton>
             </ProdutoDescricao>
