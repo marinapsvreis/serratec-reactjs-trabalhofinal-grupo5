@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import {
   CardContainer,
-  CatalogoTitulo,
   CatalogoContainer,
   ReturnButton,
 } from "./style";
 import { CategoriaCard } from "../../Components/CategoriaCard/CategoriaCard";
 import {api} from "../../Services/api"
+import { Titulo } from "../global-style";
 
 export const Catalogo = () => {
   const [categorias,setCategoria] = useState([]);
@@ -38,7 +38,7 @@ export const Catalogo = () => {
 
   return (
     <CatalogoContainer>
-      <CatalogoTitulo>Catalogo de Produtos</CatalogoTitulo>
+      <Titulo>Catalogo de Produtos</Titulo>
       <ReturnButton onClick={displayToMain}>Voltar para as categoria</ReturnButton>
       <CardContainer>{display}</CardContainer>
     </CatalogoContainer>

@@ -14,7 +14,7 @@ export const CatalogoTitulo = styled.h1`
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  margin-top: 1.5rem;
+  margin-top: 15rem;
   align-items: center;
   width: 100vw;
 
