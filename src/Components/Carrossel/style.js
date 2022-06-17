@@ -21,16 +21,6 @@ export const CarrosselStyle = styled.div`
 
     animation: 250ms ease-out 0s 1 slideInFromLeft;
 
-
-    @keyframes slideInFromLeft {
-  0% {
-    transform: translateX(-5%);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-
     .boxPessoaDesc {
       width: 60%;  
     }
@@ -45,17 +35,63 @@ export const CarrosselStyle = styled.div`
       height: 30em;
       flex-direction: column;
     }
+
+    @keyframes slideInFromLeft {
+      0% {
+        transform: translateX(-5%);
+      }
+      100% {
+        transform: translateX(0);
+      }
+}
   }
 
   .navegacaoCarrosel {
     position: absolute;
+    display: flex;
 
     width: 100%;
-    padding: 20px 0;
     bottom: 0;
     left: 0;
 
     text-align: center;
+    justify-content: space-between;
+
+    .left {
+      transition: 500ms;
+      img {
+        width: 40px;
+        height: 40px;
+        -webkit-transform: scaleX(-1);
+        transform: scaleX(-1);
+        filter: contrast(1%);
+      }
+    }
+
+    .right {
+      transition: 500ms;
+      img {
+        width: 40px;
+        height: 40px;
+        filter: contrast(10%);
+      }
+    }
+
+    .right:hover, .left:hover {
+      transform: scale(1.1);
+      cursor: pointer;
+    }
+
+    .right:active, .left:active {
+      -webkit-transform: scaleX(0.3);
+        transform: scaleX(0.3);
+    }
+
+    .middle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
 
   .botaoCarrosel {
