@@ -17,6 +17,20 @@ export const CarrosselStyle = styled.div`
     align-items: center;
     justify-content: space-around;
 
+    transition: opacity 1s ease-out;
+
+    animation: 250ms ease-out 0s 1 slideInFromLeft;
+
+
+    @keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-5%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
     .boxPessoaDesc {
       width: 60%;  
     }
@@ -30,7 +44,7 @@ export const CarrosselStyle = styled.div`
     @media only screen and (max-width: 768px) {
       height: 30em;
       flex-direction: column;
-  }
+    }
   }
 
   .navegacaoCarrosel {
@@ -53,6 +67,7 @@ export const CarrosselStyle = styled.div`
     height: 10px;
     margin: 0 5px;
     border-radius: 50%;
+    cursor: pointer;
   }
 
   .botaoCarroselAtivo {
