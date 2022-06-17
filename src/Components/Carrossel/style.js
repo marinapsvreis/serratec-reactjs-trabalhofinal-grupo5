@@ -9,31 +9,27 @@ export const CarrosselStyle = styled.div`
     color: white;
 
     display: flex;
+    flex-direction: column;
+    align-self: auto;
 
-    height: 20em;
-    font-size: 2em;
-    font-weight: bold;
-    
+    height: 55em;
+
     align-items: center;
-    justify-content: space-around;
+    justify-content: flex-start;
 
     transition: opacity 1s ease-out;
 
     animation: 250ms ease-out 0s 1 slideInFromLeft;
 
-    .boxPessoaDesc {
-      width: 60%;  
+    .imagemCarrossel{
+      display: flex;
+      justify-content: center;
     }
 
     img{
-      width: 13em;
-      height: 13em;
+      width: 15em;
+      height: 15em;
       border: 7px solid var(--secondary-color);
-    }
-
-    @media only screen and (max-width: 768px) {
-      height: 30em;
-      flex-direction: column;
     }
 
     @keyframes slideInFromLeft {
@@ -47,12 +43,13 @@ export const CarrosselStyle = styled.div`
   }
 
   .navegacaoCarrosel {
-    position: absolute;
+    position: relative;
     display: flex;
 
     width: 100%;
     bottom: 0;
     left: 0;
+    margin-bottom: 10em;
 
     text-align: center;
     justify-content: space-between;
@@ -116,4 +113,20 @@ export const CarrosselStyle = styled.div`
     border-radius: 50%;
     margin: 0 5px;
   }
+
+  @media (min-width: 767px){
+    .itemCarrosel{
+      flex-direction: row;
+      height: 23em;
+    }
+  }
+
+  /* @media (min-width: 1024px){
+    .itemCarrosel{
+      flex-direction: row;
+      height: 23em;
+    }
+  }  */
+
+
 `;

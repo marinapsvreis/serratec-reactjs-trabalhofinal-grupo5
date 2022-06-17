@@ -4,10 +4,10 @@ export const SobreDescricao = styled.p`
 
   color: #ffff;
 
-  font-size: 1.8rem;
-  padding-inline: 15%;
+  font-size: 1.7rem;
+  padding-inline: 5%;
 
-  text-align: justify;
+  text-align: center;
 
 `
 
@@ -20,6 +20,7 @@ export const SobreMain = styled.div`
 
 .titulo {
   margin-top: 5em;
+  font-size: 3em;
 }
 
 `
