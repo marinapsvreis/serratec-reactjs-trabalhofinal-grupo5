@@ -1,6 +1,6 @@
 import React from "react";
 import { Subtitulo } from "../../Pages/global-style";
-import { ProdutoDescricao, ProdutoDiv, ProdutoImg } from "./style";
+import { ProdutoButton, ProdutoDescricao, ProdutoDiv, ProdutoImg } from "./style";
 
 export const PaginaProduto = ({produto}) => {
 
@@ -12,6 +12,7 @@ export const PaginaProduto = ({produto}) => {
                 {produto.descricaoProduto} <br/>
                 R${produto.valorUnitario} <br/>
             </ProdutoDescricao>
+            <ProdutoButton>Adicionar ao carrinho</ProdutoButton>
         </ProdutoDiv>
     )
 }
