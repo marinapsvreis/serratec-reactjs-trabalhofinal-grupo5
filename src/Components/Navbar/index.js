@@ -1,11 +1,23 @@
 import React from "react"
+import {useState} from 'react';
 import Logo from "../../Sources/serra-funko-icon.png";
 import { NavbarSection, NavbarContainer, NavbarLista, NavbarItem, LinkHome, NomeLogo, ButtonLogin } from "./style";
 import "./style.css"
-import "./script.js"
 import {Link} from "react-router-dom"
 
 export const Navbar = () => {
+  const [isActive, setIsActive] = useState(false);
+
+  const navMenu = document.getElementById('navMenu')
+  const menuSpans = document.getElementById('animated-icon2')
+
+  function activeMenu() {
+    console.log('Click')
+    setIsActive(current => !current);
+    //navMenu.classList.toggle('active')
+    //menuSpans.classList.toggle('open')
+  }
+
   return (
     <>
     <NavbarSection>
@@ -30,13 +42,14 @@ export const Navbar = () => {
           aria-controls="navbarSupportedContent23"
           aria-expanded="false"
           aria-label="Toggle navigation"
+          onClick={activeMenu}
         >
-          <div id="animated-icon2" className="animated-icon2">
+          <div id="animated-icon2" className={isActive? 'animated-icon2 open': 'animated-icon2'}>
             <span></span><span></span><span></span><span></span>
           </div>
         </button>
 
-        <div id="navMenu" className="">
+        <div id="navMenu" className={isActive? 'active': ''}>
           <div id="menu-options">
             <a className="menu-option" href="./index.html">Home</a>
             <a className="menu-option" href="./catalogo.html">Produtos</a>
