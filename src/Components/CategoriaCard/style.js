@@ -23,6 +23,7 @@ export const CardImagem = styled.img`
   width: 100%;
   height: 13.4rem;
   border: var(--primary-color);
+  border-radius: 1rem;
 
   @media (min-width: 1024px) {
     height: 26.8rem;

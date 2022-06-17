@@ -21,6 +21,7 @@ export const ProdutoImg = styled.img`
   width: 100%;
   height: 36.7rem;
   margin: 4rem;
+  border-radius: 1rem;
   border: var(--primary-color);
 `;
 
