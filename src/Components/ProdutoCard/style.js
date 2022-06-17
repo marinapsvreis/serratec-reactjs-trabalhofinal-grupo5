@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Cards = styled.div`
   width: 21.6rem;
   height: 20rem;
+  border-radius: 1rem;
   background-color: var(--secondary-color);
   transition: 0.5s;
   word-wrap: break-word;

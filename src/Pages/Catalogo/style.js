@@ -13,8 +13,26 @@ export const CatalogoContainer = styled.section`
 .titulo {
   margin-top: 0;
 }
+
+.container{
+  margin-top: 8rem;
+}
+`
+export const BotaoContainer = styled.div`
+display: flex;
+width: 100%;
+margin-left: 10%;
+margin-bottom: 2rem;
+
 `
 
 export const ReturnButton = styled.button`
+ text-transform: uppercase;
+ border-radius: 1rem;
+ background-color: var(--primary-color);
+ padding: 1rem;
+ &:hover{
+  background-color: var(--secondary-color);
+ }
 
 `

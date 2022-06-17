@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { CardContainer, CatalogoContainer, ReturnButton } from "./style";
+import { CardContainer, CatalogoContainer, ReturnButton, BotaoContainer } from "./style";
 import { CategoriaCard } from "../../Components/CategoriaCard/CategoriaCard";
 import { api } from "../../Services/api";
 import { Titulo, Container } from "../global-style";
+
 
 export const Catalogo = () => {
   const [categorias, setCategorias] = useState([]);
@@ -36,11 +37,14 @@ export const Catalogo = () => {
 
   return (
     <CatalogoContainer>
-      <Container>
-        <Titulo className="titulo">Catalogo de Produtos</Titulo>
+      <Container className="container">
+        <BotaoContainer>
         <ReturnButton onClick={displayToMain}>
-          Voltar para as categorias
+          Voltar
         </ReturnButton>
+        </BotaoContainer>
+      
+        <Titulo className="titulo">Catalogo de Produtos</Titulo>
         <CardContainer>{display}</CardContainer>
       </Container>
     </CatalogoContainer>

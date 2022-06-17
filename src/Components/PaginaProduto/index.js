@@ -11,8 +11,9 @@ export const PaginaProduto = ({produto}) => {
                 {produto.nomeProduto} <br/>
                 {produto.descricaoProduto} <br/>
                 R${produto.valorUnitario} <br/>
+                <ProdutoButton>Adicionar ao carrinho</ProdutoButton>
             </ProdutoDescricao>
-            <ProdutoButton>Adicionar ao carrinho</ProdutoButton>
+            
         </ProdutoDiv>
     )
 }
