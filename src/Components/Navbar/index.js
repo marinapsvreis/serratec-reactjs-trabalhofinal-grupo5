@@ -8,14 +8,9 @@ import {Link} from "react-router-dom"
 export const Navbar = () => {
   const [isActive, setIsActive] = useState(false);
 
-  const navMenu = document.getElementById('navMenu')
-  const menuSpans = document.getElementById('animated-icon2')
-
   function activeMenu() {
     console.log('Click')
     setIsActive(current => !current);
-    //navMenu.classList.toggle('active')
-    //menuSpans.classList.toggle('open')
   }
 
   return (
