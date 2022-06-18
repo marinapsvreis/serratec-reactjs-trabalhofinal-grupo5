@@ -9,8 +9,10 @@ import { Login } from '../Pages/Login'
 import { AdmLogin } from '../Pages/AdmLogin'
 import { Registro } from '../Pages/Registro'
 import { Contato } from '../Pages/Contato'
+import { AdmCategoria } from '../Pages/AdmCategoria'
+import { AdmProduto } from '../Pages/AdmProduto'
 import PainelAdministrativo from '../Pages/PainelAdministrativo'
-import ConsultarPedido from '../Pages/ConsultarPedido'
+import AdmPedido from '../Pages/AdmPedido'
 
 export const Root = () => {
   return (
@@ -23,9 +25,11 @@ export const Root = () => {
       <Route path="/login" element={<Login/>}/>
       <Route path="/admlogin" element={<AdmLogin/>}/>
       <Route path="/registro" element={<Registro/>}/>      
+      <Route path="/painel_administrativo/produto" element={<AdmProduto/>}/>      
+      <Route path="/painel_administrativo/categoria" element={<AdmCategoria/>}/>       
       <Route path="/contato" element={<Contato/>}/>
       <Route path="/painel_administrativo" element={<PainelAdministrativo/>}/>
-      <Route path="/painel_administrativo/consultar_pedido" element={<ConsultarPedido/>}/>
+      <Route path="/painel_administrativo/pedido" element={<AdmPedido/>}/>
       </Routes>
   )
 }

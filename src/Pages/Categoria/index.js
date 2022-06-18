@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ProdutoCard } from "../../Components/ProdutoCard";
 import { api } from "../../Services/api";
-import { CatalogoContainer, CardContainer, ReturnButton } from "./style";
+import { CatalogoContainer, CardContainer} from "./style";
 import { Container, Titulo } from "../global-style";
 
 export const Categorias = (props) => {

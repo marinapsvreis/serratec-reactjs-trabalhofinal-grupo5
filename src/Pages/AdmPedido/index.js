@@ -3,7 +3,7 @@ import TabelaPedidos from "../../Components/TabelaPedidos/index";
 
 import { api } from "../../Services/api";
 
-function ConsultarPedido(props) {
+function AdmPedido(props) {
   const [listaPedidos, setListaPedidos] = useState([]);
   const [statusAPI, setStatusAPI] = useState(0)
 
@@ -35,4 +35,4 @@ function ConsultarPedido(props) {
   );
 }
 
-export default ConsultarPedido;
+export default AdmPedido;

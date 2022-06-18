@@ -7,11 +7,9 @@ function PainelAdministrativo(props) {
   return (
     <>
       <BotoesPainel>
-        <button onClick={() => navigate("/painel_administrativo/consultar_pedido")}>Consultar pedidos</button>
-        <button onClick={() => navigate("/painel_administrativo/cadastrar_categoria")}>Cadastrar categoria</button>
-        <button onClick={() => navigate("/painel_administrativo/editar_categoria")}>Editar categoria</button>
-        <button onClick={() => navigate("/painel_administrativo/cadastrar_produto")}>Cadastrar produto</button>
-        <button onClick={() => navigate("/painel_administrativo/cadastrar_produto")}>Editar produto</button>
+        <button onClick={() => navigate("/painel_administrativo/pedido")}>Pedidos</button>
+        <button onClick={() => navigate("/painel_administrativo/categoria")}>Categorias</button>
+        <button onClick={() => navigate("/painel_administrativo/produto")}>Produtos</button>
       </BotoesPainel>
     </>
   );

@@ -3,7 +3,6 @@ import { Container, Titulo } from "../global-style";
 import {
   Input,
   Form,
-  LoginButton,
   ButtonContainer,
   RegistroButton,
 } from "./style";
