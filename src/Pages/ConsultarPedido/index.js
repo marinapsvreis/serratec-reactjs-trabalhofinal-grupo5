@@ -1,35 +1,36 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import { BotaoVoltar, BoxPedido, ListaPedidos } from "./style";
+import React, { useState, useEffect } from "react";
+import TabelaPedidos from "../../Components/TabelaPedidos/index";
+
+import { api } from "../../Services/api";
 
 function ConsultarPedido(props) {
-  const navigate = useNavigate();
+  const [listaPedidos, setListaPedidos] = useState([]);
+  const [statusAPI, setStatusAPI] = useState(0)
+
+  useEffect(() => {
+    carregarAPI();
+  }, []);
+
+  function carregarAPI() {
+    const getPedidoAPI = async () => {
+      try {
+        const res = await api.get("pedido");
+        setStatusAPI(res.status)
+        setListaPedidos(res.data);
+      } catch (error) {
+        if(error.code === 'ERR_NETWORK') {
+          setStatusAPI(e => 502)
+        }
+      }
+    };
+    getPedidoAPI();
+  }
+
+  console.log(statusAPI)
 
   return (
     <>
-      <BoxPedido>
-        <BotaoVoltar>
-          <button onClick={() => navigate("/painel_administrativo")}>
-            Voltar
-          </button>
-        </BotaoVoltar>
-        <ListaPedidos>
-          <table class="table table-bordered table-dark">
-            <thead>
-              <tr>
-                <th scope="col">Número Pedido</th>
-                <th scope="col">Número Produto</th>
-                <th scope="col">Quantidade de Itens</th>
-                <th scope="col">Preço da Venda</th>
-                <th scope="col">Porcentagem de Desconto</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr></tr>
-            </tbody>
-          </table>
-        </ListaPedidos>
-      </BoxPedido>
+    {statusAPI === 200 ? <TabelaPedidos lista={listaPedidos}/> : ''}
     </>
   );
 }

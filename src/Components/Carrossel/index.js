@@ -98,8 +98,8 @@ function Carrossel(props) {
             <div className="descricaoCarrossel">
               <SobreDescricao className="descCard">
                 Kauã Cassiano, 18 anos. Residente do SERRATEC e estagiário em
-                Blockchain no Inmetro. Um jogador de Aphelios buscando paixão na
-                programação, o que mais poderia dar errado...
+                Blockchain no Inmetro. Esforçado e animado para conhecer esse vasto 
+                mundo da tecnologia e as ferramentas da programação.  
               </SobreDescricao>
             </div>
           </div>

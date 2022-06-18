@@ -8,12 +8,8 @@ function PainelAdministrativo(props) {
   return (
     <>
       <BotoesPainel>
-        <button
-          onClick={() => navigate("/painel_administrativo/consultar_pedido")}
-        >
-          Consultar pedidos
-        </button>
-        <button onClick={() => navigate("/painel_administrativo/gerenciar")}>Gerenciar produto/categoria</button>
+        <button onClick={() => navigate("/painel_administrativo/consultar_pedido")}>Consultar pedidos</button>
+        <button onClick={() => navigate("/painel_administrativo/gerenciador")}>Gerenciar produto/categoria</button>
       </BotoesPainel>
     </>
   );

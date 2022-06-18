@@ -13,7 +13,7 @@ export const Map= () => {
   }else{
 
     return <GoogleMap zoom={15} center={center} mapContainerClassName="map-container">
-        <Marker postiion={{lat: -22.509719362229003, lng: -43.17503743090927}} />
+        <Marker position={{lat: -22.509719362229003, lng: -43.17503743090927}} />
       </GoogleMap>
   }
 }

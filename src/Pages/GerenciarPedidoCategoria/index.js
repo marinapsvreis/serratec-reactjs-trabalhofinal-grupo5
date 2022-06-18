@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Gerenciar(props) {
+function Gerenciador(props) {
     return (
         <>
             
@@ -8,4 +8,4 @@ function Gerenciar(props) {
     );
 }
 
-export default Gerenciar;
+export default Gerenciador;
