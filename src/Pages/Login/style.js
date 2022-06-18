@@ -7,30 +7,34 @@ export const Form = styled.form`
   gap: 1rem;
 `;
 
-export const Input = styled.input`
+export const FormInput = styled.input`
   height: 3rem;
   font-size: 1.5rem;
 `;
 
 export const ButtonContainer = styled.div`
     display: flex;
+    width: 100%;
 `
 
 export const LoginButton = styled.input`
   height: 3rem;
-  width: 70%;
+  width: 100%;
   font-size: 1.5rem;
   background-color: var(--secondary-color);
+  border: none;
   &:hover {
     background-color: #456bf6;
   }
 `;
-export const RegistroButton = styled.input`
+export const RegistroButton = styled.p`
   height: 3rem;
-  width: 30%;
+  width: 100%;
   font-size: 1.5rem;
-  background-color: var(--primary-color);
-  &:hover {
-    background-color: #bb5a21;
+  color: var(--primary-color);
+  text-decoration: none;
+  text-align: center;
+  &:hover{
+    color: #456bf6;
   }
 `;
