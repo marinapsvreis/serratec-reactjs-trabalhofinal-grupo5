@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { CardContainer, CatalogoContainer, ReturnButton, BotaoContainer } from "./style";
-import { CategoriaCard } from "../../Components/CategoriaCard/CategoriaCard";
+import { CardContainer, CatalogoContainer, ReturnButton } from "./style";
+import { CategoriaCard } from "../../Components/CategoriaCard/index";
 import { api } from "../../Services/api";
 import { Titulo, Container } from "../global-style";
 
