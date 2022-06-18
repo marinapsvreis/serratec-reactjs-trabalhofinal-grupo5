@@ -7,7 +7,6 @@ export const CategoriaCard = (props) => {
   const [categoria] = useState(props.categoria);
 
   const [produtos, setProdutos] = useState([]);
-  const [imagem, setImagem] = useState("");
 
   useEffect(() => {
     const getProduto = async () => {

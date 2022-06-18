@@ -2,14 +2,11 @@ import React from "react";
 import { Subtitulo } from "../../Pages/global-style";
 import { ProdutoButton, ProdutoDescricao, ProdutoDiv, ProdutoImg } from "./style";
 
-export const PaginaProduto = ({produto, imagem}) => {
-
-    console.log(imagem)
-    
+export const PaginaProduto = ({produto}) => {
 
     return(
         <ProdutoDiv>
-            <ProdutoImg src={process.env.PUBLIC_URL + "/img" + imagem}></ProdutoImg>
+            <ProdutoImg src={`${produto.nomeImagemProduto}`}></ProdutoImg>
             <ProdutoDescricao>
                 {produto.nomeProduto} <br/>
                 Quantidade no estoque: {produto.qtdEstoqueProduto} itens <br/>
