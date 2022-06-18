@@ -4,7 +4,6 @@ import { CategoriaCard } from "../../Components/CategoriaCard/index";
 import { api } from "../../Services/api";
 import { Titulo, Container } from "../global-style";
 
-
 export const Catalogo = () => {
   const [categorias, setCategorias] = useState([]);
 
@@ -19,14 +18,10 @@ export const Catalogo = () => {
     getCategoria();
   }, [display]);
 
-  function handleDisplay(newDisplay) {
-    setDisplay(newDisplay);
-  }
-
   function displayToMain() {
     setDisplay(
       categorias.map((res) => {
-        return <CategoriaCard categoria={res} funcaoFiltro={handleDisplay} />;
+        return <CategoriaCard categoria={res}/>;
       })
     );
   }
@@ -39,9 +34,7 @@ export const Catalogo = () => {
     <CatalogoContainer>
       <Container className="container">
         <Titulo className="titulo">Catalogo de Produtos</Titulo>
-        <ReturnButton onClick={displayToMain}>
-          Voltar 
-        </ReturnButton>
+        <ReturnButton onClick={displayToMain}>Voltar</ReturnButton>
         <CardContainer>{display}</CardContainer>
       </Container>
     </CatalogoContainer>
