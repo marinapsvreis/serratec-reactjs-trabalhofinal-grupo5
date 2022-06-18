@@ -31,9 +31,8 @@ export const Produto = () => {
         .get(`produto/${idProduto}`)
         .then((response) => setProduto(response.data));
     };
-    console.log("Produto", produto);
     getProdutoById();
-  });
+  }, [categoria]);
 
   if (produto == null) {
     return null;
