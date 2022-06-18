@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Container, Titulo } from "../global-style";
-import Popup from "../../Components/Popup";
+import { Popup } from "../../Components/Popup/index";
 import {
   Input,
   Form,
@@ -14,21 +14,23 @@ export const AdmCategoria = () => {
   const [descricao, setDescricao] = useState('');
   const [linkImagem, setLinkImagem] = useState('');
   const [isConfirmado, setConfirmado] = useState(false)
-  const meuObjeto = {
-    'nome': 'Kaua',
-    'idade': 18
-  }
+  
 
   const handleSubmit = event => {
     event.preventDefault();
 
-    console.log('Nome :' + nome)
-    console.log('Descricao :' + descricao)
-    console.log('Link :' + linkImagem)
+    // console.log('Nome :' + nome)
+    // console.log('Descricao :' + descricao)
+    // console.log('Link :' + linkImagem)
     setNome('');
     setDescricao('');
     setLinkImagem('');
   };
+
+  const handleFechar = event => {
+
+    setConfirmado(!isConfirmado)
+  }
 
   return (
     <Container>
@@ -38,10 +40,14 @@ export const AdmCategoria = () => {
         <Input type="text" placeholder="Descrição da Categoria" onChange={event => setDescricao(event.target.value)} value={descricao}/>
         <Input type="text" placeholder="Link imagem Categoria"onChange={event => setLinkImagem(event.target.value)} value={linkImagem}/>
         <ButtonContainer>
-          <RegistroButton type="submit" value="Cadastrar" onClick={() => setConfirmado(true)}/>
+          <RegistroButton type="submit" value="Cadastrar" onClick={() => setConfirmado(!isConfirmado)}/>
         </ButtonContainer>
       </Form>
-      {isConfirmado ? <Popup titulo={'categoria'} informacoes={meuObjeto}/> : ''}
+      {isConfirmado ? <Popup titulo={'categoria'} informacoes={{
+        Nome: nome,
+        Descricao: descricao,
+        Imagem: linkImagem
+      }} clickFechar={handleFechar}/> : ''}
     </Container>
   );
 };
