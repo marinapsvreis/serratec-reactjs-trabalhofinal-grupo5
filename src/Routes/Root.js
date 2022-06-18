@@ -11,7 +11,6 @@ import { Registro } from '../Pages/Registro'
 import { Contato } from '../Pages/Contato'
 import PainelAdministrativo from '../Pages/PainelAdministrativo'
 import ConsultarPedido from '../Pages/ConsultarPedido'
-import Gerenciador from '../Pages/GerenciarPedidoCategoria'
 
 export const Root = () => {
   return (
@@ -27,7 +26,6 @@ export const Root = () => {
       <Route path="/contato" element={<Contato/>}/>
       <Route path="/painel_administrativo" element={<PainelAdministrativo/>}/>
       <Route path="/painel_administrativo/consultar_pedido" element={<ConsultarPedido/>}/>
-      <Route path="/painel_administrativo/gerenciador" element={<Gerenciador/>}/>
       </Routes>
   )
 }
