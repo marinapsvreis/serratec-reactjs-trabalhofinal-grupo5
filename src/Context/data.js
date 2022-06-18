@@ -2,20 +2,20 @@ import React from "react"
 import { useState } from "react"
 
 export const estadoContexto = {
-  name: "Marina"
+  idUsuario: 0
 }
 
 export const DataContext = React.createContext(null)
 
 export function Contexto(props){
-  const[name, setName] = useState(estadoContexto.name)
+  const[idUsuario, setIdUsuario] = useState(estadoContexto.idUsuario)
 
-  function handleSetName(e){
-    setName(e.target.value)
+  function handleSetIdUsuario(id){
+    setIdUsuario(id)
   }
 
   return(
-    <DataContext.Provider value={{name, handleSetName}}>
+    <DataContext.Provider value={{idUsuario, handleSetIdUsuario}}>
       {props.children}
     </DataContext.Provider>
   )

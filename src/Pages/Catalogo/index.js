@@ -1,11 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { CardContainer, CatalogoContainer, ReturnButton } from "./style";
 import { CategoriaCard } from "../../Components/CategoriaCard/index";
 import { api } from "../../Services/api";
 import { Titulo, Container } from "../global-style";
+import { DataContext } from '../../Context/data'
 
 
 export const Catalogo = () => {
+
+  const {idUsuario, handleSetIdUsuario} = useContext(DataContext)
+
   const [categorias, setCategorias] = useState([]);
 
   const [display, setDisplay] = useState(null);
