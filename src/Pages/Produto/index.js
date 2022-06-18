@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { DataContext } from '../../Context/data'
+import { DataContext } from "../../Context/data";
 import { useParams } from "react-router-dom";
 import { api } from "../../Services/api";
 import { Container } from "../global-style";
@@ -13,17 +13,58 @@ import {
 export const Produto = () => {
   let { categoria, categoriaId, idProduto } = useParams();
   const [produto, setProduto] = useState(null);
-  const {idUsuario, handleSetIdUsuario} = useContext(DataContext)
+  const [pedidos, setPedidos] = useState([]);
+  const [idPedido, setIdPedido] =useState()
+  const [idItemPedido, setIdItemPedido] =useState()
+  const { idUsuario, handleSetIdUsuario } = useContext(DataContext);
 
-  function adicionarAoCarrinho(){
-      console.log('Adicionou ao carrinho o produto: ' + produto.nomeProduto)
-     //verificar lista de pedidos de usuario byId
-     //se estiver vazia
-     //fazer post pedido
-     //pegar id do pedido
-     //se contiver pedidos, pegue o ultimo
-     //fazer post item pedido com o id do pedido e id do produto
-  }
+  function adicionarAoCarrinho() {
+    if (pedidos.length == 0) {
+      const pedido = {
+        idCliente: idUsuario,
+      };
+      api.post("pedido", pedido);
+    } else {
+      const ultimoPedido= pedidos[pedidos.length - 1]
+      console.log(pedidos)
+      if (ultimoPedido.status == false){
+        const postItemPedido = {
+          idPedido: ultimoPedido.idPedido,
+          idProduto: idProduto,
+          quantidadeItemPedido: 1,
+          precoVendaItemPedido: produto.valorUnitario,
+          percentualDescontoItemPedido: 0
+      
+        }
+        api.post("itemPedido", postItemPedido)
+      } else {
+        const pedido = {
+          idCliente: idUsuario,
+        };
+        api.post("pedido", pedido);
+        const postItemPedido = {
+          idPedido: ultimoPedido.idPedido + 1,
+          idProduto: idProduto,
+          quantidadeItemPedido: 1,
+          precoVendaItemPedido: produto.valorUnitario,
+          percentualDescontoItemPedido: 0
+      
+        }
+        api.post("itemPedido", postItemPedido)
+        
+      }
+    }
+
+
+    
+
+    
+  } 
+  //se estiver vazia
+  //fazer post pedido
+  //pegar id do pedido
+  //se contiver pedidos, pegue o ultimo
+  //fazer post item pedido com o id do pedido e id do produto
 
   useEffect(() => {
     const getProdutoById = async () => {
@@ -32,6 +73,12 @@ export const Produto = () => {
         .then((response) => setProduto(response.data));
     };
     getProdutoById();
+    const getPedidosByClienteId = async () => {
+      await api
+        .get(`pedido/cliente/${idUsuario}`)
+        .then((response) => setPedidos(response.data));
+    };
+    getPedidosByClienteId();
   }, [categoria]);
 
   if (produto == null) {
@@ -46,7 +93,9 @@ export const Produto = () => {
           {produto.nomeProduto} <br />
           Quantidade no estoque: {produto.qtdEstoqueProduto} itens <br />
           R${produto.valorUnitario} <br />
-          <ProdutoButton onClick={adicionarAoCarrinho}>Adicionar ao carrinho</ProdutoButton>
+          <ProdutoButton onClick={adicionarAoCarrinho}>
+            Adicionar ao carrinho
+          </ProdutoButton>
         </ProdutoDescricao>
       </ProdutoDiv>
     </Container>
