@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import BadRequest from "../../Components/BadRequest";
 import TabelaPedidos from "../../Components/TabelaPedidos/index";
 
 import { api } from "../../Services/api";
@@ -30,7 +31,7 @@ function AdmPedido(props) {
 
   return (
     <>
-    {statusAPI === 200 ? <TabelaPedidos lista={listaPedidos}/> : ''}
+    {statusAPI === 200 ? <TabelaPedidos lista={listaPedidos}/> : <BadRequest/>}
     </>
   );
 }
