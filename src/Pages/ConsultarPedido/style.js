@@ -8,7 +8,7 @@ export const ListaPedidos = styled.div`
   justify-content: center;
 
   table {
-    font-size: 2em;
+    font-size: 1.5em;
     width: 80%;
   }
 `;
@@ -17,6 +17,11 @@ export const BoxPedido = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;
+
+  p {
+    font-size: 3em;
+    color: white;
+  }
 `;
 
 export const BotaoVoltar = styled.div`
