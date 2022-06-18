@@ -6,7 +6,6 @@ import { api } from "../../Services/api";
 import { Titulo, Container } from "../global-style";
 import { DataContext } from '../../Context/data'
 
-
 export const Catalogo = () => {
 
   const {idUsuario, handleSetIdUsuario} = useContext(DataContext)
@@ -24,14 +23,10 @@ export const Catalogo = () => {
     getCategoria();
   }, [display]);
 
-  function handleDisplay(newDisplay) {
-    setDisplay(newDisplay);
-  }
-
   function displayToMain() {
     setDisplay(
       categorias.map((res) => {
-        return <CategoriaCard categoria={res} funcaoFiltro={handleDisplay} />;
+        return <CategoriaCard categoria={res}/>;
       })
     );
   }
