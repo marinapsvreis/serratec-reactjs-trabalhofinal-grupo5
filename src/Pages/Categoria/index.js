@@ -37,7 +37,6 @@ export const Categorias = (props) => {
     <CatalogoContainer>
       <Container className="container">
         <Titulo className="titulo">{categoria}</Titulo>
-        <ReturnButton onClick={displayProdutos}>Voltar</ReturnButton>
         <CardContainer>{display}</CardContainer>
       </Container>
     </CatalogoContainer>
