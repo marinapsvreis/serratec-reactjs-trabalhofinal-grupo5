@@ -20,17 +20,16 @@ export const ButtonContainer = styled.div`
     width: 100%;
 `
 
-export const LoginButton = styled.input`
+export const LoginButton = styled.button`
   height: 3rem;
   width: 100%;
   font-size: 1.5rem;
   background-color: var(--secondary-color);
-  border: none;
   &:hover {
     background-color: #456bf6;
   }
 `;
-export const RegistroButton = styled.p`
+export const RegistroButton = styled.a`
   height: 3rem;
   width: 100%;
   font-size: 1.5rem;

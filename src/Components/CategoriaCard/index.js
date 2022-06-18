@@ -30,7 +30,7 @@ export const CategoriaCard = (props) => {
   return (
     <Cards>
       <a onClick={handleClick}>
-        <CardImagem src={`${categoria.imgLink}`} />
+        <CardImagem src={`${categoria.imagemCategoria}`} />
       </a>
       <CardLink onClick={handleClick}>{categoria.nomeCategoria}</CardLink>
     </Cards>

@@ -15,21 +15,11 @@ export const Input = styled.input`
 export const ButtonContainer = styled.div`
     display: flex;
 `
-
-export const LoginButton = styled.input`
-  height: 3rem;
-  width: 30%;
-  font-size: 1.5rem;
-  background-color: var(--secondary-color);
-  &:hover {
-    background-color: #456bf6;
-  }
-`;
 export const RegistroButton = styled.input`
   height: 3rem;
-  width: 70%;
+  width: 100%;
   font-size: 1.5rem;
-  background-color: var(--primary-color);
+  background-color: var(--secondary-color);
   &:hover {
     background-color: #bb5a21;
   }

@@ -1,17 +1,18 @@
-import { eventWrapper } from "@testing-library/user-event/dist/utils";
 import React from "react";
+import {Link} from "react-router-dom"
 import { Container, Titulo } from "../global-style";
-import { Form, Input, LoginButton, RegistroButton } from "./style";
+import { Form, FormInput, LoginButton, RegistroButton } from "./style";
 
 export const Login = () => {
   return (
     <Container>
-      <Titulo>Login</Titulo>
+      <Titulo>Login Cliente</Titulo>
       <Form>
-        <Input type="text" placeholder="Email"></Input>
-        <Input type="password" placeholder="Senha"></Input>
-        <RegistroButton type="submit" value="Pagina de registro"/>
+        <FormInput type="text" placeholder="Email"></FormInput>
+        <FormInput type="password" placeholder="Senha"></FormInput>
         <LoginButton type="submit" value="Entrar" />
+        <Link to="/registro" style={{textDecoration: "none"}}><RegistroButton>Não tem uma conta? Cadastre-se</RegistroButton></Link>
+                
       </Form>
     </Container>
   );

@@ -11,7 +11,7 @@ import {
 export const Registro = () => {
   return (
     <Container>
-      <Titulo>Login</Titulo>
+      <Titulo>Cadastro Cliente</Titulo>
       <Form>
         <Input type="email" placeholder="Email" />
         <Input type="text" placeholder="Nome Completo" />
@@ -22,7 +22,6 @@ export const Registro = () => {
         <Input type="text" placeholder="Numero" />
         <Input type="text" value="Complemento" />
         <ButtonContainer>
-          <LoginButton type="submit" value="Pagina de Login" />
           <RegistroButton type="submit" value="Completar o Registro" />
         </ButtonContainer>
       </Form>

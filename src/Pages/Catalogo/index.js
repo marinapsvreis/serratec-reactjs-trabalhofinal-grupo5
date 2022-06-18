@@ -17,7 +17,7 @@ export const Catalogo = () => {
         .then((response) => setCategorias(response.data));
     };
     getCategoria();
-  }, [categorias]);
+  }, [display]);
 
   function handleDisplay(newDisplay) {
     setDisplay(newDisplay);
