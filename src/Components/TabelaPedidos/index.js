@@ -1,13 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BotaoVoltar, BoxPedido, ListaPedidos, CardPedido, EditPedido, DeletePedido, BoxButtons } from "./style";
 import { useNavigate } from "react-router-dom";
+import {EditarPedido} from "../EditarPedido"
 
 function TabelaPedidos(props) {
     const navigate = useNavigate();
     const listaPedidos = props.lista;
+    const [editarAtivo, setEditarAtivo] = useState(false);
+    const [deletarAtivo, setDeletarAtivo] = useState(false);
+
+    function AtualizarPedido(id){
+        
+      //encontrar pelo id
+      //gerar um form autopreenchido com as informações do pedido
+        handleEditarAtivo()
+      //enviar para atualizacao  
+    }
+
+    function DeletarPedido(id){
+        //requisitar deleção pelo id 
+        handleDeletarAtivo()         
+    }
+
+    function handleEditarAtivo () {
+        let editarEstado = editarAtivo
+        setEditarAtivo(!editarEstado)
+    }
+
+    function handleDeletarAtivo () {
+        let deletarEstado = deletarAtivo
+        setDeletarAtivo(!deletarEstado)
+    }
+
 
     return (
         <>
+            {editarAtivo? <EditarPedido estado={handleEditarAtivo}/> : ''}
+            {deletarAtivo? <DeletarPedido estado={handleDeletarAtivo}/> : ''}
             <BoxPedido>
                 <ListaPedidos>               
                        {listaPedidos !== [] ? listaPedidos.map(res => {
@@ -22,8 +51,8 @@ function TabelaPedidos(props) {
                                         <p>Valor Desconto: R${res.valorTotalDescontoPedido}%</p>
                                         <p>Valor Liquido: R$ {res.valorTotalPedidoLiquido}</p>
                                         <BoxButtons>
-                                            <EditPedido>Editar</EditPedido>
-                                            <DeletePedido>Excluir</DeletePedido>
+                                            <EditPedido onClick={() => AtualizarPedido(res.idPedido)}>Editar</EditPedido>
+                                            <DeletePedido onClick={()=> DeletarPedido(res.idPedido)}>Excluir</DeletePedido>
                                         </BoxButtons>
                                     </CardPedido>
                         }) : ''}                        
