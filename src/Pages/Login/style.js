@@ -4,6 +4,10 @@ export const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  width: 80%;
+  @media (min-width: 1024px){
+    width: 50%;
+  }
 `;
 
 export const FormInput = styled.input`
