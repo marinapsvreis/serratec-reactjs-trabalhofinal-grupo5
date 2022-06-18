@@ -1,5 +1,5 @@
 import React from 'react';
-import { BotaoVoltar, BoxPedido, ListaPedidos } from "./style";
+import { BotaoVoltar, BoxPedido, ListaPedidos, CardPedido, EditPedido, DeletePedido, BoxButtons } from "./style";
 import { useNavigate } from "react-router-dom";
 
 function TabelaPedidos(props) {
@@ -9,43 +9,25 @@ function TabelaPedidos(props) {
     return (
         <>
             <BoxPedido>
-                <ListaPedidos>
-                    <table className="table table-bordered table-dark">
-                        <thead>
-                            <tr>
-                                <th scope="col">Número Pedido</th>
-                                <th scope="col">Cliente</th>
-                                <th scope="col">Status</th>
-                                {window.innerWidth <= 898 ? <><th scope="col">Detalhes</th></> : ''}
-                                {window.innerWidth >= 899 ? <><th scope="col">Data Pedido</th>
-                                    <th scope="col">Data de Entrega</th>
-                                    <th scope="col">Data de Envio</th>
-                                    <th scope="col">Valor Total do Pedido</th>
-                                    <th scope="col">% de Desconto</th>
-                                    <th scope="col">Total Liquido</th></> : ''}
-                            </tr>
-                        </thead>
-                        <tbody>
-                        {listaPedidos !== [] ? listaPedidos.map(res => {
-                                return <tr key={res.idPedido}>
-                                    <td>{res.idPedido}</td>
-                                    <td>{res.idCliente}</td>
-                                    <td>{res.status === true ? 'Ativo' : 'Inativo'}</td>
-                                    {window.innerWidth <= 898 ? <><td><a href="~">Exibir</a></td></> : ''}
-                                    {window.innerWidth >= 899 ? <>
-                                        <td>{res.dataPedido !== null ? res.dataPedido : '...'}</td>
-                                        <td>{res.dataEntrega !== null ? res.dataEntrega : '...'}</td>
-                                        <td>{res.dataEnvio !== null ? res.dataEntrega : '...'}</td>
-                                        <td>R$ {res.valorTotalPedidoBruto}</td>
-                                        <td>{res.valorTotalDescontoPedido}%</td>
-                                        <td>R$ {res.valorTotalPedidoLiquido}</td></> : ''}
-
-                                </tr>
-                            }) : ''}
-                        </tbody>
-                    </table>
+                <ListaPedidos>               
+                       {listaPedidos !== [] ? listaPedidos.map(res => {
+                            return <CardPedido key={res.idPedido}>
+                                        <p>Id Pedido: {res.idPedido}</p>
+                                        <p>Id Cliente: {res.idCliente}</p>
+                                        <p>Status: {res.status === true ? 'Ativo' : 'Inativo'}</p>
+                                        <p>Data do Pedido: {res.dataPedido}</p>
+                                        <p>Data da Entrega: {res.dataEntrega}</p>
+                                        <p>Data do Envio: {res.dataEnvio}</p>
+                                        <p>Valor Bruto: R$ {res.valorTotalPedidoBruto}</p>
+                                        <p>Valor Desconto: R${res.valorTotalDescontoPedido}%</p>
+                                        <p>Valor Liquido: R$ {res.valorTotalPedidoLiquido}</p>
+                                        <BoxButtons>
+                                            <EditPedido>Editar</EditPedido>
+                                            <DeletePedido>Excluir</DeletePedido>
+                                        </BoxButtons>
+                                    </CardPedido>
+                        }) : ''}                        
                 </ListaPedidos>
-
                 <BotaoVoltar>
                     <button onClick={() => navigate("/painel_administrativo")}>
                         Voltar

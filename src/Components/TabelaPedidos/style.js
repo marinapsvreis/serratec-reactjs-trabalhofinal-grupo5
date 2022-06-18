@@ -1,31 +1,65 @@
 import styled from "styled-components";
 
 export const ListaPedidos = styled.div`
-  width: 100%;
-  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  @media (min-width: 1024px){
+      flex-direction: row; 
+      flex-wrap: wrap;
+    }
+`;
+
+export const CardPedido = styled.div`
+  width: 300px;
+  font-size: 1.6rem;
+  background-color: gray;
+  padding: 20px;
+  border-radius: 10px;  
+`;
+
+export const BoxButtons = styled.div`
   display: flex;
   justify-content: center;
+  gap: 5px;
+`;
 
-  table {
-    font-size: 1.5em;
-    width: 80%;
+export const EditPedido = styled.button`
+  width: 40%;
+  border-radius: 10px;
+  background-color: #eead2d;
+  color: white;
+  border: none;
+  &:hover{
+    background-color: #fff2a6;
+    color: black;
   }
 `;
+
+export const DeletePedido = styled.button`
+  width: 40%;
+  border-radius: 10px;
+  background-color: #8e1600;
+  color: white;
+  border: none;
+  &:hover{
+    background-color: #ec7372;
+    color: black;
+  }
+`;
+
+
 export const BoxPedido = styled.div`
   width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
-
-  p {
-    font-size: 3em;
-    color: white;
-  }
 `;
 
 export const BotaoVoltar = styled.div`
   padding-top: 5em;
-  padding-left: 5em;
   display: flex;
   justify-content: center;
 
