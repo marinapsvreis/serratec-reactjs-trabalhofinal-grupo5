@@ -30,7 +30,7 @@ export const CardImagem = styled.img`
   }
 `;
 
-export const CardLink = styled.a`
+export const CardLink = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
