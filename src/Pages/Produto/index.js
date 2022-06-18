@@ -27,23 +27,21 @@ export const Produto = () => {
         idProduto: idProduto,
         quantidadeItemPedido: 1,
         precoVendaItemPedido: produto.valorUnitario,
-        percentualDescontoItemPedido: 0
-        
-      }
+        percentualDescontoItemPedido: 0,
+      };
       api.post("itemPedido", postItemPedido);
     } else {
-      const ultimoPedido= pedidos[pedidos.length - 1]
-      console.log(pedidos)
-      if (ultimoPedido.status == false){
+      const ultimoPedido = pedidos[pedidos.length - 1];
+      console.log(pedidos);
+      if (ultimoPedido.status == false) {
         const postItemPedido = {
           idPedido: ultimoPedido.idPedido,
           idProduto: idProduto,
           quantidadeItemPedido: 1,
           precoVendaItemPedido: produto.valorUnitario,
-          percentualDescontoItemPedido: 0
-      
-        }
-        api.post("itemPedido", postItemPedido)
+          percentualDescontoItemPedido: 0,
+        };
+        api.post("itemPedido", postItemPedido);
       } else {
         const pedido = {
           idCliente: idUsuario,
@@ -54,24 +52,17 @@ export const Produto = () => {
           idProduto: idProduto,
           quantidadeItemPedido: 1,
           precoVendaItemPedido: produto.valorUnitario,
-          percentualDescontoItemPedido: 0
-      
-        }
-        api.post("itemPedido", postItemPedido)
-        
+          percentualDescontoItemPedido: 0,
+        };
+        api.post("itemPedido", postItemPedido);
       }
     }
-
-
-    
-
-    
-  } 
-  //se estiver vazia
-  //fazer post pedido
-  //pegar id do pedido
-  //se contiver pedidos, pegue o ultimo
-  //fazer post item pedido com o id do pedido e id do produto
+    //se estiver vazia
+    //fazer post pedido
+    //pegar id do pedido
+    //se contiver pedidos, pegue o ultimo
+    //fazer post item pedido com o id do pedido e id do produto
+  }
 
   useEffect(() => {
     const getProdutoById = async () => {
