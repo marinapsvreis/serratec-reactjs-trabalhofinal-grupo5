@@ -14,8 +14,6 @@ export const Produto = () => {
   let { categoria, categoriaId, idProduto } = useParams();
   const [produto, setProduto] = useState(null);
   const [pedidos, setPedidos] = useState([]);
-  const [idPedido, setIdPedido] =useState()
-  const [idItemPedido, setIdItemPedido] =useState()
   const { idUsuario, handleSetIdUsuario } = useContext(DataContext);
 
   function adicionarAoCarrinho() {
@@ -24,6 +22,15 @@ export const Produto = () => {
         idCliente: idUsuario,
       };
       api.post("pedido", pedido);
+      const postItemPedido = {
+        idPedido: 1,
+        idProduto: idProduto,
+        quantidadeItemPedido: 1,
+        precoVendaItemPedido: produto.valorUnitario,
+        percentualDescontoItemPedido: 0
+        
+      }
+      api.post("itemPedido", postItemPedido);
     } else {
       const ultimoPedido= pedidos[pedidos.length - 1]
       console.log(pedidos)
