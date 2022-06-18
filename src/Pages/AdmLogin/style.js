@@ -20,7 +20,7 @@ export const ButtonContainer = styled.div`
     width: 100%;
 `
 
-export const LoginButton = styled.input`
+export const LoginButton = styled.button`
   height: 3rem;
   width: 100%;
   font-size: 1.5rem;
