@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const ListaPedidos = styled.div`
   width: 100%;
   height: auto;
-  padding-top: 10em;
+  padding-top: 15rem;
   display: flex;
   justify-content: center;
 
@@ -25,15 +25,17 @@ export const BoxPedido = styled.div`
 `;
 
 export const BotaoVoltar = styled.div`
-  padding-top: 15em;
+  padding-top: 5em;
   padding-left: 5em;
+  display: flex;
+  justify-content: center;
 
   button {
     background-color: var(--secondary-color);
     width: 8em;
-    height: 3.5em;
-    font-size: 1.7em;
-    border-radius: 30px;
+    height: 2.5em;
+    font-size: 2em;
+    border-radius: 10px;
     transition: 500ms;
   }
 

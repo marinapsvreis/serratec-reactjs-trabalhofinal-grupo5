@@ -2,37 +2,17 @@ import React, { useState, useEffect } from "react";
 import { ProdutoCard } from "../ProdutoCard";
 import { Cards, CardImagem, CardLink } from "./style";
 import {api} from "../../Services/api"
+import { Link } from "react-router-dom";
 
-export const CategoriaCard = (props) => {
-  const [categoria] = useState(props.categoria);
-
-  const [produtos, setProdutos] = useState([]);
-
-  useEffect(() => {
-    const getProduto = async () => {
-      await api.get("produto").then(response => setProdutos(response.data))
-    }
-    getProduto()
-  }, [categoria])
-
-  function handleClick() {
-    props.funcaoFiltro(() =>
-      produtos
-        .filter((produto) => produto.idCategoria === categoria.idCategoria)
-        .map((res) => (
-          <>
-            <ProdutoCard produto={res} abrirProduto={props.funcaoFiltro}></ProdutoCard>
-          </>
-        ))
-    );
-  }
+export const CategoriaCard = ( {categoria} ) => {
 
   return (
     <Cards>
-      <a onClick={handleClick}>
+      <Link to={`/catalogo/${categoria.nomeCategoria}&${categoria.idCategoria}`}>
         <CardImagem src={`${categoria.imagemCategoria}`} />
-      </a>
-      <CardLink onClick={handleClick}>{categoria.nomeCategoria}</CardLink>
+      
+      <CardLink>{categoria.nomeCategoria}</CardLink>
+      </Link>
     </Cards>
   );
 };

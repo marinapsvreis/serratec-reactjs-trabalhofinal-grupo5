@@ -1,5 +1,6 @@
 import React from "react"
-import { Container, Titulo} from "../global-style.js"
+import {Titulo} from "../global-style.js"
+import Footer from '../../Components/Footer';
 import "./style.js"
 import "./style.css"
 import { ContainerDireito, ContainerEsquerdo, ContainerSobre, Formulario, FormularioBotao, FormularioInput, FormularioTextArea} from "./style.js"
@@ -45,6 +46,7 @@ export const Contato = () => {
           </Formulario>
       </ContainerDireito>
     </ContainerSobre>
+    <Footer/>
     </>
   )
 }

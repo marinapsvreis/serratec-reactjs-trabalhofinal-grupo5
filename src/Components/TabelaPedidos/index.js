@@ -9,11 +9,6 @@ function TabelaPedidos(props) {
     return (
         <>
             <BoxPedido>
-                <BotaoVoltar>
-                    <button onClick={() => navigate("/painel_administrativo")}>
-                        Voltar
-                    </button>
-                </BotaoVoltar>
                 <ListaPedidos>
                     <table className="table table-bordered table-dark">
                         <thead>
@@ -50,6 +45,12 @@ function TabelaPedidos(props) {
                         </tbody>
                     </table>
                 </ListaPedidos>
+
+                <BotaoVoltar>
+                    <button onClick={() => navigate("/painel_administrativo")}>
+                        Voltar
+                    </button>
+                </BotaoVoltar>
             </BoxPedido>
         </>
     );

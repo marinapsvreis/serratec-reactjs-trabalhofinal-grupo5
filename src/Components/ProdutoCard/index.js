@@ -1,22 +1,18 @@
-import React, { useState } from "react";
-import { PaginaProduto } from "../PaginaProduto";
+import React from "react";
+import { Link } from "react-router-dom";
 import { Cards, CardImagem, CardLink } from "./style";
 
-export const ProdutoCard = (props) => {
-
-   function handleClick() {
-     props.abrirProduto(() => <PaginaProduto produto={props.produto}></PaginaProduto>);
-   }
-
+export const ProdutoCard = ({ produto, categoria, id }) => {
 
   return (
     <Cards>
-      <a onClick={handleClick}>
-        <CardImagem src={`${props.produto.nomeImagemProduto}`} />
-      </a>
-      <CardLink onClick={handleClick}>
-        {props.produto.nomeProduto} - R${props.produto.valorUnitario}
+      <Link to={`/catalogo/${categoria}&${id}/${produto.idProduto}`}>
+        <CardImagem src={`${produto.nomeImagemProduto}`} />
+      
+      <CardLink>
+        {produto.nomeProduto} - R${produto.valorUnitario}
       </CardLink>
+      </Link>
     </Cards>
   );
 };
