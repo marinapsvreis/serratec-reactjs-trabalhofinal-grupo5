@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { BotaoVoltar, BoxButtons, BoxCategoria, CardCategoria, DeleteCategoria, EditCategoria, ListaCategorias } from "./style";
 import { useNavigate } from "react-router-dom";
 
-function TabelaCategorias(props) {
+export const TabelaCategorias = (props) => {
     const navigate = useNavigate();
     const listaCategorias = props.lista;
     const [editarAtivo, setEditarAtivo] = useState(false);
@@ -60,5 +60,3 @@ function TabelaCategorias(props) {
         </>
     );
 }
-
-export default TabelaCategorias;
