@@ -144,8 +144,7 @@ function Carrossel(props) {
             </div>
             <div className="descricaoCarrossel">
               <SobreDescricao className="descCard">
-                Sophia, tem 18 anos. Se formou no ensino médio em 2021 e
-                atualmente está cursando a Residência de Software do Serratec
+                Sophia, tem 18 anos. Se formou no ensino médio em 2021 e atualmente está cursando a Residência de Software do Serratec
               </SobreDescricao>
             </div>
           </div>
