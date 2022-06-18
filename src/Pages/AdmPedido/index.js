@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import BadRequest from "../../Components/BadRequest";
 import TabelaPedidos from "../../Components/TabelaPedidos/index";
+import { Container, Titulo } from "../global-style.js"
 
 import { api } from "../../Services/api";
 
@@ -31,7 +32,10 @@ function AdmPedido(props) {
 
   return (
     <>
+    <Container>
+    <Titulo>Listar Pedidos</Titulo>
     {statusAPI === 200 ? <TabelaPedidos lista={listaPedidos}/> : <BadRequest/>}
+    </Container>
     </>
   );
 }

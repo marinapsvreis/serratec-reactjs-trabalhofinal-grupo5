@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const ListaPedidos = styled.div`
   width: 100%;
   height: auto;
-  padding-top: 15rem;
   display: flex;
   justify-content: center;
 
