@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { DataContext } from '../../Context/data'
 import { useParams } from "react-router-dom";
 import { api } from "../../Services/api";
 import { Container } from "../global-style";
