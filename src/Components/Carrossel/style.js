@@ -21,6 +21,10 @@ export const CarrosselStyle = styled.div`
 
     animation: 250ms ease-out 0s 1 slideInFromLeft;
 
+    .descricaoCarrossel {
+      padding-top: 5em;
+    }
+
     .imagemCarrossel{
       display: flex;
       justify-content: center;
@@ -115,18 +119,24 @@ export const CarrosselStyle = styled.div`
   }
 
   @media (min-width: 767px){
+    .descricaoCarrossel {
+      padding-top: 0;
+    }
+
     .itemCarrosel{
       flex-direction: row;
       height: 23em;
     }
   }
 
-  /* @media (min-width: 1024px){
-    .itemCarrosel{
-      flex-direction: row;
-      height: 23em;
+  @media (min-width: 1407px) {
+    .descricaoCarrossel {
+      padding-top: 0;
     }
-  }  */
 
+    .descricaoCarrossel {
+      width: 100%;
+    }
+  }
 
 `;
