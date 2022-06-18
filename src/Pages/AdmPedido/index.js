@@ -17,9 +17,11 @@ function AdmPedido(props) {
     const getPedidoAPI = async () => {
       try {
         const res = await api.get("pedido");
+        console.log(res)
         setStatusAPI(res.status)
         setListaPedidos(res.data);
       } catch (error) {
+        console.log(error)
         if(error.code === 'ERR_NETWORK') {
           setStatusAPI(e => 502)
         }
