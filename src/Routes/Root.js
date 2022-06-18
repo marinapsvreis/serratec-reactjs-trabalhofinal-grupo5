@@ -13,6 +13,7 @@ import { AdmCategoria } from '../Pages/AdmCategoria'
 import { AdmProduto } from '../Pages/AdmProduto'
 import PainelAdministrativo from '../Pages/PainelAdministrativo'
 import AdmPedido from '../Pages/AdmPedido'
+import { Carrinho } from '../Pages/Carrinho'
 
 export const Root = () => {
   return (
@@ -30,6 +31,7 @@ export const Root = () => {
       <Route path="/contato" element={<Contato/>}/>
       <Route path="/painel_administrativo" element={<PainelAdministrativo/>}/>
       <Route path="/painel_administrativo/pedido" element={<AdmPedido/>}/>
+      <Route path="/carrinho" element={<Carrinho/>}/>
       </Routes>
   )
 }
