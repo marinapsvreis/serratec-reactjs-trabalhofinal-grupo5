@@ -21,9 +21,7 @@ export const Sobre = (props) => {
             <Titulo className='titulo'>Responsáveis pela loja</Titulo>
             <Carrossel/>
         </Container>
-        <Footer>
-
-        </Footer>
+        <Footer/>
         </SobreMain>
         </>
     );

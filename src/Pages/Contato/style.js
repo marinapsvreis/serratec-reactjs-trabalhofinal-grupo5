@@ -6,7 +6,7 @@ export const ContainerSobre = styled.div`
     justify-content: center;
     align-items: center;
     gap: 10rem;
-    margin-top: 10rem; 
+    margin-block: 10rem; 
 
     @media (min-width: 1024px) {
       display: flex;

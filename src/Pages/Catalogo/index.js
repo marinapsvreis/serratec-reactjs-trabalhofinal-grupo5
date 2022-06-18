@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { CardContainer, CatalogoContainer, ReturnButton } from "./style";
+import Footer from '../../Components/Footer';
 import { CategoriaCard } from "../../Components/CategoriaCard/index";
 import { api } from "../../Services/api";
 import { Titulo, Container } from "../global-style";
@@ -40,14 +41,17 @@ export const Catalogo = () => {
   }
 
   return (
-    <CatalogoContainer>
-      <Container className="container">
-        <Titulo className="titulo">Catalogo de Produtos</Titulo>
-        <ReturnButton onClick={displayToMain}>
-          Voltar 
-        </ReturnButton>
-        <CardContainer>{display}</CardContainer>
-      </Container>
-    </CatalogoContainer>
+    <>
+      <CatalogoContainer>
+        <Container className="container">
+          <Titulo className="titulo">Catalogo de Produtos</Titulo>
+          <ReturnButton onClick={displayToMain}>
+            Voltar 
+          </ReturnButton>
+          <CardContainer>{display}</CardContainer>
+        </Container>
+      </CatalogoContainer>
+      <Footer/>
+    </>
   );
 };

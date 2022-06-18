@@ -4,7 +4,7 @@ export const Container = styled.section`
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    margin-top: 15rem;
+    margin-block: 15rem;
     align-items: center;
     width: 100vw;
 `;
