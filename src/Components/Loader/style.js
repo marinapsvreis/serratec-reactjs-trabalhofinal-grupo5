@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const LoaderStyle = styled.div`
-border: 6px solid var(--secondary-color);
+border: 3px solid var(--secondary-color);
 border-top-color: var(--primary-color);
 border-radius: 50%;
 
