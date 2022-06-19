@@ -4,6 +4,7 @@ import { api } from "../../Services/api";
 import { DataContext } from "../../Context/data";
 import { ItemContainer } from "../../Components/ItemCarrinho/style";
 import { ItemCarrinho } from "../../Components/ItemCarrinho";
+import { ConfirmarPedido } from "./style";
 
 export const Carrinho = () => {
   const [pedidos, setPedidos] = useState([]);
@@ -17,9 +18,7 @@ export const Carrinho = () => {
   useEffect(() => {
     if (idUsuario === 0) {
       setDisplay(
-        <Container>
-          <Titulo>Por favor faça login para vizualizar seu Carrinho</Titulo>
-        </Container>
+        <Titulo>Por favor faça login para vizualizar seu Carrinho</Titulo>
       );
     } else {
       const getPedidosByClienteId = async () => {
@@ -35,7 +34,6 @@ export const Carrinho = () => {
   useEffect(() => {
     if (pedidos.length !== 0 && nextRequest === true) {
       if (pedidos[pedidos.length - 1].status === true) {
-        console.log("teste 1");
         setDisplay(<Titulo>Não há items em seu carrinho</Titulo>);
       } else {
         setNextRequest(false);
@@ -53,7 +51,6 @@ export const Carrinho = () => {
   useEffect(() => {
     if (nextRequest === true) {
       if (itemPedido.length === 0 && display === null) {
-        console.log(itemPedido);
         setDisplay(<Titulo>Não ha items em seu carrinho</Titulo>);
       } else {
         let newProduto = [];
@@ -74,7 +71,7 @@ export const Carrinho = () => {
   function handleDisplay() {
     if (listExists) {
       setDisplay(
-        produtos.map((res) => {
+        produtos.map((res, index) => {
           const itemPedidoFiltrado = itemPedido.filter(
             (response) => response.idProduto == res.idProduto
           );
@@ -82,7 +79,7 @@ export const Carrinho = () => {
             <ItemCarrinho
               produto={res}
               itemPedido={itemPedidoFiltrado}
-              key={res.idProduto}
+              key={index}
             />
           );
         })
@@ -92,10 +89,15 @@ export const Carrinho = () => {
 
   const load = setTimeout(handleDisplay, 300);
 
+  const finalizar = () => {
+    api.put(`pedido/processar?idPedido=${pedidos[pedidos.length - 1].idPedido}`).then;
+  };
+
   return (
     <Container>
       <Titulo>Carrinho</Titulo>
       <ItemContainer>{display}</ItemContainer>
+      <ConfirmarPedido onClick={finalizar}>Finalizar pedido</ConfirmarPedido>
     </Container>
   );
 };
