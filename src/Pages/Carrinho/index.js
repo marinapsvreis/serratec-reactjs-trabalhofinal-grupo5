@@ -12,6 +12,7 @@ export const Carrinho = () => {
   const [display, setDisplay] = useState(null);
   const [listExists, setListExists] = useState(false);
   const [nextRequest, setNextRequest] = useState(false);
+  const [descricao, setDescricao] = useState(null);
   const { idUsuario, handleSetIdUsuario } = useContext(DataContext);
 
   useEffect(() => {
@@ -83,25 +84,30 @@ export const Carrinho = () => {
           );
         })
       );
+      setDescricao(
+        <Descricao>
+          Valor Bruto do pedido:{" "}
+          {pedidos[pedidos.length - 1].valorTotalPedidoBruto} <br />
+          Valor Liquido do Peido:{" "}
+          {pedidos[pedidos.length - 1].valorTotalPedidoBruto}
+        </Descricao>
+      );
     }
   }
 
   const load = setTimeout(handleDisplay, 300);
 
-  function finalizar(){
-    api.put(`pedido/processar?idPedido=${pedidos[pedidos.length - 1].idPedido}`);
-  };
+  function finalizar() {
+    api.put(
+      `pedido/processar?idPedido=${pedidos[pedidos.length - 1].idPedido}`
+    );
+  }
 
   return (
     <Container>
       <Titulo>Carrinho</Titulo>
-      <CarrinhoContainer>
-      {display}
-      </CarrinhoContainer>
-      <Descricao>Valor Bruto do pedido: {pedidos[pedidos.length - 1].valorTotalPedidoBruto} <br/>
-      Valor Liquido do Peido: {pedidos[pedidos.length - 1].valorTotalPedidoBruto}
-      </Descricao>
-     
+      <CarrinhoContainer>{display}</CarrinhoContainer>
+      {descricao}
       <ConfirmarPedido onClick={finalizar}>Finalizar pedido</ConfirmarPedido>
     </Container>
   );
