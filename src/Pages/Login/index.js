@@ -49,7 +49,7 @@ export const Login = () => {
 
     } else {
       alert('Usuário ou senha incorretos')
-      //navigate("../login")
+      navigate("../login")
     }      
   }
 
