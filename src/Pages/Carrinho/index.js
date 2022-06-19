@@ -25,14 +25,16 @@ export const Carrinho = () => {
         await api
           .get(`pedido/cliente/${idUsuario}`)
           .then((res) => setPedidos(res.data));
+          setNextRequest(true);
       };
       getPedidosByClienteId();
-      setNextRequest(true);
     }
   }, [idUsuario]);
 
   useEffect(() => {
-    if (pedidos.length !== 0 && nextRequest === true) {
+    if(pedidos.length === 0 && display === null){
+      setDisplay(<Titulo>Não ha items em seu carrinho</Titulo>);
+    } else if (pedidos.length !== 0 && nextRequest === true) {
       if (pedidos[pedidos.length - 1].status === true) {
         setDisplay(<Titulo>Não há items em seu carrinho</Titulo>);
       } else {
@@ -84,13 +86,16 @@ export const Carrinho = () => {
           );
         })
       );
+
       setDescricao(
         <Descricao>
           Valor Bruto do pedido:{" "}
           {pedidos[pedidos.length - 1].valorTotalPedidoBruto} <br />
           Valor Liquido do Peido:{" "}
           {pedidos[pedidos.length - 1].valorTotalPedidoBruto}
-          <ConfirmarPedido onClick={finalizar}>Finalizar pedido</ConfirmarPedido>
+          <ConfirmarPedido onClick={finalizar}>
+            Finalizar pedido
+          </ConfirmarPedido>
         </Descricao>
       );
     }
@@ -102,7 +107,7 @@ export const Carrinho = () => {
     api.put(
       `pedido/processar?idPedido=${pedidos[pedidos.length - 1].idPedido}`
     );
-    alert("Pedido finalizado")
+    alert("Pedido finalizado");
   }
 
   return (
@@ -110,7 +115,6 @@ export const Carrinho = () => {
       <Titulo>Carrinho</Titulo>
       <CarrinhoContainer>{display}</CarrinhoContainer>
       {descricao}
-      
     </Container>
   );
 };

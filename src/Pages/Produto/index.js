@@ -51,6 +51,7 @@ export const Produto = () => {
         const responseNovoUsuario = await api.post("pedido", {
           idCliente: idUsuario,
         });
+        console.log(responseNovoUsuario)
 
         const itemPedidoResponseNovoUsuario = await api.post("itemPedido", {
           idPedido: responseNovoUsuario.data.idPedido,
@@ -59,7 +60,8 @@ export const Produto = () => {
           precoVendaItemPedido: produto.valorUnitario,
           percentualDescontoItemPedido: 0,
         });
-        alert("O pedido foi adicionado ao carrinho")
+        console.log(itemPedidoResponseNovoUsuario.data)
+        alert("O item foi adicionado ao carrinho")
       } else {
         const ultimoPedido = pedidosCliente[pedidosCliente.length - 1];
         if (ultimoPedido.status === false) {
@@ -70,7 +72,7 @@ export const Produto = () => {
             precoVendaItemPedido: produto.valorUnitario,
             percentualDescontoItemPedido: 0,
           });
-          alert("O pedido foi adicionado ao carrinho")
+          alert("O item foi adicionado ao carrinho")
         } else {
           const response = await api.post("pedido", { idCliente: idUsuario });
 
@@ -81,14 +83,14 @@ export const Produto = () => {
             precoVendaItemPedido: produto.valorUnitario,
             percentualDescontoItemPedido: 0,
           });
-          alert("O pedido foi adicionado ao carrinho")
+          alert("O item foi adicionado ao carrinho")
         }
       }
     } else {
       alert("Faça login para adicionar um produto ao carrinho");
     }
   }
-
+// addicionar mensagem de carrinho vazaio
   function handleQuantidade(e) {
     setQuantidade(e.target.value);
   }
