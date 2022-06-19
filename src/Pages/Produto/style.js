@@ -40,6 +40,10 @@ export const ProdutoDescricao = styled.div`
   
 `;
 
+export const ProdutoInput = styled.input`
+  text-align: center;
+`
+
 export const ProdutoButton = styled.button`
  margin: 2rem;
  text-transform: uppercase;
