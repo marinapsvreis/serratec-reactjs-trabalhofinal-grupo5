@@ -22,7 +22,7 @@ export const Navbar = () => {
       <NavbarContainer>
         <Link to="/" style={{textDecoration: "none"}}><LinkHome><img src={Logo} alt="logo" width="40px" />
           <NomeLogo>Serra Funko</NomeLogo></LinkHome></Link>
-          {idUsuario !== 0 ? <ClienteLogado/> : ''}
+          {localStorage.getItem('idCliente') !== null ? <ClienteLogado/> : ''}
           <NavbarLista>          
           <Link to="/catalogo" style={{textDecoration: "none"}}><NavbarItem>Produtos</NavbarItem></Link>
           <Link to="/carrinho" style={{textDecoration: "none"}}><NavbarItem>Carrinho</NavbarItem></Link>

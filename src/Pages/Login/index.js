@@ -1,16 +1,12 @@
-import React, {useState, useContext, useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import {Link, useNavigate} from "react-router-dom"
 import { Container, Titulo } from "../global-style";
 import { Form, FormInput, LoginButton, RegistroButton } from "./style";
-import { DataContext } from '../../Context/data'
 import {api} from '../../Services/api'
 
 export const Login = () => {
-
-  const {idUsuario, handleSetIdUsuario} = useContext(DataContext)
   const [clienteList, setClienteList] = useState([]);
   let cliente;
-  let idCliente;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   let navigate = useNavigate();
@@ -33,7 +29,8 @@ export const Login = () => {
       alert('Email não cadastrado. Cadastre-se!')
       navigate("../registro")
     }else{
-      idCliente = cliente[0].idCliente;
+      localStorage.setItem('idCliente', cliente[0].idCliente)
+      localStorage.setItem('nomeCliente', cliente[0].nomeCompleto)
     }    
   }
 
@@ -49,11 +46,13 @@ export const Login = () => {
     const response = await api.get(`cliente/logar_cliente?email=${email}&password=${password}`)
     if (response) {
       alert('Sucesso!')
-      handleSetIdUsuario(idCliente)
       navigate("../catalogo")
+      window.location.reload(true);
 
     } else {
       alert('Senha incorreta!')
+      localStorage.removeItem('idCliente')
+      localStorage.removeItem('nomeCliente')
       navigate("../login")
     }      
   }

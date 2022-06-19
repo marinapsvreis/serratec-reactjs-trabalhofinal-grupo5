@@ -1,11 +1,20 @@
-import { useContext, useEffect } from "react";
-import { DataContext } from "../../Context/data";
-import { api } from "../../Services/api";
-import { InfoCliente } from "./style";
+import { useEffect } from "react";
+import { ContainerLogin, InfoCliente, LogOff } from "./style";
 
 export const ClienteLogado = () => {
+  
+  function limparLocalStorage(){
+    localStorage.removeItem('idCliente')
+    localStorage.removeItem('nomeCliente')
+    window.location.reload(true);
+  }
 
-  const { idUsuario, handleSetIdUsuario } = useContext(DataContext);
 
-  return(<InfoCliente>Cliente: {idUsuario}</InfoCliente>)
+  return(
+    <ContainerLogin>
+      <InfoCliente>Cliente: {localStorage.getItem('nomeCliente')}</InfoCliente>
+      <LogOff onClick={limparLocalStorage}>Sair</LogOff>
+    </ContainerLogin>
+    
+  )
 }
