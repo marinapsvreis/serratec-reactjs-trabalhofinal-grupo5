@@ -81,7 +81,7 @@ export const ButtonContainer = styled.div`
     display: flex;
 `;
 
-export const RegistroButton = styled.input`
+export const RegistroButton = styled.button`
   height: 3rem;
   width: 100%;
   font-size: 1.5rem;
