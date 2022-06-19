@@ -1,41 +1,24 @@
 import React, { useState } from 'react';
 import { BotaoVoltar, BoxButtons, BoxProduto, CardProduto, DeleteProduto, EditProduto, ListaProdutos } from "./style";
 import { useNavigate } from "react-router-dom";
+import { DeletarGenerico } from '../DeletarGenerico';
 
 function TabelaProdutos(props) {
     const navigate = useNavigate();
     const listaProdutos = props.lista;
-    const [editarAtivo, setEditarAtivo] = useState(false);
-    const [deletarAtivo, setDeletarAtivo] = useState(false);
+    const [id, setId] = useState()
+    const [isEditado, setEditado] = useState(false);
+    const [isDeletado, setDeletado] = useState(false);
 
-    function AtualizarProduto(id){
-        
-      //encontrar pelo id
-      //gerar um form autopreenchido com as informações do produto
-        handleEditarAtivo()
-      //enviar para atualizacao  
-    }
-
-    function DeletarProduto(id){
-        //requisitar deleção pelo id 
-        handleDeletarAtivo()         
-    }
-
-    function handleEditarAtivo () {
-        let editarEstado = editarAtivo
-        setEditarAtivo(!editarEstado)
-    }
-
-    function handleDeletarAtivo () {
-        let deletarEstado = deletarAtivo
-        setDeletarAtivo(!deletarEstado)
+    const handleDeletar = () => {
+        setDeletado(!isDeletado)
     }
 
 
     return (
         <>
-            {editarAtivo? <EditProduto estado={handleEditarAtivo}/> : ''}
-            {deletarAtivo? <DeletarProduto estado={handleDeletarAtivo}/> : ''}
+            {isEditado? '' : ''}
+            {isDeletado? <DeletarGenerico clickFechar={handleDeletar} id={id} titulo={'produto'}/> : ''}
             <BoxProduto>
                 <ListaProdutos>               
                        {listaProdutos !== [] ? listaProdutos.map(res => {
@@ -49,8 +32,11 @@ function TabelaProdutos(props) {
                                         <p>Nome da Imagem do Produto: {res.nomeImagemProduto}</p>
                                         <p>Id Categoria: {res.idCategoria}</p>
                                         <BoxButtons>
-                                            <EditProduto onClick={() => AtualizarProduto(res.idProduto)}>Editar</EditProduto>
-                                            <DeleteProduto onClick={()=> DeletarProduto(res.idProduto)}>Excluir</DeleteProduto>
+                                            <EditProduto onClick={() => ''}>Editar</EditProduto>
+                                            <DeleteProduto onClick={()=> {
+                                                setDeletado(!isDeletado);
+                                                setId(e => res.idProduto)
+                                            }}>Excluir</DeleteProduto>
                                         </BoxButtons>
                                     </CardProduto>
                         }) : ''}                        

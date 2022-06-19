@@ -20,6 +20,10 @@ export const DeletarGenerico = (props) => {
                     let id = parseInt(props.id)
                     const res = await api.delete('categoria', {params: {idCategoria: id}});
                     setStatusAPI(res.status);
+                  } if(props.titulo === 'produto') {
+                    let id = parseInt(props.id)
+                    const res = await api.delete('produto', {params: {idProduto: id}});
+                    setStatusAPI(res.status);
                   }
                 } catch (error) {
                   console.log(error);
