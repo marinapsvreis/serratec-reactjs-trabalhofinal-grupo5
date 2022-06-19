@@ -24,8 +24,8 @@ export const Catalogo = () => {
 
   function displayToMain() {
     setDisplay(
-      categorias.map((res) => {
-        return <CategoriaCard categoria={res} key={res.idCategoria} />;
+      categorias.map((res, index) => {
+        return <CategoriaCard categoria={res} key={index} />;
       })
     );
   }

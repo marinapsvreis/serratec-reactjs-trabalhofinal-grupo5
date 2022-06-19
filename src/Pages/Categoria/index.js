@@ -21,9 +21,9 @@ export const Categorias = (props) => {
     setDisplay(() =>
       produtos
         .filter((produto) => produto.idCategoria == id)
-        .map((res) => (
+        .map((res, index) => (
           <>
-            <ProdutoCard produto={res} categoria={categoria} id={id} key={res.idProduto}></ProdutoCard>
+            <ProdutoCard produto={res} categoria={categoria} id={id} key={index}></ProdutoCard>
           </>
         ))
     );
