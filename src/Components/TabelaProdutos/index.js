@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { BotaoVoltar, BoxButtons, BoxProduto, CardProduto, DeleteProduto, EditProduto, ListaProdutos } from "./style";
 import { useNavigate } from "react-router-dom";
+import { EditarProduto } from "../EditarProduto";
 import { DeletarGenerico } from '../DeletarGenerico';
 
 function TabelaProdutos(props) {
@@ -10,6 +11,10 @@ function TabelaProdutos(props) {
     const [isEditado, setEditado] = useState(false);
     const [isDeletado, setDeletado] = useState(false);
 
+    const handleEditar = () => {
+        setEditado(!isEditado)
+    }
+
     const handleDeletar = () => {
         setDeletado(!isDeletado)
     }
@@ -17,7 +22,7 @@ function TabelaProdutos(props) {
 
     return (
         <>
-            {isEditado? '' : ''}
+            {isEditado? <EditarProduto clickFechar={handleEditar} id={id} produto={listaProdutos.filter(c => c.idProduto === id)[0]}/> : ''}
             {isDeletado? <DeletarGenerico clickFechar={handleDeletar} id={id} titulo={'produto'}/> : ''}
             <BoxProduto>
                 <ListaProdutos>               
@@ -32,7 +37,10 @@ function TabelaProdutos(props) {
                                         <p>Nome da Imagem do Produto: {res.nomeImagemProduto}</p>
                                         <p>Id Categoria: {res.idCategoria}</p>
                                         <BoxButtons>
-                                            <EditProduto onClick={() => ''}>Editar</EditProduto>
+                                            <EditProduto onClick={()=> {
+                                                setEditado(!isEditado);
+                                                setId(e => res.idProduto)
+                                            }}>Editar</EditProduto>
                                             <DeleteProduto onClick={()=> {
                                                 setDeletado(!isDeletado);
                                                 setId(e => res.idProduto)
