@@ -29,7 +29,12 @@ export const Login = () => {
 
   function getIdCliente (email){
     cliente = clienteList.filter(c => c.email === email)
-    idCliente = cliente[0].idCliente;
+    if(cliente[0] === undefined){
+      alert('Email não cadastrado. Cadastre-se!')
+      navigate("../registro")
+    }else{
+      idCliente = cliente[0].idCliente;
+    }    
   }
 
   function handleEmailChange(e){
@@ -48,7 +53,7 @@ export const Login = () => {
       navigate("../catalogo")
 
     } else {
-      alert('Usuário ou senha incorretos')
+      alert('Senha incorreta!')
       navigate("../login")
     }      
   }
