@@ -22,7 +22,6 @@ export const AdmCategoria = () => {
     const getCategoriaAPI = async () => {
       try {
         const res = await api.get("categoria");
-        console.log(res);
         setStatusAPI(res.status);
         setListaCategorias(res.data);
       } catch (error) {
@@ -35,11 +34,11 @@ export const AdmCategoria = () => {
     getCategoriaAPI();
   }
 
-  const handleFechar = (event) => {
+  const handleFechar = () => {
     setConfirmado(!isConfirmado);
   };
 
-  const handleConfirmar = (event) => {
+  const handleConfirmar = () => {
     window.location.reload(false);
   }
 

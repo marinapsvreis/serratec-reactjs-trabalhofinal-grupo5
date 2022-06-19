@@ -12,7 +12,6 @@ export const Navbar = () => {
   const { idUsuario, handleSetIdUsuario } = useContext(DataContext);
 
   function activeMenu() {
-    console.log('Click')
     setIsActive(current => !current);
   }
 

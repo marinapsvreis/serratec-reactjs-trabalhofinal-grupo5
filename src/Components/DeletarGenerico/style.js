@@ -58,14 +58,20 @@ align-items: center;
 
 `;
 
-export const Form = styled.form`
+export const Form = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 1rem;
   min-width: 300px;
   width: 100%;
   max-width: 800px;
   padding-inline: 20px;
+
+  p {
+    font-size: 6.5em;
+  }
   @media (min-width: 1024px){
     padding-inline: 50px;    
     }
@@ -79,11 +85,12 @@ export const Input = styled.input`
 
 export const ButtonContainer = styled.div`
     display: flex;
+    gap: 3em;
 `;
 
-export const RegistroButton = styled.input`
+export const RegistroButton = styled.button`
   height: 3rem;
-  width: 100%;
+  width: 9rem;
   font-size: 1.5rem;
   background-color: var(--secondary-color);
   border-radius: 10px;
@@ -94,7 +101,7 @@ export const RegistroButton = styled.input`
 
 export const CancelarButton = styled.button`
     height: 3rem;
-    width: 100%;
+    width: 9rem;
     font-size: 1.5rem;
     background-color: var(--secondary-color);
     border-radius: 10px;

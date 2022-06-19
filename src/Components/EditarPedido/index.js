@@ -9,11 +9,15 @@ import {
 
 export const EditarPedido = (props) => {
 
+    const handleSubmit = (event) => {
+        event.preventDefault();
+      };
+
     return (
         <>
             <PopupStyle>
                 <div className='popup-tela'>
-                <Form>
+                <Form onSubmit={handleSubmit}>
                     <Input type="number" placeholder="Id do cliente" />      
                     <ButtonContainer>
                     <RegistroButton type="submit" value="Alterar" />

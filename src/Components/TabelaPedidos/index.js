@@ -1,42 +1,24 @@
 import React, { useState } from 'react';
 import { BotaoVoltar, BoxPedido, ListaPedidos, CardPedido, EditPedido, DeletePedido, BoxButtons } from "./style";
 import { useNavigate } from "react-router-dom";
-import {EditarPedido} from "../EditarPedido"
+import { EditarPedido } from "../EditarPedido"
+import { DeletarPedido } from "../DeletarGenerico"
 
 function TabelaPedidos(props) {
     const navigate = useNavigate();
     const listaPedidos = props.lista;
-    const [editarAtivo, setEditarAtivo] = useState(false);
-    const [deletarAtivo, setDeletarAtivo] = useState(false);
+    const [id, setId] = useState()
+    const [isEditado, setEditado] = useState(false);
+    const [isDeletado, setDeletado] = useState(false);
 
-    function AtualizarPedido(id){
-        
-      //encontrar pelo id
-      //gerar um form autopreenchido com as informações do pedido
-        handleEditarAtivo()
-      //enviar para atualizacao  
+    const handleDeletar = () => {
+        setDeletado(!isDeletado)
     }
-
-    function DeletarPedido(id){
-        //requisitar deleção pelo id 
-        handleDeletarAtivo()         
-    }
-
-    function handleEditarAtivo () {
-        let editarEstado = editarAtivo
-        setEditarAtivo(!editarEstado)
-    }
-
-    function handleDeletarAtivo () {
-        let deletarEstado = deletarAtivo
-        setDeletarAtivo(!deletarEstado)
-    }
-
 
     return (
         <>
-            {editarAtivo? <EditarPedido estado={handleEditarAtivo}/> : ''}
-            {deletarAtivo? <DeletarPedido estado={handleDeletarAtivo}/> : ''}
+            {isEditado? <EditarPedido/> : ''}
+            {isDeletado? <DeletarPedido clickFechar={handleDeletar} idPedido={id} titulo={'pedido'}/> : ''}
             <BoxPedido>
                 <ListaPedidos>               
                        {listaPedidos !== [] ? listaPedidos.map(res => {
@@ -51,8 +33,10 @@ function TabelaPedidos(props) {
                                         <p>Valor Desconto: R${res.valorTotalDescontoPedido}%</p>
                                         <p>Valor Liquido: R$ {res.valorTotalPedidoLiquido}</p>
                                         <BoxButtons>
-                                            <EditPedido onClick={() => AtualizarPedido(res.idPedido)}>Editar</EditPedido>
-                                            <DeletePedido onClick={()=> DeletarPedido(res.idPedido)}>Excluir</DeletePedido>
+                                            <EditPedido onClick={() => setEditado(!isEditado)}>Editar</EditPedido>
+                                            <DeletePedido onClick={() => {
+                                                setDeletado(!isDeletado);
+                                                setId(e => res.idPedido)}}>Excluir</DeletePedido>
                                         </BoxButtons>
                                     </CardPedido>
                         }) : ''}                        

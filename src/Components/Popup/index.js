@@ -25,7 +25,6 @@ export const Popup = (props) => {
             descricaoCategoria: informacaoPost.info.Descricao,
             imagemCategoria: informacaoPost.info.Imagem,
           });
-          console.log(res);
         } catch (error) {
           console.log(error);
         }
@@ -44,7 +43,6 @@ export const Popup = (props) => {
                 nomeImagemProduto: informacaoPost.info.NomeImagem,
                 idCategoria: parseInt(informacaoPost.info.IdCategoria)
               });
-              console.log(res);
             } catch (error) {
                 console.log(error)
             }
