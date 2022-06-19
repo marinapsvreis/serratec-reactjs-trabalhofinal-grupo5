@@ -16,14 +16,14 @@ export const Carrinho = () => {
   const { idUsuario, handleSetIdUsuario } = useContext(DataContext);
 
   useEffect(() => {
-    if (idUsuario === 0) {
+    if (localStorage.getItem('idCliente') !== null) {
       setDisplay(
         <Titulo>Por favor faça login para vizualizar seu Carrinho</Titulo>
       );
     } else {
       const getPedidosByClienteId = async () => {
         await api
-          .get(`pedido/cliente/${idUsuario}`)
+          .get(`pedido/cliente/${localStorage.getItem('idCliente')}`)
           .then((res) => setPedidos(res.data));
           setNextRequest(true);
       };

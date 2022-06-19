@@ -1,5 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
-import { DataContext } from "../../Context/data";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { api } from "../../Services/api";
 import { Container } from "../global-style";
@@ -18,7 +17,6 @@ export const Produto = () => {
   const [pedidosCliente, setPedidosCliente] = useState([]);
   const [listaPedidos, setListaPedidos] = useState([]);
   const [idPedido, setIdPedido] = useState();
-  const { idUsuario, handleSetIdUsuario } = useContext(DataContext);
 
   useEffect(() => {
     const getProdutoById = async () => {
@@ -28,10 +26,10 @@ export const Produto = () => {
     };
     getProdutoById();
 
-    if (idUsuario != 0) {
+    if (localStorage.getItem('idCliente') !== null) {
       const getPedidosByClienteId = async () => {
         await api
-          .get(`pedido/cliente/${idUsuario}`)
+          .get(`pedido/cliente/${localStorage.getItem('idCliente')}`)
           .then((response) => setPedidosCliente(response.data));
       };
       getPedidosByClienteId();
@@ -46,10 +44,10 @@ export const Produto = () => {
   }, [categoria]);
 
   async function adicionarAoCarrinho() {
-    if (idUsuario != 0) {
+    if (localStorage.getItem('idCliente') !== null) {
       if (pedidosCliente.length === 0) {
         const responseNovoUsuario = await api.post("pedido", {
-          idCliente: idUsuario,
+          idCliente: localStorage.getItem('idCliente'),
         });
         console.log(responseNovoUsuario)
 
@@ -74,7 +72,7 @@ export const Produto = () => {
           });
           alert("O item foi adicionado ao carrinho")
         } else {
-          const response = await api.post("pedido", { idCliente: idUsuario });
+          const response = await api.post("pedido", { idCliente: localStorage.getItem('idCliente') });
 
           const itemPedidoResponse = await api.post("itemPedido", {
             idPedido: response.data.idPedido,
