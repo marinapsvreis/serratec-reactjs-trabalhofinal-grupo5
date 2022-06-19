@@ -6,6 +6,7 @@ import { ClienteLogado } from "../ClienteLogado";
 import "./style.css"
 import {Link} from "react-router-dom"
 import { DataContext } from "../../Context/data";
+import { Carrinho } from "../../Pages/Carrinho";
 
 export const Navbar = () => {
   const [isActive, setIsActive] = useState(false);
@@ -24,6 +25,7 @@ export const Navbar = () => {
           {idUsuario !== 0 ? <ClienteLogado/> : ''}
           <NavbarLista>          
           <Link to="/catalogo" style={{textDecoration: "none"}}><NavbarItem>Produtos</NavbarItem></Link>
+          <Link to="/carrinho" style={{textDecoration: "none"}}><NavbarItem>Carrinho</NavbarItem></Link>
           <Link to="/sobre" style={{textDecoration: "none"}}><NavbarItem>Sobre</NavbarItem></Link>
           <Link to="/contato" style={{textDecoration: "none"}}><NavbarItem>Contato</NavbarItem></Link>
           <Link to="/login" style={{textDecoration: "none"}}><NavbarItem><ButtonLogin>Login</ButtonLogin></NavbarItem></Link>
@@ -50,6 +52,7 @@ export const Navbar = () => {
           <div id="menu-options">
           <Link to="/" style={{textDecoration: "none"}}><MenuOption onClick={activeMenu}>Home</MenuOption></Link>
           <Link to="/catalogo" style={{textDecoration: "none"}}onClick={activeMenu}><MenuOption>Produtos</MenuOption></Link>
+          <Link to="/carrinho" style={{textDecoration: "none"}}><MenuOption onClick={activeMenu}>Carrinho</MenuOption></Link>    
           <Link to="/sobre" style={{textDecoration: "none"}}onClick={activeMenu}><MenuOption>Sobre</MenuOption></Link>
           <Link to="/contato" style={{textDecoration: "none"}}onClick={activeMenu}><MenuOption>Contato</MenuOption></Link>
           <Link to="/login" style={{textDecoration: "none"}}><MenuOptionLogin onClick={activeMenu}>Login</MenuOptionLogin></Link>    

@@ -18,47 +18,54 @@ export const Produto = () => {
   const { idUsuario, handleSetIdUsuario } = useContext(DataContext);
 
   function adicionarAoCarrinho() {
-    if (pedidosCliente.length === 0) {
-      const pedido = {
-        idCliente: idUsuario,
-      };
-      api.post("pedido", pedido);
-      
-      const postItemPedido1 = {
-        idPedido: listaPedidos.length + 1,
-        idProduto: idProduto,
-        quantidadeItemPedido: 1,
-        precoVendaItemPedido: produto.valorUnitario,
-        percentualDescontoItemPedido: 0,
-      };
-      setTimeout(() => api.post("itemPedido", postItemPedido1), 1000);
-    } else {
-      const ultimoPedido = pedidosCliente[pedidosCliente.length - 1];
-      if (ultimoPedido.status === false) {
-        const postItemPedido = {
-          idPedido: ultimoPedido.idPedido,
-          idProduto: idProduto,
-          quantidadeItemPedido: 1,
-          precoVendaItemPedido: produto.valorUnitario,
-          percentualDescontoItemPedido: 0,
-        };
-        api.post("itemPedido", postItemPedido);
-      } else {
+    if(idUsuario != 0){
+      if (pedidosCliente.length === 0) {
         const pedido = {
           idCliente: idUsuario,
         };
         api.post("pedido", pedido);
-
-        const postItemPedido2 = {
+        
+        const postItemPedido1 = {
           idPedido: listaPedidos.length + 1,
           idProduto: idProduto,
           quantidadeItemPedido: 1,
           precoVendaItemPedido: produto.valorUnitario,
           percentualDescontoItemPedido: 0,
         };
-        setTimeout(() => api.post("itemPedido", postItemPedido2), 1000);
+        setTimeout(() => api.post("itemPedido", postItemPedido1), 1000);
+      } else {
+        const ultimoPedido = pedidosCliente[pedidosCliente.length - 1];
+        if (ultimoPedido.status === false) {
+          const postItemPedido = {
+            idPedido: ultimoPedido.idPedido,
+            idProduto: idProduto,
+            quantidadeItemPedido: 1,
+            precoVendaItemPedido: produto.valorUnitario,
+            percentualDescontoItemPedido: 0,
+          };
+          api.post("itemPedido", postItemPedido);
+        } else {
+          const pedido = {
+            idCliente: idUsuario,
+          };
+          api.post("pedido", pedido);
+  
+          const postItemPedido2 = {
+            idPedido: listaPedidos.length + 1,
+            idProduto: idProduto,
+            quantidadeItemPedido: 1,
+            precoVendaItemPedido: produto.valorUnitario,
+            percentualDescontoItemPedido: 0,
+          };
+          setTimeout(() => api.post("itemPedido", postItemPedido2), 1000);
+        }
       }
+      alert("Produto adicionado ao carrinho")
+    } else {
+      alert("Faça login para adicionar um produto ao carrinho")
     }
+    
+    
   }
   useEffect(() => {
     const getProdutoById = async () => {
