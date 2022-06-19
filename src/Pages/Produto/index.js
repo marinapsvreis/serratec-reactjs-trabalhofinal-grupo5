@@ -17,6 +17,7 @@ export const Produto = () => {
   const [quantidade, setQuantidade] = useState("");
   const [pedidosCliente, setPedidosCliente] = useState([]);
   const [listaPedidos, setListaPedidos] = useState([]);
+  const [idPedido, setIdPedido] = useState();
   const { idUsuario, handleSetIdUsuario } = useContext(DataContext);
 
   useEffect(() => {
@@ -44,57 +45,52 @@ export const Produto = () => {
     }
   }, [categoria]);
 
-  function adicionarAoCarrinho() {
+  async function adicionarAoCarrinho() {
     if (idUsuario != 0) {
       if (pedidosCliente.length === 0) {
-        const pedido = {
+        const responseNovoUsuario = await api.post("pedido", {
           idCliente: idUsuario,
-        };
-        api.post("pedido", pedido);
+        });
 
-        const postItemPedido1 = {
-          idPedido: listaPedidos.length + 1,
+        const itemPedidoResponseNovoUsuario = await api.post("itemPedido", {
+          idPedido: responseNovoUsuario.data.idPedido,
           idProduto: idProduto,
           quantidadeItemPedido: quantidade,
           precoVendaItemPedido: produto.valorUnitario,
           percentualDescontoItemPedido: 0,
-        };
-        setTimeout(() => api.post("itemPedido", postItemPedido1), 1000);
+        });
+        alert("O pedido foi adicionado ao carrinho")
       } else {
         const ultimoPedido = pedidosCliente[pedidosCliente.length - 1];
         if (ultimoPedido.status === false) {
-          const postItemPedido = {
+          api.post("itemPedido", {
             idPedido: ultimoPedido.idPedido,
             idProduto: idProduto,
             quantidadeItemPedido: quantidade,
             precoVendaItemPedido: produto.valorUnitario,
             percentualDescontoItemPedido: 0,
-          };
-          api.post("itemPedido", postItemPedido);
+          });
+          alert("O pedido foi adicionado ao carrinho")
         } else {
-          const pedido = {
-            idCliente: idUsuario,
-          };
-          api.post("pedido", pedido);
+          const response = await api.post("pedido", { idCliente: idUsuario });
 
-          const postItemPedido2 = {
-            idPedido: listaPedidos.length + 1,
+          const itemPedidoResponse = await api.post("itemPedido", {
+            idPedido: response.data.idPedido,
             idProduto: idProduto,
             quantidadeItemPedido: quantidade,
             precoVendaItemPedido: produto.valorUnitario,
             percentualDescontoItemPedido: 0,
-          };
-          setTimeout(() => api.post("itemPedido", postItemPedido2), 1000);
+          });
+          alert("O pedido foi adicionado ao carrinho")
         }
       }
-      alert("Produto adicionado ao carrinho");
     } else {
       alert("Faça login para adicionar um produto ao carrinho");
     }
   }
 
-  function handleQuantidade(e){
-    setQuantidade(e.target.value)
+  function handleQuantidade(e) {
+    setQuantidade(e.target.value);
   }
 
   if (produto == null) {
@@ -109,7 +105,11 @@ export const Produto = () => {
           {produto.nomeProduto} <br />
           Quantidade no estoque: {produto.qtdEstoqueProduto} itens <br />
           R${produto.valorUnitario} <br />
-          <ProdutoInput type="number" placeholder="Quantidade desejada" onChange={handleQuantidade}/>
+          <ProdutoInput
+            type="number"
+            placeholder="Quantidade desejada"
+            onChange={handleQuantidade}
+          />
           <ProdutoButton onClick={adicionarAoCarrinho}>
             Adicionar ao carrinho
           </ProdutoButton>

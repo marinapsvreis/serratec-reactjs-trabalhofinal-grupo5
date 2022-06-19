@@ -102,6 +102,7 @@ export const Carrinho = () => {
     api.put(
       `pedido/processar?idPedido=${pedidos[pedidos.length - 1].idPedido}`
     );
+    alert("Pedido finalizado")
   }
 
   return (
