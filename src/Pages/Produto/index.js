@@ -18,24 +18,23 @@ export const Produto = () => {
   const { idUsuario, handleSetIdUsuario } = useContext(DataContext);
 
   function adicionarAoCarrinho() {
-    if (pedidosCliente.length == 0) {
+    if (pedidosCliente.length === 0) {
       const pedido = {
         idCliente: idUsuario,
       };
       api.post("pedido", pedido);
-      const postItemPedido = {
+      
+      const postItemPedido1 = {
         idPedido: listaPedidos.length + 1,
         idProduto: idProduto,
         quantidadeItemPedido: 1,
         precoVendaItemPedido: produto.valorUnitario,
         percentualDescontoItemPedido: 0,
       };
-      api.post("itemPedido", postItemPedido);
+      setTimeout(() => api.post("itemPedido", postItemPedido1), 1000);
     } else {
-      console.log(pedidosCliente)
       const ultimoPedido = pedidosCliente[pedidosCliente.length - 1];
-      console.log(ultimoPedido)
-      if (ultimoPedido.status == false) {
+      if (ultimoPedido.status === false) {
         const postItemPedido = {
           idPedido: ultimoPedido.idPedido,
           idProduto: idProduto,
@@ -49,17 +48,17 @@ export const Produto = () => {
           idCliente: idUsuario,
         };
         api.post("pedido", pedido);
-        const postItemPedido = {
+
+        const postItemPedido2 = {
           idPedido: listaPedidos.length + 1,
           idProduto: idProduto,
           quantidadeItemPedido: 1,
           precoVendaItemPedido: produto.valorUnitario,
           percentualDescontoItemPedido: 0,
         };
-        api.post("itemPedido", postItemPedido);
+        setTimeout(() => api.post("itemPedido", postItemPedido2), 1000);
       }
     }
-
   }
   useEffect(() => {
     const getProdutoById = async () => {
