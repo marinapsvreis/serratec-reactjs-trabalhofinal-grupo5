@@ -1,12 +1,15 @@
 import React from "react"
-import {useState} from 'react';
+import {useState, useContext} from 'react';
 import Logo from "../../Sources/serra-funko-icon.png";
 import { NavbarSection, NavbarContainer, NavbarLista, NavbarItem, LinkHome, NomeLogo, ButtonLogin, MenuOption, MenuOptionLogin } from "./style";
+import { ClienteLogado } from "../ClienteLogado";
 import "./style.css"
 import {Link} from "react-router-dom"
+import { DataContext } from "../../Context/data";
 
 export const Navbar = () => {
   const [isActive, setIsActive] = useState(false);
+  const { idUsuario, handleSetIdUsuario } = useContext(DataContext);
 
   function activeMenu() {
     console.log('Click')
@@ -19,8 +22,8 @@ export const Navbar = () => {
       <NavbarContainer>
         <Link to="/" style={{textDecoration: "none"}}><LinkHome><img src={Logo} alt="logo" width="40px" />
           <NomeLogo>Serra Funko</NomeLogo></LinkHome></Link>
-          <NavbarLista>
-          
+          {idUsuario !== 0 ? <ClienteLogado/> : ''}
+          <NavbarLista>          
           <Link to="/catalogo" style={{textDecoration: "none"}}><NavbarItem>Produtos</NavbarItem></Link>
           <Link to="/sobre" style={{textDecoration: "none"}}><NavbarItem>Sobre</NavbarItem></Link>
           <Link to="/contato" style={{textDecoration: "none"}}><NavbarItem>Contato</NavbarItem></Link>
