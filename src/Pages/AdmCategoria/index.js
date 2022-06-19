@@ -50,6 +50,19 @@ export const AdmCategoria = () => {
     setLinkImagem("");
   };
 
+  const verificarResponse = () => {
+    if(statusAPI === 0) {
+      return <></>
+    }
+    if(statusAPI === 200) {
+      return <><TabelaCategorias lista={listaCategorias}/></>
+    } if(statusAPI === 502) {
+      return <><BadRequest/></>
+    } else {
+      return <><BadRequest/></>
+    }
+  }
+
   return (
     <Container>
       <Titulo>Cadastro Categoria</Titulo>
@@ -66,7 +79,7 @@ export const AdmCategoria = () => {
           Descricao: descricao,
           Imagem: linkImagem,}} clickFechar={handleFechar} clickConfirmar={handleConfirmar}/> : ""}
       <Titulo>Listar Categorias</Titulo>
-        {statusAPI === 200 ? <TabelaCategorias lista={listaCategorias}/> : <BadRequest/>}
+          {verificarResponse()}
     </Container>
   );
 };

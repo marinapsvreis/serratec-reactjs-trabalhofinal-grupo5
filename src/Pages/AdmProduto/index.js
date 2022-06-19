@@ -55,6 +55,18 @@ export const AdmProduto = () => {
     setIdCategoria(0);
   };
 
+  const verificarResponse =() => {
+    if(statusAPI === 0) {
+      return <></>
+    } if(statusAPI === 200) {
+      return <><TabelaProdutos lista={listaProdutos} /></>
+    } if(statusAPI === 502) {
+      return <><BadRequest /></>
+    } else {
+      return <><BadRequest /></>
+    }
+  }
+
   return (
     <Container>
       <Titulo>Cadastro Produto</Titulo>
@@ -79,11 +91,7 @@ export const AdmProduto = () => {
             IdCategoria: idCategoria,
             NomeImagem: nomeImagem,}} clickFechar={handleFechar} clickConfirmar={handleConfirmar}/> : "" }
       <Titulo>Listar Produtos</Titulo>
-      {statusAPI === 200 ? (
-        <TabelaProdutos lista={listaProdutos} />
-      ) : (
-        <BadRequest />
-      )}
+      {verificarResponse()}
     </Container>
   );
 };

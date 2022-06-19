@@ -30,13 +30,23 @@ function AdmPedido(props) {
     getPedidoAPI();
   }
 
-  console.log(statusAPI)
+  const verificarResponse = () => {
+    if (statusAPI === 0) {
+      return <></>
+    } if (statusAPI === 200) {
+      return <><TabelaPedidos lista={listaPedidos}/></>
+    } if(statusAPI === 502) {
+      return <><BadRequest/></>
+    } else {
+      return <><BadRequest/></>
+    }
+  }
 
   return (
     <>
     <Container>
     <Titulo>Listar Pedidos</Titulo>
-    {statusAPI === 200 ? <TabelaPedidos lista={listaPedidos}/> : <BadRequest/>}
+    {verificarResponse()}
     </Container>
     </>
   );
