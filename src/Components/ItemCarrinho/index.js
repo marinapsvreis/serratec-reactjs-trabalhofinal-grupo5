@@ -1,9 +1,8 @@
 import React from "react";
-import { Descricao, Imagem, ItemContainer } from "./style";
+import { ButtonDiv, Descricao, Imagem, ItemContainer, QuantidadeButao } from "./style";
 
 export const ItemCarrinho = ({ produto, itemPedido }) => {
-
-  if(produto === null) {
+  if (produto === null) {
     return null;
   }
 
@@ -11,12 +10,13 @@ export const ItemCarrinho = ({ produto, itemPedido }) => {
     <ItemContainer>
       <Imagem src={`${produto.nomeImagemProduto}`} />
       <Descricao>
-        {itemPedido[0].idPedido} <br/>
-        {produto.nomeProduto} <br/>
-        {itemPedido[0].quantidadeItemPedido} <br/>
-        {produto.valorUnitario} <br/>
-        {itemPedido[0].valorBrutoItemPedido} <br/>
-        {itemPedido[0].valorLiquidoItemPedido} 
+        Nome do produto: {produto.nomeProduto} <br />
+        Preço por Unidade: {produto.valorUnitario} <br />
+        Quantidade: {itemPedido[0].quantidadeItemPedido} 
+        <ButtonDiv>
+        <QuantidadeButao className="diminuir">-</QuantidadeButao>
+        <QuantidadeButao className="aumentar">+</QuantidadeButao>
+        </ButtonDiv>
       </Descricao>
     </ItemContainer>
   );

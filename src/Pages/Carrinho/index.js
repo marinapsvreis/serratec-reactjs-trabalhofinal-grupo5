@@ -2,9 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { Container, Titulo } from "../global-style";
 import { api } from "../../Services/api";
 import { DataContext } from "../../Context/data";
-import { ItemContainer } from "../../Components/ItemCarrinho/style";
 import { ItemCarrinho } from "../../Components/ItemCarrinho";
-import { ConfirmarPedido } from "./style";
+import { CarrinhoContainer, ConfirmarPedido, Descricao } from "./style";
 
 export const Carrinho = () => {
   const [pedidos, setPedidos] = useState([]);
@@ -96,7 +95,13 @@ export const Carrinho = () => {
   return (
     <Container>
       <Titulo>Carrinho</Titulo>
-      <ItemContainer>{display}</ItemContainer>
+      <CarrinhoContainer>
+      {display}
+      </CarrinhoContainer>
+      <Descricao>Valor Bruto do pedido: {pedidos[pedidos.length - 1].valorTotalPedidoBruto} <br/>
+      Valor Liquido do Peido: {pedidos[pedidos.length - 1].valorTotalPedidoBruto}
+      </Descricao>
+     
       <ConfirmarPedido onClick={finalizar}>Finalizar pedido</ConfirmarPedido>
     </Container>
   );
