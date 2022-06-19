@@ -35,16 +35,10 @@ export const ButtonDiv = styled.div`
   display: inline;
   align-items: center;
   justify-content: center;
-
-  .aumentar {
-    background-color: var(--primary-color);
-  }
-  .diminuir {
-    background-color: var(--secondary-color);
-  }
 `;
 
-export const QuantidadeButao = styled.button`
+export const DeletarButao = styled.button`
+  background-color: var(--primary-color);
   border: none;
   padding: 1.5rem;
   margin: 0.5rem;

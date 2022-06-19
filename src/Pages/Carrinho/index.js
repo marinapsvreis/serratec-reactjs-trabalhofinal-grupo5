@@ -90,6 +90,7 @@ export const Carrinho = () => {
           {pedidos[pedidos.length - 1].valorTotalPedidoBruto} <br />
           Valor Liquido do Peido:{" "}
           {pedidos[pedidos.length - 1].valorTotalPedidoBruto}
+          <ConfirmarPedido onClick={finalizar}>Finalizar pedido</ConfirmarPedido>
         </Descricao>
       );
     }
@@ -108,7 +109,7 @@ export const Carrinho = () => {
       <Titulo>Carrinho</Titulo>
       <CarrinhoContainer>{display}</CarrinhoContainer>
       {descricao}
-      <ConfirmarPedido onClick={finalizar}>Finalizar pedido</ConfirmarPedido>
+      
     </Container>
   );
 };

@@ -1,7 +1,14 @@
 import React from "react";
-import { ButtonDiv, Descricao, Imagem, ItemContainer, QuantidadeButao } from "./style";
+import { api } from "../../Services/api";
+import { ButtonDiv, Descricao, Imagem, ItemContainer, DeletarButao } from "./style";
 
 export const ItemCarrinho = ({ produto, itemPedido }) => {
+
+  function deletarItemPedido(){
+    api.delete(`itemPedido?idItemPedido=${itemPedido[0].idItemPedido}`)
+    alert("Produto deletado do pedido")
+  }
+
   if (produto === null) {
     return null;
   }
@@ -14,8 +21,7 @@ export const ItemCarrinho = ({ produto, itemPedido }) => {
         Preço por Unidade: {produto.valorUnitario} <br />
         Quantidade: {itemPedido[0].quantidadeItemPedido} 
         <ButtonDiv>
-        <QuantidadeButao className="diminuir">-</QuantidadeButao>
-        <QuantidadeButao className="aumentar">+</QuantidadeButao>
+        <DeletarButao onClick={deletarItemPedido}>Deletar o Item</DeletarButao>
         </ButtonDiv>
       </Descricao>
     </ItemContainer>
