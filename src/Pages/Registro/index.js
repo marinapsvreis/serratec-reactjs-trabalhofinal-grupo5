@@ -15,14 +15,18 @@ export const Registro = () => {
   const [dataNascimento, setDataNascimento] = useState('')
   const [cep, setCep] = useState('')
   const [numero, setNumero] = useState('')
-  const [complemento, setComplemento] = useState('')
   const [statusAPI, setStatusAPI] = useState(0)
   const [isLoading, setLoading] = useState(false)
   const [errorMessageHead, setErrorMessageHead] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
 
+  function formatarCPF(cpf){
+    cpf = cpf.replace(/[^\d]/g, "");
+    return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+  }
+
   function enviarInformacoes() {
-    setLoading(!isLoading)
+    setLoading(e => true)
     setTimeout(function() {
       const postClienteAPI = async () => {
         try {
@@ -34,6 +38,10 @@ export const Registro = () => {
             telefone: telefone,
             dataNascimento: (dataNascimento.split('-').reverse().join('/'))
           });
+          if(res.status === 201) {
+            console.log('iniciando post endereco')
+            postEnderecoCliente()
+          }
           setStatusAPI(e => res.status)
           setLoading(e => false)
           console.log(res)
@@ -46,15 +54,33 @@ export const Registro = () => {
         }
       }
       postClienteAPI();
-    },2000)  
+    },1000)  
   }
+
+    async function postEnderecoCliente(){
+      try {
+        const res = await api.get("cliente")
+        let clienteFiltrado = res.data.filter(c => c.cpf === formatarCPF(cpf))[0]
+        const res2 = await api.post(`endereco/salvar?idCliente=${clienteFiltrado.idCliente}&cep=${cep}&numero=${numero}`)
+        console.log(res2)
+      } catch (error) {
+          console.log(error)
+          setStatusAPI(e => error.response.data.status)
+          setErrorMessageHead(e => error.response.data.message)
+          setErrorMessage(e => error.response.data.details[0])
+          setLoading(e => false)
+        }
+    }
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if(nome === '' || email === '' || senha === '' || senha2 === '' || cpf === '' || telefone === '' || dataNascimento === '' || cep === '' || numero === '' || complemento === '') {
+    console.log(cep.length)
+    if(nome === '' || email === '' || senha === '' || senha2 === '' || cpf === '' || telefone === '' || dataNascimento === '' || cep === '' || numero === '') {
       alert('Não deixe os campos vazios!')
     } else if(senha !== senha2) {
       alert('Suas senhas não coincidem! tente novamente')
+    } else if(cep.length !== 9 && cep.length !== 8) {
+      alert('CEP inválido')
     } else {
       enviarInformacoes()
     }
@@ -80,7 +106,6 @@ export const Registro = () => {
         <Input type="date" placeholder="Data de Nascimento" onChange={(event) => setDataNascimento(event.target.value)}/>
         <Input type="text" placeholder="CEP" onChange={(event) => setCep(event.target.value)}/>
         <Input type="text" placeholder="Numero" onChange={(event) => setNumero(event.target.value)}/>
-        <Input type="text" placeholder="Complemento" onChange={(event) => setComplemento(event.target.value)}/>
         <ButtonContainer>
           <RegistroButton onClick={handleSubmit}>Completar o Registro</RegistroButton>
         </ButtonContainer>
