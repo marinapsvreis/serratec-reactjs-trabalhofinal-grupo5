@@ -89,8 +89,8 @@ export const Carrinho = () => {
 
   const load = setTimeout(handleDisplay, 300);
 
-  const finalizar = () => {
-    api.put(`pedido/processar?idPedido=${pedidos[pedidos.length - 1].idPedido}`).then;
+  function finalizar(){
+    api.put(`pedido/processar?idPedido=${pedidos[pedidos.length - 1].idPedido}`);
   };
 
   return (
