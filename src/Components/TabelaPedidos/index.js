@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
-import { BotaoVoltar, BoxPedido, ListaPedidos, CardPedido, EditPedido, DeletePedido, BoxButtons } from "./style";
+import { BotaoVoltar, BoxPedido, ListaPedidos, CardPedido, DeletePedido, BoxButtons } from "./style";
 import { useNavigate } from "react-router-dom";
-import { EditarPedido } from "../EditarPedido"
 import { DeletarGenerico } from "../DeletarGenerico"
 
 function TabelaPedidos(props) {
     const navigate = useNavigate();
     const listaPedidos = props.lista;
     const [id, setId] = useState()
-    const [isEditado, setEditado] = useState(false);
     const [isDeletado, setDeletado] = useState(false);
 
     const handleDeletar = () => {
@@ -17,7 +15,6 @@ function TabelaPedidos(props) {
 
     return (
         <>
-            {isEditado? <EditarPedido/> : ''}
             {isDeletado? <DeletarGenerico clickFechar={handleDeletar} id={id} titulo={'pedido'}/> : ''}
             <BoxPedido>
                 <ListaPedidos>               
@@ -33,7 +30,6 @@ function TabelaPedidos(props) {
                                         <p>Valor Desconto: R${res.valorTotalDescontoPedido}%</p>
                                         <p>Valor Liquido: R$ {res.valorTotalPedidoLiquido}</p>
                                         <BoxButtons>
-                                            <EditPedido onClick={() => setEditado(!isEditado)}>Editar</EditPedido>
                                             <DeletePedido onClick={() => {
                                                 setDeletado(!isDeletado);
                                                 setId(e => res.idPedido)}}>Excluir</DeletePedido>
