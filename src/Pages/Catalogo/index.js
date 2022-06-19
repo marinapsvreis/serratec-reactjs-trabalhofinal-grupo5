@@ -4,10 +4,8 @@ import Footer from "../../Components/Footer";
 import { CategoriaCard } from "../../Components/CategoriaCard/index";
 import { api } from "../../Services/api";
 import { Titulo, Container } from "../global-style";
-import { DataContext } from "../../Context/data";
 
 export const Catalogo = () => {
-  const { idUsuario, handleSetIdUsuario } = useContext(DataContext);
 
   const [categorias, setCategorias] = useState([]);
 

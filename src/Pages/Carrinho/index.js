@@ -16,7 +16,7 @@ export const Carrinho = () => {
   const { idUsuario, handleSetIdUsuario } = useContext(DataContext);
 
   useEffect(() => {
-    if (localStorage.getItem('idCliente') !== null) {
+    if (localStorage.getItem('idCliente') === null) {
       setDisplay(
         <Titulo>Por favor faça login para vizualizar seu Carrinho</Titulo>
       );
