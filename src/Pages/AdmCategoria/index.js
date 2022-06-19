@@ -7,32 +7,16 @@ import { TabelaCategorias } from "../../Components/TabelaCategorias";
 import BadRequest from "../../Components/BadRequest";
 
 export const AdmCategoria = () => {
+  const [listaCategorias, setListaCategorias] = useState([]);
   const [nome, setNome] = useState("");
   const [descricao, setDescricao] = useState("");
   const [linkImagem, setLinkImagem] = useState("");
-  const [isConfirmado, setConfirmado] = useState(false);
-  const [listaCategorias, setListaCategorias] = useState([]);
   const [statusAPI, setStatusAPI] = useState(0)
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    // console.log('Nome :' + nome)
-    // console.log('Descricao :' + descricao)
-    // console.log('Link :' + linkImagem)
-    setNome("");
-    setDescricao("");
-    setLinkImagem("");
-  };
+  const [isConfirmado, setConfirmado] = useState(false);
 
   useEffect(() => {
     carregarAPI();
   }, []);
-  console.log(listaCategorias);
-
-  const handleFechar = (event) => {
-    setConfirmado(!isConfirmado);
-  };
 
   function carregarAPI() {
     const getCategoriaAPI = async () => {
@@ -51,51 +35,38 @@ export const AdmCategoria = () => {
     getCategoriaAPI();
   }
 
+  const handleFechar = (event) => {
+    setConfirmado(!isConfirmado);
+  };
+
+  const handleConfirmar = (event) => {
+    window.location.reload(false);
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setNome("");
+    setDescricao("");
+    setLinkImagem("");
+  };
+
   return (
     <Container>
       <Titulo>Cadastro Categoria</Titulo>
       <Form onSubmit={handleSubmit}>
-        <Input
-          type="text"
-          placeholder="Nome da Categoria"
-          onChange={(event) => setNome(event.target.value)}
-          value={nome}
-        />
-        <Input
-          type="text"
-          placeholder="Descrição da Categoria"
-          onChange={(event) => setDescricao(event.target.value)}
-          value={descricao}
-        />
-        <Input
-          type="text"
-          placeholder="Link imagem Categoria"
-          onChange={(event) => setLinkImagem(event.target.value)}
-          value={linkImagem}
-        />
+        <Input type="text" placeholder="Nome da Categoria" onChange={(event) => setNome(event.target.value)} value={nome}/>
+        <Input type="text" placeholder="Descrição da Categoria" onChange={(event) => setDescricao(event.target.value)} value={descricao}/>
+        <Input type="text" placeholder="Link imagem Categoria" onChange={(event) => setLinkImagem(event.target.value)} value={linkImagem}/>
         <ButtonContainer>
-          <RegistroButton
-            type="submit"
-            value="Cadastrar"
-            onClick={() => setConfirmado(!isConfirmado)}
-          />
+          <RegistroButton type="submit" value="Cadastrar"onClick={() => setConfirmado(!isConfirmado)} />
         </ButtonContainer>
       </Form>
-      {isConfirmado ? (
-        <Popup
-          titulo={"categoria"}
-          informacoes={{
-            Nome: nome,
-            Descricao: descricao,
-            Imagem: linkImagem,
-          }}
-          clickFechar={handleFechar}
-        />
-      ) : (
-        ""
-      )}
-    <Titulo>Listar Categorias</Titulo>
-    {statusAPI === 200 ? <TabelaCategorias lista={listaCategorias}/> : <BadRequest/>}
+        {isConfirmado ? <Popup titulo={"categoria"} informacoes={{
+          Nome: nome,
+          Descricao: descricao,
+          Imagem: linkImagem,}} clickFechar={handleFechar} clickConfirmar={handleConfirmar}/> : ""}
+      <Titulo>Listar Categorias</Titulo>
+        {statusAPI === 200 ? <TabelaCategorias lista={listaCategorias}/> : <BadRequest/>}
     </Container>
   );
 };
