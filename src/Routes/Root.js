@@ -15,14 +15,11 @@ import PainelAdministrativo from '../Pages/PainelAdministrativo'
 import AdmPedido from '../Pages/AdmPedido'
 import AdmCliente from '../Pages/AdmCliente'
 import { Carrinho } from '../Pages/Carrinho'
-import { DataContext } from "../Context/data";
 
 export const PrivateRoutes = () => {
-
-  const { isAdmin } = React.useContext(DataContext);
   function isAuthenticated () {
 
-    if(isAdmin === 1){
+    if(localStorage.getItem('admin') === 1){
       return true;
     }else{
       return false;

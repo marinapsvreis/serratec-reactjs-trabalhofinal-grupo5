@@ -2,11 +2,9 @@ import React, { useState } from "react";
 import {useNavigate} from "react-router-dom"
 import { Container, Titulo } from "../global-style";
 import { Form, FormInput, LoginButton } from "./style";
-import { DataContext } from "../../Context/data";
 
 export const AdmLogin = () => {
   
-  const { isAdmin, handleSetIsAdmin } = React.useContext(DataContext);
       
   const [login, setLogin] = useState('');
   const [senha, setSenha] = useState('');
@@ -21,12 +19,12 @@ export const AdmLogin = () => {
   }
   function logar() {  
     if (login === 'admin' && senha === 'admin') {
-      handleSetIsAdmin(1)
+      localStorage.setItem('admin',1)
       alert('Sucesso!')      
       navigate("../painel_administrativo")    
 
     } else {
-      handleSetIsAdmin(0)
+      localStorage.setItem('admin', 0)
       alert('Usuário ou senha incorretos')
       navigate("../admlogin")
     }
