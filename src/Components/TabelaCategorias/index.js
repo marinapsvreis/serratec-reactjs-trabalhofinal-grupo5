@@ -1,41 +1,23 @@
 import React, { useState } from 'react';
 import { BotaoVoltar, BoxButtons, BoxCategoria, CardCategoria, DeleteCategoria, EditCategoria, ListaCategorias } from "./style";
 import { useNavigate } from "react-router-dom";
+import { DeletarGenerico } from '../DeletarGenerico';
 
 export const TabelaCategorias = (props) => {
     const navigate = useNavigate();
     const listaCategorias = props.lista;
-    const [editarAtivo, setEditarAtivo] = useState(false);
-    const [deletarAtivo, setDeletarAtivo] = useState(false);
+    const [id, setId] = useState()
+    const [isEditado, setEditado] = useState(false);
+    const [isDeletado, setDeletado] = useState(false);
 
-    function AtualizarCategoria(id){
-        
-      //encontrar pelo id
-      //gerar um form autopreenchido com as informações da categoria
-        handleEditarAtivo()
-      //enviar para atualizacao  
+    const handleDeletar = () => {
+        setDeletado(!isDeletado)
     }
-
-    function DeletarCategoria(id){
-        //requisitar deleção pelo id 
-        handleDeletarAtivo()         
-    }
-
-    function handleEditarAtivo () {
-        let editarEstado = editarAtivo
-        setEditarAtivo(!editarEstado)
-    }
-
-    function handleDeletarAtivo () {
-        let deletarEstado = deletarAtivo
-        setDeletarAtivo(!deletarEstado)
-    }
-
 
     return (
         <>
-            {editarAtivo? <EditCategoria estado={handleEditarAtivo}/> : ''}
-            {deletarAtivo? <DeletarCategoria estado={handleDeletarAtivo}/> : ''}
+            {isEditado? '' : ''}
+            {isDeletado? <DeletarGenerico clickFechar={handleDeletar} id={id} titulo={'categoria'}/> : ''}
             <BoxCategoria>
                 <ListaCategorias>               
                        {listaCategorias !== [] ? listaCategorias.map(res => {
@@ -45,8 +27,11 @@ export const TabelaCategorias = (props) => {
                                         <p>Descrição da Categoria: {res.descricaoCategoria}</p>
                                         <p>Imagem da Categoria: {res.imagemCategoria}</p>
                                         <BoxButtons>
-                                            <EditCategoria onClick={() => AtualizarCategoria(res.idCategoria)}>Editar</EditCategoria>
-                                            <DeleteCategoria onClick={()=> DeletarCategoria(res.idCategoria)}>Excluir</DeleteCategoria>
+                                            <EditCategoria onClick={() => ''}>Editar</EditCategoria>
+                                            <DeleteCategoria onClick={()=> {
+                                                setDeletado(!isDeletado);
+                                                setId(e => res.idCategoria)
+                                            }}>Excluir</DeleteCategoria>
                                         </BoxButtons>
                                     </CardCategoria>
                         }) : ''}                        

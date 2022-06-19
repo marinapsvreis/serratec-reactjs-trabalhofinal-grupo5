@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { BotaoVoltar, BoxPedido, ListaPedidos, CardPedido, EditPedido, DeletePedido, BoxButtons } from "./style";
 import { useNavigate } from "react-router-dom";
 import { EditarPedido } from "../EditarPedido"
-import { DeletarPedido } from "../DeletarGenerico"
+import { DeletarGenerico } from "../DeletarGenerico"
 
 function TabelaPedidos(props) {
     const navigate = useNavigate();
@@ -18,7 +18,7 @@ function TabelaPedidos(props) {
     return (
         <>
             {isEditado? <EditarPedido/> : ''}
-            {isDeletado? <DeletarPedido clickFechar={handleDeletar} idPedido={id} titulo={'pedido'}/> : ''}
+            {isDeletado? <DeletarGenerico clickFechar={handleDeletar} id={id} titulo={'pedido'}/> : ''}
             <BoxPedido>
                 <ListaPedidos>               
                        {listaPedidos !== [] ? listaPedidos.map(res => {
