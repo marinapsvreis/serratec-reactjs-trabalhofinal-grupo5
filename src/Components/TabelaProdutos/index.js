@@ -2,28 +2,28 @@ import React, { useState } from 'react';
 import { BotaoVoltar, BoxButtons, BoxProduto, CardProduto, DeleteProduto, EditProduto, ListaProdutos } from "./style";
 import { useNavigate } from "react-router-dom";
 import { EditarProduto } from "../EditarProduto";
-import { DeletarGenerico } from '../DeletarGenerico';
+import { PopupRespostaAPI } from "../../Components/PopupRespostaAPI"
 
 function TabelaProdutos(props) {
     const navigate = useNavigate();
     const listaProdutos = props.lista;
     const [id, setId] = useState()
     const [isEditado, setEditado] = useState(false);
-    const [isDeletado, setDeletado] = useState(false);
+    const [isDeletarPressed, setDeletarPressed] = useState(false)
 
     const handleEditar = () => {
         setEditado(!isEditado)
     }
 
-    const handleDeletar = () => {
-        setDeletado(!isDeletado)
+    const handleClick = () => {
+        setDeletarPressed(e => false)
     }
 
 
     return (
         <>
             {isEditado? <EditarProduto clickFechar={handleEditar} id={id} produto={listaProdutos.filter(c => c.idProduto === id)[0]}/> : ''}
-            {isDeletado? <DeletarGenerico clickFechar={handleDeletar} id={id} titulo={'produto'}/> : ''}
+            {isDeletarPressed ? <PopupRespostaAPI titulo={'produto'} tipo={'deletarLoad'} status={''} id={id} click={handleClick}/> : ''}
             <BoxProduto>
                 <ListaProdutos>               
                        {listaProdutos !== [] ? listaProdutos.map(res => {
@@ -42,7 +42,7 @@ function TabelaProdutos(props) {
                                                 setId(e => res.idProduto)
                                             }}>Editar</EditProduto>
                                             <DeleteProduto onClick={()=> {
-                                                setDeletado(!isDeletado);
+                                                setDeletarPressed(e => true);
                                                 setId(e => res.idProduto)
                                             }}>Excluir</DeleteProduto>
                                         </BoxButtons>

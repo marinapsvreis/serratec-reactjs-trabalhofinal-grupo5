@@ -2,27 +2,27 @@ import React, { useState } from 'react';
 import { BotaoVoltar, BoxButtons, BoxCategoria, CardCategoria, DeleteCategoria, EditCategoria, ListaCategorias } from "./style";
 import { useNavigate } from "react-router-dom";
 import { EditarCategoria } from '../EditarCategoria';
-import { DeletarGenerico } from '../DeletarGenerico';
+import {PopupRespostaAPI} from "../../Components/PopupRespostaAPI"
 
 export const TabelaCategorias = (props) => {
     const navigate = useNavigate();
     const listaCategorias = props.lista;
     const [id, setId] = useState()
     const [isEditado, setEditado] = useState(false);
-    const [isDeletado, setDeletado] = useState(false);
+    const [isDeletarPressed, setDeletarPressed] = useState(false)
 
     const handleEditar = () => {
         setEditado(!isEditado)
     }
 
-    const handleDeletar = () => {
-        setDeletado(!isDeletado)
+    const handleClick = () => {
+        setDeletarPressed(e => false)
     }
 
     return (
         <>
             {isEditado? <EditarCategoria clickFechar={handleEditar} id={id} categoria={listaCategorias.filter(c => c.idCategoria === id)[0]}/> : ''}
-            {isDeletado? <DeletarGenerico clickFechar={handleDeletar} id={id} titulo={'categoria'}/> : ''}
+            {isDeletarPressed ? <PopupRespostaAPI titulo={'categoria'} tipo={'deletarLoad'} status={''} id={id} click={handleClick}/> : ''}
             <BoxCategoria>
                 <ListaCategorias>               
                        {listaCategorias !== [] ? listaCategorias.map(res => {
@@ -33,7 +33,9 @@ export const TabelaCategorias = (props) => {
                                         <p>Imagem da Categoria: {res.imagemCategoria}</p>
                                         <BoxButtons>
                                             <EditCategoria onClick={() => {setEditado(!isEditado); setId(e => res.idCategoria)}}>Editar</EditCategoria>
-                                            <DeleteCategoria onClick={()=> {setDeletado(!isDeletado); setId(e => res.idCategoria)
+                                            <DeleteCategoria onClick={()=> {
+                                                setDeletarPressed(e => true);
+                                                setId(e => res.idCategoria)
                                             }}>Excluir</DeleteCategoria>
                                         </BoxButtons>
                                     </CardCategoria>

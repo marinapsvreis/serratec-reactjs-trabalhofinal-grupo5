@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
 import { BotaoVoltar, BoxPedido, ListaPedidos, CardPedido, DeletePedido, BoxButtons } from "./style";
 import { useNavigate } from "react-router-dom";
-import { DeletarGenerico } from "../DeletarGenerico"
+import { PopupRespostaAPI } from '../PopupRespostaAPI';
 
 function TabelaPedidos(props) {
     const navigate = useNavigate();
     const listaPedidos = props.lista;
     const [id, setId] = useState()
-    const [isDeletado, setDeletado] = useState(false);
+    const [isDeletarPressed, setDeletarPressed] = useState(false)
 
-    const handleDeletar = () => {
-        setDeletado(!isDeletado)
+    const handleClick = () => {
+        setDeletarPressed(e => false)
     }
 
     return (
         <>
-            {isDeletado? <DeletarGenerico clickFechar={handleDeletar} id={id} titulo={'pedido'}/> : ''}
+            {isDeletarPressed ? <PopupRespostaAPI titulo={'pedido'} tipo={'deletarLoad'} status={''} id={id} click={handleClick}/> : ''}
             <BoxPedido>
                 <ListaPedidos>               
                        {listaPedidos !== [] ? listaPedidos.map(res => {
@@ -31,7 +31,7 @@ function TabelaPedidos(props) {
                                         <p>Valor Liquido: R$ {res.valorTotalPedidoLiquido},00</p>
                                         <BoxButtons>
                                             <DeletePedido onClick={() => {
-                                                setDeletado(!isDeletado);
+                                                setDeletarPressed(e => true);
                                                 setId(e => res.idPedido)}}>Excluir</DeletePedido>
                                         </BoxButtons>
                                     </CardPedido>

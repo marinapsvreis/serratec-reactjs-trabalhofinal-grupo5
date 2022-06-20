@@ -1,25 +1,25 @@
 import React, { useState } from 'react';
 import { BotaoVoltar, BoxCliente, ListaClientes, CardCliente, DeleteCliente, BoxButtons } from "./style";
 import { useNavigate } from "react-router-dom";
-import { DeletarGenerico } from "../DeletarGenerico"
+import { PopupRespostaAPI } from "../../Components/PopupRespostaAPI"
 
 function TabelaClientes(props) {
     const navigate = useNavigate();
     const listaClientes = props.lista;
     const [id, setId] = useState()
-    const [isDeletado, setDeletado] = useState(false);
+    const [isDeletarPressed, setDeletarPressed] = useState(false)
 
-    const handleDeletar = () => {
-        setDeletado(!isDeletado)
+    const handleClick = () => {
+        setDeletarPressed(e => false)
     }
 
     return (
         <>
-            {isDeletado? <DeletarGenerico clickFechar={handleDeletar} id={id} titulo={'cliente'}/> : ''}
+            {isDeletarPressed ? <PopupRespostaAPI titulo={'cliente'} tipo={'deletarLoad'} status={''} id={id} click={handleClick}/> : ''}
             <BoxCliente>
                 <ListaClientes>               
                        {listaClientes !== [] ? listaClientes.map(res => {
-                            return <CardCliente key={res.idPedido}>
+                            return <CardCliente key={res.idCliente}>
                                         <p>Id Cliente: {res.idCliente}</p>
                                         <p>Email: {res.email}</p>
                                         <p>Nome Completo: {res.nomeCompleto}</p>
@@ -29,8 +29,8 @@ function TabelaClientes(props) {
                                         <p>Id Endereço: {res.idEndereco}</p>
                                         <BoxButtons>
                                             <DeleteCliente onClick={() => {
-                                                setDeletado(!isDeletado);
-                                                setId(e => res.idPedido)}}>Excluir</DeleteCliente>
+                                                setDeletarPressed(e => true);
+                                                setId(e => res.idCliente)}}>Excluir</DeleteCliente>
                                         </BoxButtons>
                                     </CardCliente>
                         }) : ''}                        

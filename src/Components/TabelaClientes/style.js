@@ -13,7 +13,11 @@ export const ListaClientes = styled.div`
 `;
 
 export const CardCliente = styled.div`
-  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 30rem;
+  min-height: 35rem;
   font-size: 1.6rem;
   background-color: gray;
   padding: 20px;
