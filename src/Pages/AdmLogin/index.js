@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {useNavigate} from "react-router-dom"
 import { Container, Titulo } from "../global-style";
-import { Form, FormInput, LoginButton } from "./style";
+import { StatusLogAdm, Form, FormInput, LoginButton } from "./style";
 
 export const AdmLogin = () => {
   
@@ -29,10 +29,28 @@ export const AdmLogin = () => {
       navigate("../admlogin")
     }
   }
+
+  function limparLocalStorage(){
+    localStorage.removeItem('admin')
+    window.location.reload(true);
+  }
+
+  function goToPanel(){
+    navigate("../painel_administrativo")
+  }
   
   return (
     <Container>
       <Titulo>Login Administrativo</Titulo>
+      {localStorage.getItem('admin') !== null ? 
+      <StatusLogAdm>
+        <p>Admin já autenticado!</p>
+        <div>
+          <button onClick={goToPanel}>Painel</button>
+          <button onClick={limparLocalStorage}>Deslogar</button>
+        </div>
+      </StatusLogAdm> 
+      : ''}
       <Form>
         <FormInput onChange={e => handleLoginChange(e)} type="text" placeholder="Login"></FormInput>
         <FormInput onChange={e => handleSenhaChange(e)} type="password" placeholder="Senha"></FormInput>
