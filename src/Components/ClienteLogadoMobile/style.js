@@ -1,11 +1,12 @@
 import styled from 'styled-components'
 
 export const ContainerLogin = styled.div`
-  display: none;
-  @media (min-width: 1024px) {
     display: flex;
     align-items: center;
     gap: 5px;
+    color: var(--secondary-color);
+  @media (min-width: 1024px) {
+    display: none;
     }  
 `;
 

@@ -1,6 +1,6 @@
 import { ContainerLogin, InfoCliente, LogOff } from "./style";
 
-export const ClienteLogado = () => {
+export const ClienteLogadoMobile = () => {
   
   function limparLocalStorage(){
     localStorage.removeItem('idCliente')
