@@ -13,7 +13,11 @@ export const ListaProdutos = styled.div`
 `;
 
 export const CardProduto = styled.div`
-  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 30rem;
+  min-height: 48rem;
   font-size: 1.6rem;
   background-color: gray;
   padding: 20px;
