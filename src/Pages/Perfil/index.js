@@ -5,26 +5,13 @@ import { EditarCliente } from '../../Components/EditarCliente'
 import { EditarEndereco } from '../../Components/EditarEndereco'
 import { EditarPassword } from '../../Components/EditarPassword'
 import {api} from '../../Services/api'
+import { CardPedidoPerfil } from "../../Components/CardPedidosPerfil";
 
 export const Perfil = () => {
 
-  let count = 0;
-  const [cliente, setCliente] = useState();
-  const [nomeCompleto, setNomeCompleto] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [cpf, setCpf] = useState('')
-  const [telefone, setTelefone] = useState('')
-  const [dataNascimento, setDataNascimento] = useState('')
-  const [idEndereco, setIdEndereço] = useState('')
-  const [endereco, setEndereco] = useState('')
-  const [cep, setCep] = useState('')
-  const [rua, setRua] = useState('')
-  const [bairro, setBairro] = useState('')
-  const [cidade, setCidade] = useState('')
-  const [numero, setNumero] = useState('')
-  const [complemento, setComplemento] = useState('')
-  const [uf, setUf] = useState('')
+  const [cliente, setCliente] = useState({});
+  const [endereco, setEndereco] = useState({})
+  const [pedidos, setPedidos] = useState([{}])
 
   const [id, setId] = useState()
   const [isEditadoDados, setEditadoDados] = useState(false);
@@ -43,59 +30,50 @@ export const Perfil = () => {
     setEditadoPassword(!isEditadoPassword)
   }  
 
-  function carregarAPI() {
-      const getClienteAPI = async () => {
-        const response = await api.get(`cliente/${localStorage.getItem('idCliente')}`);    
-        setCliente(response.data);
-        setNomeCompleto(cliente.nomeCompleto)
-        setEmail(cliente.email)
-        setCpf(cliente.cpf)
-        setTelefone(cliente.telefone)
-        setDataNascimento(cliente.dataNascimento)
-        setIdEndereço(cliente.idEndereco)                
-      }
-      getClienteAPI();
-  
-      const getEnderecoAPI = async () => {
-        const response = await api.get(`endereco/${idEndereco}`);    
-          setEndereco(response.data);
-          setCep(endereco.cep)
-          setRua(endereco.rua)
-          setBairro(endereco.bairro)
-          setCidade(endereco.cidade)
-          setNumero(endereco.numero)
-          setComplemento(endereco.complemento)
-          setUf(endereco.uf) 
-      }
-  
-      if(idEndereco !== null){
-        getEnderecoAPI()
-      }
-  }
-  
-  useEffect(() => {
-      carregarAPI();    
-  });
+  async function carregarAPI() {
 
-  return (
-    <Container>
-      {isEditadoDados? <EditarCliente clickFechar={handleEditarDados} cliente={cliente}/> : ''}
-      {isEditadoEndereco? <EditarEndereco clickFechar={handleEditarEndereco} endereco={endereco}/> : ''}
-      {isEditadoPassword? <EditarPassword clickFechar={handleEditarPassword} cliente={cliente}/> : ''}
-      <Titulo>Perfil Cliente</Titulo>
-      <CardCliente>
-        <p>Nome Completo: {nomeCompleto}</p>
-        <p>Email: {email}</p>
-        <p>Cpf: {cpf}</p>
-        <p>Telefone: {telefone}</p>
-        <p>Data de Nascimento: {dataNascimento}</p>
-        <p>Id Endereço: {idEndereco}</p>
-        <BoxButtons>
-          <EditCliente onClick={() => {setEditadoDados(!isEditadoDados); setId(e => {localStorage.getItem('idCliente')})}}>Editar Dados</EditCliente>
-          <EditEndereco onClick={() => {setEditadoEndereco(!isEditadoEndereco); setId(e => {localStorage.getItem('idCliente')})}}>Editar Endereço</EditEndereco>
-          <EditPassword onClick={() => {setEditadoPassword(!isEditadoPassword); setId(e => {localStorage.getItem('idCliente')})}}>Reset Senha</EditPassword>
-      </BoxButtons>
-      </CardCliente>
-    </Container>
-  );
-};    
+    const responseCliente = await api.get(`cliente/${localStorage.getItem('idCliente')}`)
+    setCliente(responseCliente.data)
+    
+    const responseEndreco = await api.get(`endereco/${responseCliente.data.idEndereco}`)
+    setEndereco(responseEndreco.data)
+
+    const responsePedidos = await api.get(`pedido/cliente/${localStorage.getItem('idCliente')}`)
+    setPedidos(responsePedidos.data)
+  }
+
+    useEffect(() => {
+      carregarAPI();    
+    }, []);
+
+
+    return (
+      <Container>
+        {isEditadoDados? <EditarCliente clickFechar={handleEditarDados} cliente={cliente}/> : ''}
+        {isEditadoEndereco? <EditarEndereco clickFechar={handleEditarEndereco} endereco={endereco}/> : ''}
+        {isEditadoPassword? <EditarPassword clickFechar={handleEditarPassword} cliente={cliente}/> : ''}
+        <Titulo>Perfil Cliente</Titulo>
+        <CardCliente>
+          <p>Nome Completo: {cliente.nomeCompleto}</p>
+          <p>Email: {cliente.email}</p>
+          <p>Cpf: {cliente.cpf}</p>
+          <p>Telefone: {cliente.telefone}</p>
+          <p>Data de Nascimento: {cliente.dataNascimento}</p>
+          <p>Cep: {endereco.cep}</p>
+          <p>Rua: {endereco.rua}</p>
+          <p>Bairro: {endereco.bairro}</p>
+          <p>Cidade: {endereco.cidade}</p>
+          <p>Numero: {endereco.numero}</p>
+          <p>Complemento: {endereco.complemento}</p>
+          <p>UF: {endereco.uf}</p>
+          <BoxButtons>
+            <EditCliente onClick={() => {setEditadoDados(!isEditadoDados)}}>Editar Dados</EditCliente>
+            <EditEndereco onClick={() => {setEditadoEndereco(!isEditadoEndereco)}}>Editar Endereço</EditEndereco>
+            <EditPassword onClick={() => {setEditadoPassword(!isEditadoPassword)}}>Reset Senha</EditPassword>
+        </BoxButtons>
+        </CardCliente>
+        <Titulo>Meus Pedidos</Titulo>
+        <CardPedidoPerfil lista={pedidos}/>
+      </Container>
+    );
+  };  

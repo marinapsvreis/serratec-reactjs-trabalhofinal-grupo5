@@ -7,7 +7,7 @@ import { Input, Form, ButtonContainer, RegistroButton } from "./style";
 export const EditarEndereco = (props) => {
 
     const [cep, setCep] = useState(props.endereco.cep)
-    const [numero, setNumero] = useState(props.cliente.email)
+    const [numero, setNumero] = useState(props.endereco.numero)
 
     let navigate = useNavigate();
 
