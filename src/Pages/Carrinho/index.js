@@ -89,8 +89,12 @@ export const Carrinho = () => {
 
       setDescricao(
         <Descricao>
-          Valor Bruto do pedido:{" "}
+          Valor bruto do pedido:{" "}
           {pedidos[pedidos.length - 1].valorTotalPedidoBruto} <br />
+          Valor liquido do pedido:{" "}
+          {pedidos[pedidos.length - 1].valorTotalPedidoLiquido} <br />
+          Valor de desconto do pedido:{" "}
+          {pedidos[pedidos.length - 1].valorTotalDescontoPedido} <br />
           <ConfirmarPedido onClick={finalizar}>
             Finalizar pedido
           </ConfirmarPedido>
@@ -106,6 +110,7 @@ export const Carrinho = () => {
       `pedido/processar?idPedido=${pedidos[pedidos.length - 1].idPedido}`
     );
     alert("Pedido finalizado");
+    window.location.reload(false)
   }
 
   return (

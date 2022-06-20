@@ -42,6 +42,7 @@ export const ProdutoDescricao = styled.div`
 
 export const ProdutoInput = styled.input`
   text-align: center;
+  margin: 1rem;
 `
 
 export const ProdutoButton = styled.button`

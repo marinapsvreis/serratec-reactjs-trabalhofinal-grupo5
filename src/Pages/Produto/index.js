@@ -14,6 +14,7 @@ export const Produto = () => {
   let { categoria, categoriaId, idProduto } = useParams();
   const [produto, setProduto] = useState(null);
   const [quantidade, setQuantidade] = useState("");
+  const [cupom, setCupom] = useState("");
   const [pedidosCliente, setPedidosCliente] = useState([]);
   const [listaPedidos, setListaPedidos] = useState([]);
   const [idPedido, setIdPedido] = useState();
@@ -26,10 +27,10 @@ export const Produto = () => {
     };
     getProdutoById();
 
-    if (localStorage.getItem('idCliente') !== null) {
+    if (localStorage.getItem("idCliente") !== null) {
       const getPedidosByClienteId = async () => {
         await api
-          .get(`pedido/cliente/${localStorage.getItem('idCliente')}`)
+          .get(`pedido/cliente/${localStorage.getItem("idCliente")}`)
           .then((response) => setPedidosCliente(response.data));
       };
       getPedidosByClienteId();
@@ -44,22 +45,29 @@ export const Produto = () => {
   }, [categoria]);
 
   async function adicionarAoCarrinho() {
-    if (localStorage.getItem('idCliente') !== null) {
+    let desconto = 0;
+    if (cupom === "CUPOM10") {
+      desconto = 10;
+    } else if (cupom === "CUPOM15") {
+      desconto = 15;
+    }
+
+    if (localStorage.getItem("idCliente") !== null) {
       if (pedidosCliente.length === 0) {
         const responseNovoUsuario = await api.post("pedido", {
-          idCliente: localStorage.getItem('idCliente'),
+          idCliente: localStorage.getItem("idCliente"),
         });
-        console.log(responseNovoUsuario)
+        console.log(responseNovoUsuario);
 
         const itemPedidoResponseNovoUsuario = await api.post("itemPedido", {
           idPedido: responseNovoUsuario.data.idPedido,
           idProduto: idProduto,
           quantidadeItemPedido: quantidade,
           precoVendaItemPedido: produto.valorUnitario,
-          percentualDescontoItemPedido: 0,
+          percentualDescontoItemPedido: desconto,
         });
-        console.log(itemPedidoResponseNovoUsuario.data)
-        alert("O item foi adicionado ao carrinho")
+        console.log(itemPedidoResponseNovoUsuario.data);
+        alert("O item foi adicionado ao carrinho");
       } else {
         const ultimoPedido = pedidosCliente[pedidosCliente.length - 1];
         if (ultimoPedido.status === false) {
@@ -68,29 +76,35 @@ export const Produto = () => {
             idProduto: idProduto,
             quantidadeItemPedido: quantidade,
             precoVendaItemPedido: produto.valorUnitario,
-            percentualDescontoItemPedido: 0,
+            percentualDescontoItemPedido: desconto,
           });
-          alert("O item foi adicionado ao carrinho")
+          alert("O item foi adicionado ao carrinho");
         } else {
-          const response = await api.post("pedido", { idCliente: localStorage.getItem('idCliente') });
+          const response = await api.post("pedido", {
+            idCliente: localStorage.getItem("idCliente"),
+          });
 
           const itemPedidoResponse = await api.post("itemPedido", {
             idPedido: response.data.idPedido,
             idProduto: idProduto,
             quantidadeItemPedido: quantidade,
             precoVendaItemPedido: produto.valorUnitario,
-            percentualDescontoItemPedido: 0,
+            percentualDescontoItemPedido: desconto,
           });
-          alert("O item foi adicionado ao carrinho")
+          alert("O item foi adicionado ao carrinho");
         }
       }
     } else {
       alert("Faça login para adicionar um produto ao carrinho");
     }
   }
-// addicionar mensagem de carrinho vazaio
+  // addicionar mensagem de carrinho vazaio
   function handleQuantidade(e) {
     setQuantidade(e.target.value);
+  }
+
+  function handleCupom(e) {
+    setCupom(e.target.value);
   }
 
   if (produto == null) {
@@ -109,6 +123,11 @@ export const Produto = () => {
             type="number"
             placeholder="Quantidade desejada"
             onChange={handleQuantidade}
+          />
+          <ProdutoInput
+            type="text"
+            placeholder="Cupom"
+            onChange={handleCupom}
           />
           <ProdutoButton onClick={adicionarAoCarrinho}>
             Adicionar ao carrinho
