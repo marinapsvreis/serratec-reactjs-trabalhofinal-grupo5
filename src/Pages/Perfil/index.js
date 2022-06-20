@@ -71,6 +71,7 @@ export const Perfil = () => {
       if(idEndereco !== null){
         getEnderecoAPI()
       }
+      console.log(endereco)
   }
   
   useEffect(() => {
@@ -80,7 +81,7 @@ export const Perfil = () => {
   return (
     <Container>
       {isEditadoDados? <EditarCliente clickFechar={handleEditarDados} cliente={cliente}/> : ''}
-      {isEditadoEndereco? <EditarEndereco clickFechar={handleEditarEndereco} endereco={endereco}/> : ''}
+      {isEditadoEndereco? <EditarEndereco clickFechar={handleEditarEndereco} endereco={endereco} cliente={cliente}/> : ''}
       {isEditadoPassword? <EditarPassword clickFechar={handleEditarPassword} cliente={cliente}/> : ''}
       <Titulo>Perfil Cliente</Titulo>
       <CardCliente>
