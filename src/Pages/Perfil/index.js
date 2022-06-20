@@ -28,16 +28,13 @@ export const Perfil = () => {
     setEditadoPassword(!isEditadoPassword)
   }  
 
-  function carregarAPI() {
+  async function carregarAPI() {
 
-    api.get(`cliente/${localStorage.getItem('idCliente')}`)
-    .then(res => setCliente(res.data))
+    const responseCliente = await api.get(`cliente/${localStorage.getItem('idCliente')}`)
+    setCliente(responseCliente.data)
     
-    if(cliente.idEndereco !== undefined){
-      api.get(`endereco/${cliente.idEndereco}`)
-      .then(res => setEndereco(res.data))
-    }   
-
+    const responseEndreco = await api.get(`endereco/${responseCliente.data.idEndereco}`)
+    setEndereco(responseEndreco.data)
   }
 
     useEffect(() => {
