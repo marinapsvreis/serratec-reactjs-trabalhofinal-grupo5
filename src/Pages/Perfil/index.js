@@ -33,16 +33,14 @@ export const Perfil = () => {
     api.get(`cliente/${localStorage.getItem('idCliente')}`)
     .then(res => setCliente(res.data))
     
-    if(cliente.idEndereco !== undefined){
-      api.get(`endereco/${cliente.idEndereco}`)
-      .then(res => setEndereco(res.data))
-    }   
+    api.get(`endereco/${cliente.idEndereco}`)
+    .then(res => setEndereco(res.data))
 
   }
 
     useEffect(() => {
       carregarAPI();    
-    }, []);
+    }, [cliente, endereco]);
 
 
     return (
@@ -59,9 +57,9 @@ export const Perfil = () => {
           <p>Data de Nascimento: {cliente.dataNascimento}</p>
           <p>Id Endereço: {cliente.idEndereco}</p>
           <BoxButtons>
-            <EditCliente onClick={() => {setEditadoDados(!isEditadoDados); setId(e => {localStorage.getItem('idCliente')})}}>Editar Dados</EditCliente>
-            <EditEndereco onClick={() => {setEditadoEndereco(!isEditadoEndereco); setId(e => {localStorage.getItem('idCliente')})}}>Editar Endereço</EditEndereco>
-            <EditPassword onClick={() => {setEditadoPassword(!isEditadoPassword); setId(e => {localStorage.getItem('idCliente')})}}>Reset Senha</EditPassword>
+            <EditCliente onClick={() => {setEditadoDados(!isEditadoDados)}}>Editar Dados</EditCliente>
+            <EditEndereco onClick={() => {setEditadoEndereco(!isEditadoEndereco)}}>Editar Endereço</EditEndereco>
+            <EditPassword onClick={() => {setEditadoPassword(!isEditadoPassword)}}>Reset Senha</EditPassword>
         </BoxButtons>
         </CardCliente>
       </Container>
