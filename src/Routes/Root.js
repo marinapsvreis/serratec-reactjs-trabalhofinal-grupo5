@@ -6,6 +6,7 @@ import {Categorias} from "../Pages/Categoria"
 import { Produto } from '../Pages/Produto'
 import { Sobre } from '../Pages/Sobre/Index'
 import { Login } from '../Pages/Login'
+import { Perfil } from '../Pages/Perfil'
 import { AdmLogin } from '../Pages/AdmLogin'
 import { Registro } from '../Pages/Registro'
 import { Contato } from '../Pages/Contato'
@@ -41,6 +42,7 @@ export const Root = () => {
       <Route path="/catalogo/:categoria&:id" element={<Categorias />} />
       <Route path="/catalogo/:categoria&:idCategoria/:idProduto" element={<Produto />} />
       <Route path="/login" element={<Login/>}/>
+      <Route path="/perfil" element={<Perfil/>}/>
       <Route path="/admlogin" element={<AdmLogin/>}/>
       <Route path="/registro" element={<Registro/>}/>             
       <Route path="/contato" element={<Contato/>}/>
