@@ -56,9 +56,9 @@ export const Perfil = () => {
           <p>Data de Nascimento: {cliente.dataNascimento}</p>
           <p>Id Endereço: {cliente.idEndereco}</p>
           <BoxButtons>
-            <EditCliente onClick={() => {setEditadoDados(!isEditadoDados); setId(e => {localStorage.getItem('idCliente')})}}>Editar Dados</EditCliente>
-            <EditEndereco onClick={() => {setEditadoEndereco(!isEditadoEndereco); setId(e => {localStorage.getItem('idCliente')})}}>Editar Endereço</EditEndereco>
-            <EditPassword onClick={() => {setEditadoPassword(!isEditadoPassword); setId(e => {localStorage.getItem('idCliente')})}}>Reset Senha</EditPassword>
+            <EditCliente onClick={() => {setEditadoDados(!isEditadoDados)}}>Editar Dados</EditCliente>
+            <EditEndereco onClick={() => {setEditadoEndereco(!isEditadoEndereco)}}>Editar Endereço</EditEndereco>
+            <EditPassword onClick={() => {setEditadoPassword(!isEditadoPassword)}}>Reset Senha</EditPassword>
         </BoxButtons>
         </CardCliente>
       </Container>
