@@ -19,7 +19,7 @@ import { Carrinho } from '../Pages/Carrinho'
 export const PrivateRoutes = () => {
   function isAuthenticated () {
 
-    if(localStorage.getItem('admin') === 1){
+    if(localStorage.getItem('admin') !== null){
       return true;
     }else{
       return false;

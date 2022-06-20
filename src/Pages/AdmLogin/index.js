@@ -19,12 +19,12 @@ export const AdmLogin = () => {
   }
   function logar() {  
     if (login === 'admin' && senha === 'admin') {
-      localStorage.setItem('admin',1)
+      localStorage.setItem('admin', '1')
       alert('Sucesso!')      
       navigate("../painel_administrativo")    
 
     } else {
-      localStorage.setItem('admin', 0)
+      localStorage.removeItem('admin')
       alert('Usuário ou senha incorretos')
       navigate("../admlogin")
     }
