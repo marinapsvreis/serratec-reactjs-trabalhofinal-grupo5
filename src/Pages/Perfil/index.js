@@ -54,7 +54,13 @@ export const Perfil = () => {
           <p>Cpf: {cliente.cpf}</p>
           <p>Telefone: {cliente.telefone}</p>
           <p>Data de Nascimento: {cliente.dataNascimento}</p>
-          <p>Id Endereço: {cliente.idEndereco}</p>
+          <p>Cep: {endereco.cep}</p>
+          <p>Rua: {endereco.rua}</p>
+          <p>Bairro: {endereco.bairro}</p>
+          <p>Cidade: {endereco.cidade}</p>
+          <p>Numero: {endereco.numero}</p>
+          <p>Complemento: {endereco.complemento}</p>
+          <p>UF: {endereco.uf}</p>
           <BoxButtons>
             <EditCliente onClick={() => {setEditadoDados(!isEditadoDados)}}>Editar Dados</EditCliente>
             <EditEndereco onClick={() => {setEditadoEndereco(!isEditadoEndereco)}}>Editar Endereço</EditEndereco>
