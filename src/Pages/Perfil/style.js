@@ -10,12 +10,38 @@ export const CardCliente = styled.div`
 
 export const BoxButtons = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  gap: 5px;
+  align-items: center;
+  gap: 10px;
 `;
 
 export const EditCliente = styled.button`
-  width: 40%;
+  width: 100%;
+  border-radius: 10px;
+  background-color: #eead2d;
+  color: white;
+  border: none;
+  &:hover{
+    background-color: #fff2a6;
+    color: black;
+  }
+`;
+
+export const EditEndereco = styled.button`
+  width: 100%;
+  border-radius: 10px;
+  background-color: #eead2d;
+  color: white;
+  border: none;
+  &:hover{
+    background-color: #fff2a6;
+    color: black;
+  }
+`;
+
+export const EditPassword = styled.button`
+  width: 100%;
   border-radius: 10px;
   background-color: #eead2d;
   color: white;
