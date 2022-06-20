@@ -89,8 +89,8 @@ export const Carrinho = () => {
 
       setDescricao(
         <Descricao>
-          Valor Bruto do pedido:{" "}
-          {pedidos[pedidos.length - 1].valorTotalPedidoBruto} <br />
+          <strong>Valor Bruto do pedido:</strong> R${" "}
+          {pedidos[pedidos.length - 1].valorTotalPedidoBruto},00 <br />
           <ConfirmarPedido onClick={finalizar}>
             Finalizar pedido
           </ConfirmarPedido>

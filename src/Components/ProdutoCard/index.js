@@ -6,11 +6,11 @@ export const ProdutoCard = ({ produto, categoria, id }) => {
 
   return (
     <Cards>
-      <Link className="link" to ={`/catalogo/${categoria}&${id}/${produto.idProduto}`}>
+      <Link style={{textDecoration: "none"}} className="link" to ={`/catalogo/${categoria}&${id}/${produto.idProduto}`}>
         <CardImagem src={`${produto.nomeImagemProduto}`} />
       
       <CardLink>
-        {produto.nomeProduto} - R${produto.valorUnitario}
+        <strong>{produto.nomeProduto}</strong> R${produto.valorUnitario},00
       </CardLink>
       </Link>
     </Cards>

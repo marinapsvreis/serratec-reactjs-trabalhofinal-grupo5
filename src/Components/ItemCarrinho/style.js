@@ -7,8 +7,7 @@ export const ItemContainer = styled.div`
   justify-content: center;
   gap: 2rem;
   margin: 1rem;
-  border: 1px solid #ffffff;
-  color: #ffffff;
+  background-color: var(--secondary-color);
   border-radius: 1rem;
   @media (min-width: 1024px) {
     flex-direction: row;
@@ -40,6 +39,7 @@ export const ButtonDiv = styled.div`
 export const DeletarButao = styled.button`
   background-color: var(--primary-color);
   border: none;
-  padding: 1.5rem;
-  margin: 0.5rem;
+  border-radius: 10px;
+  padding: 2rem;
+  margin: 1rem;
 `;

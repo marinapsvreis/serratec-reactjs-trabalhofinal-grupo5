@@ -26,9 +26,9 @@ function TabelaPedidos(props) {
                                         <p>Data do Pedido: {res.dataPedido}</p>
                                         <p>Data da Entrega: {res.dataEntrega}</p>
                                         <p>Data do Envio: {res.dataEnvio}</p>
-                                        <p>Valor Bruto: R$ {res.valorTotalPedidoBruto}</p>
-                                        <p>Valor Desconto: R${res.valorTotalDescontoPedido}%</p>
-                                        <p>Valor Liquido: R$ {res.valorTotalPedidoLiquido}</p>
+                                        <p>Valor Bruto: R$ {res.valorTotalPedidoBruto},00</p>
+                                        <p>Valor Desconto: R${res.valorTotalDescontoPedido},00</p>
+                                        <p>Valor Liquido: R$ {res.valorTotalPedidoLiquido},00</p>
                                         <BoxButtons>
                                             <DeletePedido onClick={() => {
                                                 setDeletado(!isDeletado);
