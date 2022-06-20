@@ -91,8 +91,6 @@ export const Carrinho = () => {
         <Descricao>
           Valor Bruto do pedido:{" "}
           {pedidos[pedidos.length - 1].valorTotalPedidoBruto} <br />
-          Valor Liquido do Peido:{" "}
-          {pedidos[pedidos.length - 1].valorTotalPedidoBruto}
           <ConfirmarPedido onClick={finalizar}>
             Finalizar pedido
           </ConfirmarPedido>
