@@ -5,11 +5,13 @@ import { EditarCliente } from '../../Components/EditarCliente'
 import { EditarEndereco } from '../../Components/EditarEndereco'
 import { EditarPassword } from '../../Components/EditarPassword'
 import {api} from '../../Services/api'
+import { CardPedidoPerfil } from "../../Components/CardPedidosPerfil";
 
 export const Perfil = () => {
 
   const [cliente, setCliente] = useState({});
   const [endereco, setEndereco] = useState({})
+  const [pedidos, setPedidos] = useState([{}])
 
   const [id, setId] = useState()
   const [isEditadoDados, setEditadoDados] = useState(false);
@@ -35,6 +37,9 @@ export const Perfil = () => {
     
     const responseEndreco = await api.get(`endereco/${responseCliente.data.idEndereco}`)
     setEndereco(responseEndreco.data)
+
+    const responsePedidos = await api.get(`pedido/cliente/${localStorage.getItem('idCliente')}`)
+    setPedidos(responsePedidos.data)
   }
 
     useEffect(() => {
@@ -67,6 +72,8 @@ export const Perfil = () => {
             <EditPassword onClick={() => {setEditadoPassword(!isEditadoPassword)}}>Reset Senha</EditPassword>
         </BoxButtons>
         </CardCliente>
+        <Titulo>Meus Pedidos</Titulo>
+        <CardPedidoPerfil lista={pedidos}/>
       </Container>
     );
   };  
