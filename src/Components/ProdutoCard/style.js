@@ -5,7 +5,6 @@ export const Cards = styled.div`
   justify-content: center;
   align-items: center;
   width: 28.6rem;
-  height: 45rem;
   border-radius: 1rem;
   background-color: var(--secondary-color);
   transition: 0.5s;
@@ -41,6 +40,7 @@ export const CardImagem = styled.img`
 
 export const CardLink = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-decoration: none;

@@ -9,9 +9,11 @@ flex-wrap: wrap;
 `
 
 export const ConfirmarPedido = styled.button`
+    margin: 1rem;
     padding: 2rem;
     background-color: var(--primary-color);
     border: none;
+    border-radius: 10px;
     font-size: 1.5rem;
 `
 

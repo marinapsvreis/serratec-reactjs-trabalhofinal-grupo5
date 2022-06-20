@@ -89,12 +89,12 @@ export const Carrinho = () => {
 
       setDescricao(
         <Descricao>
-          Valor bruto do pedido:{" "}
-          {pedidos[pedidos.length - 1].valorTotalPedidoBruto} <br />
-          Valor liquido do pedido:{" "}
-          {pedidos[pedidos.length - 1].valorTotalPedidoLiquido} <br />
-          Valor de desconto do pedido:{" "}
-          {pedidos[pedidos.length - 1].valorTotalDescontoPedido} <br />
+          <strong>Valor Bruto do pedido:</strong> R${" "}
+          {pedidos[pedidos.length - 1].valorTotalPedidoBruto},00 <br />
+          <strong>Valor liquido do pedido:</strong> R${" "}
+          {pedidos[pedidos.length - 1].valorTotalPedidoLiquido},00 <br />
+          <strong>Valor de desconto do pedido:</strong>R${" "}
+          {pedidos[pedidos.length - 1].valorTotalDescontoPedido},00 <br />
           <ConfirmarPedido onClick={finalizar}>
             Finalizar pedido
           </ConfirmarPedido>

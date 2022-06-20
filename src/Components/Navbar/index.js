@@ -1,16 +1,15 @@
 import React from "react"
-import {useState, useContext} from 'react';
+import {useState} from 'react';
 import Logo from "../../Sources/serra-funko-icon.png";
 import { NavbarSection, NavbarContainer, NavbarLista, NavbarItem, LinkHome, NomeLogo, ButtonLogin, MenuOption, MenuOptionLogin } from "./style";
 import { ClienteLogado } from "../ClienteLogado";
 import "./style.css"
 import {Link} from "react-router-dom"
-import { DataContext } from "../../Context/data";
 import { Carrinho } from "../../Pages/Carrinho";
+import { ClienteLogadoMobile } from "../ClienteLogadoMobile";
 
 export const Navbar = () => {
   const [isActive, setIsActive] = useState(false);
-  const { idUsuario, handleSetIdUsuario } = useContext(DataContext);
 
   function activeMenu() {
     setIsActive(current => !current);
@@ -50,7 +49,7 @@ export const Navbar = () => {
 
         <div id="navMenu" className={isActive? 'active': ''}>
           <div id="menu-options">
-          <Link to="/" style={{textDecoration: "none"}}><MenuOption onClick={activeMenu}>Home</MenuOption></Link>
+          {localStorage.getItem('idCliente') !== null ? <ClienteLogadoMobile/> : ''}
           <Link to="/catalogo" style={{textDecoration: "none"}}onClick={activeMenu}><MenuOption>Produtos</MenuOption></Link>
           <Link to="/carrinho" style={{textDecoration: "none"}}><MenuOption onClick={activeMenu}>Carrinho</MenuOption></Link>    
           <Link to="/sobre" style={{textDecoration: "none"}}onClick={activeMenu}><MenuOption>Sobre</MenuOption></Link>

@@ -20,9 +20,9 @@ export const ItemCarrinho = ({ produto, itemPedido }) => {
     <ItemContainer>
       <Imagem src={`${produto.nomeImagemProduto}`} />
       <Descricao>
-        Nome do produto: {produto.nomeProduto} <br />
-        Preço por Unidade: {produto.valorUnitario} <br />
-        Quantidade: {itemPedido[0].quantidadeItemPedido} 
+        <strong>Nome do produto:</strong> {produto.nomeProduto} <br />
+        <strong>Preço por Unidade:</strong> R$ {produto.valorUnitario},00 <br />
+        <strong>Quantidade:</strong> {itemPedido[0].quantidadeItemPedido} 
         <ButtonDiv>
         <DeletarButao onClick={deletarItemPedido}>Deletar o Item</DeletarButao>
         </ButtonDiv>
