@@ -1,14 +1,22 @@
 import React, { useState } from "react";
 import {useNavigate} from "react-router-dom"
 import { Container, Titulo } from "../global-style";
-import { StatusLogAdm, Form, FormInput, LoginButton } from "./style";
+import { StatusLogAdm, Form, FormInput, LoginButton, PopupStyle } from "./style";
 
 export const AdmLogin = () => {
   
       
   const [login, setLogin] = useState('');
   const [senha, setSenha] = useState('');
+  const [status, setStatus] = useState({
+    msgStatus: ''
+  })
   let navigate = useNavigate();
+  console.log(status)
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+}
 
   function handleLoginChange(e){
     setLogin(e.target.value)
@@ -19,14 +27,15 @@ export const AdmLogin = () => {
   }
   function logar() {  
     if (login === 'admin' && senha === 'admin') {
-      localStorage.setItem('admin', '1')
-      alert('Sucesso!')      
-      navigate("../painel_administrativo")    
+      console.log(status)
+      setStatus({msgStatus: 'senhaCorreta'})  
+
+    } else if (login === '' || senha === '')  {
+      setStatus({msgStatus: 'camposVazios'})
 
     } else {
-      localStorage.removeItem('admin')
-      alert('Usuário ou senha incorretos')
-      navigate("../admlogin")
+      setStatus({msgStatus: 'senhaIncorreta'})
+      
     }
   }
 
@@ -51,10 +60,34 @@ export const AdmLogin = () => {
         </div>
       </StatusLogAdm> 
       : ''}
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <FormInput onChange={e => handleLoginChange(e)} type="text" placeholder="Login"></FormInput>
         <FormInput onChange={e => handleSenhaChange(e)} type="password" placeholder="Senha"></FormInput>
       <LoginButton onClick={logar}>Entrar</LoginButton>
+      {status.msgStatus === 'senhaCorreta' ? <>
+      <PopupStyle>
+        <div className="popup-tela">
+          <p>Login feito com sucesso!</p>
+          <button onClick={() => {localStorage.setItem('admin', '1'); navigate("../painel_administrativo")}}>OK</button>
+        </div>
+      </PopupStyle>
+      </> : ''}
+      {status.msgStatus === 'senhaIncorreta' ? <>
+        <PopupStyle>
+          <div className="popup-tela">
+            <p>Senha incorreta! Entre em contato com os administradores.</p>
+            <button onClick={() => {localStorage.removeItem('admin'); setStatus({msgStatus: ''})}}>OK</button>
+          </div>
+        </PopupStyle>
+      </> : ''}
+      {status.msgStatus === 'camposVazios' ? <>
+        <PopupStyle>
+          <div className="popup-tela">
+            <p>Algum dos campos está vazios! Por favor, preencha.</p>
+            <button onClick={() => {localStorage.removeItem('admin'); setStatus({msgStatus: ''})}}>OK</button>
+          </div>
+        </PopupStyle>
+      </> : ''}
                
       </Form>
     </Container>
