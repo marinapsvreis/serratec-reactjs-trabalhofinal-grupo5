@@ -17,10 +17,11 @@ export const AdmProduto = () => {
   const [idCategoria, setIdCategoria] = useState(0)
   const [statusAPI, setStatusAPI] = useState(0);
   const [isConfirmado, setConfirmado] = useState(false);
+  const [requisitarGet, setRequisitarGet] = useState(false);
 
   useEffect(() => {
     carregarAPI();
-  }, []);
+  }, [listaProdutos, requisitarGet]);
 
   function carregarAPI() {
     const getProdutoAPI = async () => {
@@ -42,7 +43,8 @@ export const AdmProduto = () => {
   };
 
   const handleConfirmar = (event) => {
-    window.location.reload(false);
+    setConfirmado(!isConfirmado)
+    setRequisitarGet(!requisitarGet)
   }
 
   const handleSubmit = (event) => {

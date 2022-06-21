@@ -13,10 +13,11 @@ export const AdmCategoria = () => {
   const [linkImagem, setLinkImagem] = useState("");
   const [statusAPI, setStatusAPI] = useState(0)
   const [isConfirmado, setConfirmado] = useState(false);
+  const [requisitarGet, setRequisitarGet] = useState(false);
 
   useEffect(() => {
     carregarAPI();
-  }, []);
+  }, [listaCategorias, requisitarGet]);
 
   function carregarAPI() {
     const getCategoriaAPI = async () => {
@@ -39,7 +40,8 @@ export const AdmCategoria = () => {
   };
 
   const handleConfirmar = () => {
-    window.location.reload(false);
+    setConfirmado(!isConfirmado)
+    setRequisitarGet(!requisitarGet)
   }
 
   const handleSubmit = (event) => {

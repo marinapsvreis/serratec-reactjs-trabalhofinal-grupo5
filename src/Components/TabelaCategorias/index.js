@@ -15,14 +15,14 @@ export const TabelaCategorias = (props) => {
         setEditado(!isEditado)
     }
 
-    const handleClick = () => {
+    const handleClickDeletar = () => {
         setDeletarPressed(e => false)
     }
 
     return (
         <>
             {isEditado? <EditarCategoria clickFechar={handleEditar} id={id} categoria={listaCategorias.filter(c => c.idCategoria === id)[0]}/> : ''}
-            {isDeletarPressed ? <PopupRespostaAPI titulo={'categoria'} tipo={'deletarLoad'} status={''} id={id} click={handleClick}/> : ''}
+            {isDeletarPressed ? <PopupRespostaAPI titulo={'categoria'} tipo={'deletarLoad'} status={''} id={id} click={handleClickDeletar}/> : ''}
             <BoxCategoria>
                 <ListaCategorias>               
                        {listaCategorias !== [] ? listaCategorias.map(res => {

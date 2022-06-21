@@ -13,11 +13,15 @@ export const ListaCategorias = styled.div`
 `;
 
 export const CardCategoria = styled.div`
-  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 30rem;
+  min-height: 37rem;
   font-size: 1.6rem;
   background-color: gray;
   padding: 20px;
-  border-radius: 10px;  
+  border-radius: 10px;   
 `;
 
 export const BoxButtons = styled.div`
