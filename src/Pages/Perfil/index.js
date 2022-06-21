@@ -69,7 +69,7 @@ export const Perfil = () => {
           <BoxButtons>
             <EditCliente onClick={() => {setEditadoDados(!isEditadoDados)}}>Editar Dados</EditCliente>
             <EditEndereco onClick={() => {setEditadoEndereco(!isEditadoEndereco)}}>Editar Endereço</EditEndereco>
-            <EditPassword onClick={() => {setEditadoPassword(!isEditadoPassword)}}>Reset Senha</EditPassword>
+            <EditPassword onClick={() => {setEditadoPassword(!isEditadoPassword)}}>Alterar Senha</EditPassword>
         </BoxButtons>
         </CardCliente>
         <Titulo>Meus Pedidos</Titulo>

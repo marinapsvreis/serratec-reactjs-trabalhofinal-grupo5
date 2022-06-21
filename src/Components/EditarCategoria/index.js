@@ -45,8 +45,8 @@ export const EditarCategoria = (props) => {
             setStatusAPI(e => res.status)
         } catch (error) {
             setStatusAPI(e => error.response.data.status)
-        setErrorMessageHead(e => error.response.data.message)
-        setErrorMessage(e => error.response.data.details[0])
+            setErrorMessageHead(e => error.response.data.message)
+            setErrorMessage(e => error.response.data.details[0])
         }
     }
 

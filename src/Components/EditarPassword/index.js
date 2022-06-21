@@ -29,6 +29,7 @@ export const EditarPassword = (props) => {
         if(response.status === 200){
             navigate("../perfil")
         }else{
+            //espero quue isso nunca aconteça pois a verificação é feita no front
             alert("Erro ao atualizar!")
         }
     }
@@ -56,7 +57,6 @@ export const EditarPassword = (props) => {
     }
 
     function reloadPage() {
-        console.log('entrei')
         window.location.reload(false)
     }
 
@@ -77,7 +77,7 @@ export const EditarPassword = (props) => {
                     <p>Digite a nova senha:</p>
                     <Input type="password" onChange={handlePasswordChange1} />                                                        
                     <ButtonContainer>
-                    <CancelarButton onClick={props.handleEditarAtivo}>Cancelar</CancelarButton>
+                    <CancelarButton onClick={props.clickFechar}>Cancelar</CancelarButton>
                     <RegistroButton onClick={handleLoading}>Alterar</RegistroButton>
                     </ButtonContainer>
                  </Form>
@@ -124,7 +124,7 @@ export const EditarPassword = (props) => {
                 <PopupStyle>
                 <div className='popup-tela'>
                     <h2>Senha alterada com sucesso!</h2>
-                    <RegistroButton className='botao' onClick={() => {reloadPage(); editarPassword()}}>OK</RegistroButton>
+                    <RegistroButton className='botao' onClick={() => {editarPassword();reloadPage()}}>OK</RegistroButton>
                 </div>
                 </PopupStyle>
             </> : ''}

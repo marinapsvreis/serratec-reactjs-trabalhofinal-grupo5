@@ -46,8 +46,8 @@ export const EditarCliente = (props) => {
                     <Input type="text" value={telefone} onChange={(e) => handleTelefoneChange(e)}/>                    
                     <InputBlock type="text" value={dataNascimento} />                                               
                     <ButtonContainer>
+                    <CancelarButton onClick={props.clickFechar}>Cancelar</CancelarButton>
                     <RegistroButton onClick={editarCliente}>Alterar</RegistroButton>
-                    <CancelarButton onClick={props.handleEditarAtivo}>Cancelar</CancelarButton>
                     </ButtonContainer>
                  </Form>
                 </div>
