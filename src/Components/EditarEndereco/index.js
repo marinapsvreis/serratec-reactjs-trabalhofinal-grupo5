@@ -30,13 +30,27 @@ export const EditarEndereco = (props) => {
     }
 
     function handleComplementoChange(e){
-        setNumero(e.target.value)
+        setComplemento(e.target.value)
+    }
+
+    function handleRuaChange(e){
+        setRua(e.target.value)
+    }
+    function handleCidadeChange(e){
+        setCidade(e.target.value)
+    }
+    function handleUfChange(e){
+        setUf(e.target.value)
+    }
+    function handleBairroChange(e){
+        setBairro(e.target.value)
     }
 
     async function editarEndereco() {
         try {
-            const res = await api.put(`endereco?idEndereco=${localStorage.getItem('idCliente')}`, {"cep": cep, "rua": rua, 'bairro': bairro, 'cidade': cidade, 'numero': numero, 'complemento': complemento, 'uf': uf});
-            setStatusAPI(e => res)
+            const res = await api.put(`endereco?idEndereco=${(localStorage.getItem('idCliente')-1)}`, {"cep": cep, "rua": rua, "bairro": bairro, "cidade": cidade, "numero": numero, "complemento": complemento, "uf": uf});
+            console.log(res)
+            setStatusAPI(e => res.status)
         } catch (error) {
             console.log(error)
             setStatusAPI(e => error.response.data.status)
@@ -60,8 +74,12 @@ export const EditarEndereco = (props) => {
                 <div className='popup-tela'>
                 <Form>                      
                     <Input type="text" value={cep} placeholder='Cep' onChange={(e) => handleCepChange(e)}/>                                                       
+                    <Input type="text" value={rua} placeholder='Rua' onChange={(e) => handleRuaChange(e)}/>                                                       
+                    <Input type="text" value={bairro} placeholder='Bairro' onChange={(e) => handleBairroChange(e)}/>                                                       
+                    <Input type="text" value={cidade} placeholder='Cidade' onChange={(e) => handleCidadeChange(e)}/>                                                       
                     <Input type="number" value={numero} placeholder='Numero' onChange={(e) => handleNumeroChange(e)}/>                                                       
-                    <Input type="number" value={complemento} placeholder='Complemento' onChange={(e) => handleComplementoChange(e)}/>                                                       
+                    <Input type="text" value={complemento} placeholder='Complemento' onChange={(e) => handleComplementoChange(e)}/>                                                       
+                    <Input type="text" value={uf} placeholder='Uf' onChange={(e) => handleUfChange(e)}/>                                                                                                            
                     <ButtonContainer>
                     <CancelarButton onClick={props.clickFechar}>Cancelar</CancelarButton>
                     <RegistroButton onClick={load}>Alterar</RegistroButton>
@@ -71,6 +89,7 @@ export const EditarEndereco = (props) => {
             </PopupStyle>  
             </> : ''} 
             {isLoading === true ? <>
+            {console.log(statusAPI + 'entrei aqui 3')}
                 <PopupStyle>
                 <div className='popup-tela'>
                     <p>Carregando...</p>
@@ -79,6 +98,7 @@ export const EditarEndereco = (props) => {
             </PopupStyle>  
             </> : ''}
             {isLoading === false && statusAPI === 200 ? <>
+                {console.log(statusAPI + 'entrei aqui 3')}
                 <PopupStyle>
                     <div className='popup-tela'>
                         <p>Endereco alterado com sucesso!</p>
@@ -89,6 +109,7 @@ export const EditarEndereco = (props) => {
                 </PopupStyle>  
             </> : ''}
             {isLoading === false && statusAPI !== 200 && statusAPI !== 0 ? <>
+                {console.log(statusAPI + 'entrei aqui 3')}
                 <PopupStyle>
                     <div className='popup-tela'>
                         <h2>{errorMessageHead}</h2>
