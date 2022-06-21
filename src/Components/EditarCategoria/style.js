@@ -15,24 +15,26 @@ justify-content: center;
 align-items: center;
 
 .popup-tela {
-    background-color: gray;
+  background-color: gray;
 
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    padding: 40px;
-    width: 55em;
+  padding: 40px;
+  width: 55em;
 
-    align-items: center;
-    justify-content: center;
+  align-items: center;
+  justify-content: center;
 
-    border: 2px solid black;
-    border-radius: 10px;
+  text-align: center;
+
+  border: 2px solid black;
+  border-radius: 10px;
     
 }
 
 .popup-tela p {
-    font-size: 1.5em;
+    font-size: 1.7em;
 }
 
 .popup-tela .botoes {
@@ -41,15 +43,17 @@ align-items: center;
 }
 
 .popup-tela .botoes button {
-    background-color: var(--secondary-color);
+  background-color: var(--secondary-color);
 
-    font-size: 1.3em;
+  font-size: 1.3em;
 
-    padding: 3px;
+  width: 7em;
 
-    border-radius: 10px;
+  padding: 3px;
 
-    transition: 250ms;
+  border-radius: 10px;
+
+  transition: 250ms;
 }
 
 .popup-tela .botoes button:hover {

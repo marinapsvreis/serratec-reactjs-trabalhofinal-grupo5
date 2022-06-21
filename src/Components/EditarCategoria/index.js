@@ -10,13 +10,10 @@ export const EditarCategoria = (props) => {
     const [nomeCategoria, setNomeCategoria] = useState(props.categoria.nomeCategoria);
     const [descricaoCategoria, setDescricaoCategoria] = useState(props.categoria.descricaoCategoria);
     const [imagemCategoria, setImagemCategoria] = useState(props.categoria.imagemCategoria);
+    const [statusAPI, setStatusAPI] = useState(0)
     const [errorMessageHead, setErrorMessageHead] = useState('')
     const [errorMessage, setErrorMessage] = useState('')
     const [loading, setLoading] = useState(false)
-    const [status, setStatus] = useState({
-        msgStatus: ''
-    })
-    let navigate = useNavigate();
 
     function handleNomeChange(e){
         setNomeCategoria(e.target.value)
@@ -39,21 +36,23 @@ export const EditarCategoria = (props) => {
         setTimeout(function() {
             setLoading(false)
             editarCategoria()
-        })
+        }, 800)
     }
 
     async function editarCategoria() {
-        const response = await api.put(`categoria?idCategoria=${props.id}`, {"nomeCategoria": nomeCategoria, "descricaoCategoria": descricaoCategoria, "imagemCategoria": imagemCategoria});
-        if(response.status === 200){
-            setStatus({msgStatus: 'alteradoSucesso'})
-        }else{
-            setStatus({msgStatus: 'alteracaoErro'})
+        try {
+            const res = await api.put(`categoria?idCategoria=${props.id}`, {"nomeCategoria": nomeCategoria, "descricaoCategoria": descricaoCategoria, "imagemCategoria": imagemCategoria});
+            setStatusAPI(e => res.status)
+        } catch (error) {
+            setStatusAPI(e => error.response.data.status)
+        setErrorMessageHead(e => error.response.data.message)
+        setErrorMessage(e => error.response.data.details[0])
         }
     }
 
     return (
         <>
-            {loading === false && status.msgStatus === '' ? <>
+            {loading === false && statusAPI === 0 ? <>
                 <PopupStyle>
                 <div className='popup-tela'>
                 <Form>
@@ -61,8 +60,8 @@ export const EditarCategoria = (props) => {
                     <Input type="text" value={descricaoCategoria} onChange={(e) => handleDescricaoChange(e)}/>                       
                     <Input type="text" value={imagemCategoria} onChange={(e) => handleImagemChange(e)}/>                       
                     <ButtonContainer>
-                    <RegistroButton onClick={load}>Alterar</RegistroButton>
                     <CancelarButton onClick={props.clickFechar}>Cancelar</CancelarButton>
+                    <RegistroButton onClick={load}>Alterar</RegistroButton>
                     </ButtonContainer>
                  </Form>
                 </div>
@@ -76,19 +75,24 @@ export const EditarCategoria = (props) => {
                 </div>
             </PopupStyle>
             </> : ''}
-            {status.msgStatus === 'alteradoSucesso' ? <>
+            {statusAPI === 200 ? <>
             <PopupStyle>
                 <div className='popup-tela'>
                     <p>Alterações feitas com sucesso!</p>
-                    <button onClick={reloadPage}>OK!</button>
+                    <div className='botoes'>
+                        <button onClick={reloadPage}>OK</button>
+                    </div>
                 </div>
             </PopupStyle> 
             </> : ''}
-            {status.msgStatus === 'alteracaoErro' ? <>
+            {statusAPI === 400 ? <>
             <PopupStyle>
                 <div className='popup-tela'>
-                    <p>Ops... Parece que ocorreu um erro.</p>
-                    <button onClick={reloadPage}>OK!</button>
+                    <h1>{errorMessageHead}</h1>
+                    <p>{errorMessage}</p>
+                    <div className='botoes'>
+                        <button onClick={() => {setStatusAPI(e => 0); props.click()}}>OK!</button>
+                    </div>
                 </div>
             </PopupStyle> 
             </> : ''}

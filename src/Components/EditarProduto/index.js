@@ -140,7 +140,6 @@ props.produto.descricaoProduto
                     <div className="botoes">
                     <button onClick={reloadPage}>OK</button>
                     </div>
-                    
                 </div>
             </PopupStyle> 
             </> : ''}
