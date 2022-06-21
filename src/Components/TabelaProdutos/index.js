@@ -8,22 +8,22 @@ function TabelaProdutos(props) {
     const navigate = useNavigate();
     const listaProdutos = props.lista;
     const [id, setId] = useState()
-    const [isEditado, setEditado] = useState(false);
+    const [isEditarPressed, setEditarPressed] = useState(false);
     const [isDeletarPressed, setDeletarPressed] = useState(false)
 
-    const handleEditar = () => {
-        setEditado(!isEditado)
+    const handleClickEditar = () => {
+        setEditarPressed(e => false)
     }
 
-    const handleClick = () => {
+    const handleClickDeletar = () => {
         setDeletarPressed(e => false)
     }
 
 
     return (
         <>
-            {isEditado? <EditarProduto clickFechar={handleEditar} id={id} produto={listaProdutos.filter(c => c.idProduto === id)[0]}/> : ''}
-            {isDeletarPressed ? <PopupRespostaAPI titulo={'produto'} tipo={'deletarLoad'} status={''} id={id} click={handleClick}/> : ''}
+            {isEditarPressed? <EditarProduto id={id} produto={listaProdutos.filter(c => c.idProduto === id)[0]} click={handleClickEditar}/> : ''}
+            {isDeletarPressed ? <PopupRespostaAPI titulo={'produto'} tipo={'deletarLoad'} status={''} id={id} click={handleClickDeletar}/> : ''}
             <BoxProduto>
                 <ListaProdutos>               
                        {listaProdutos !== [] ? listaProdutos.map(res => {
@@ -38,7 +38,7 @@ function TabelaProdutos(props) {
                                         <p>Id Categoria: {res.idCategoria}</p>
                                         <BoxButtons>
                                             <EditProduto onClick={()=> {
-                                                setEditado(!isEditado);
+                                                setEditarPressed(e => true);
                                                 setId(e => res.idProduto)
                                             }}>Editar</EditProduto>
                                             <DeleteProduto onClick={()=> {
