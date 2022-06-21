@@ -15,21 +15,21 @@ justify-content: center;
 align-items: center;
 
 .popup-tela {
-  background-color: gray;
+    background-color: gray;
 
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 
-  padding: 40px;
-  width: 55em;
+    padding: 40px;
+    width: 55em;
 
-  align-items: center;
-  justify-content: center;
+    align-items: center;
+    justify-content: center;
 
-  text-align: center;
+    text-align: center;
 
-  border: 2px solid black;
-  border-radius: 10px;
+    border: 2px solid black;
+    border-radius: 10px;
     
 }
 
@@ -43,17 +43,17 @@ align-items: center;
 }
 
 .popup-tela .botoes button {
-  background-color: var(--secondary-color);
+    background-color: var(--secondary-color);
 
-  font-size: 1.3em;
+    font-size: 1.3em;
 
-  width: 7em;
+    width: 7em;
 
-  padding: 3px;
+    padding: 3px;
 
-  border-radius: 10px;
+    border-radius: 10px;
 
-  transition: 250ms;
+    transition: 250ms;
 }
 
 .popup-tela .botoes button:hover {
@@ -83,11 +83,13 @@ export const Input = styled.input`
 
 export const ButtonContainer = styled.div`
     display: flex;
+    justify-content: center;
+    gap: 5em;
 `;
 
 export const RegistroButton = styled.button`
   height: 3rem;
-  width: 100%;
+  width: 8em;
   font-size: 1.5rem;
   background-color: var(--secondary-color);
   border-radius: 10px;
@@ -98,7 +100,7 @@ export const RegistroButton = styled.button`
 
 export const CancelarButton = styled.button`
     height: 3rem;
-    width: 100%;
+    width: 8em;
     font-size: 1.5rem;
     background-color: var(--secondary-color);
     border-radius: 10px;
