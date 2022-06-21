@@ -17,7 +17,7 @@ export const CardCategoria = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   width: 30rem;
-  min-height: 37rem;
+  min-height: 31rem;
   font-size: 1.6rem;
   background-color: gray;
   padding: 20px;

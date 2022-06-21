@@ -20,34 +20,18 @@ export const Popup = (props) => {
     if (props.titulo === "categoria") {
       const postCategoriaAPI = async () => {
         try {
-          const res = await api.post("categoria", {
+            const res = await api.post("categoria", {
             nomeCategoria: informacaoPost.info.Nome,
             descricaoCategoria: informacaoPost.info.Descricao,
-            imagemCategoria: informacaoPost.info.Imagem,
+            imagemCategoria: informacaoPost.info.Imagem
           });
+          this.props.statusResponse = res.status
+          console.log(res)
         } catch (error) {
           console.log(error);
         }
       };
       postCategoriaAPI();
-    }
-
-    if (props.titulo === 'produto') {
-        const postProdutoAPI = async () => {
-            try {
-              const res = await api.post("produto", {
-                nomeProduto: informacaoPost.info.Nome,
-                descricaoProduto: informacaoPost.info.Descricao,
-                qtdEstoqueProduto: parseInt(informacaoPost.info.Quantidade),
-                valorUnitario: parseFloat(informacaoPost.info.ValorUnitario),
-                nomeImagemProduto: informacaoPost.info.NomeImagem,
-                idCategoria: parseInt(informacaoPost.info.IdCategoria)
-              });
-            } catch (error) {
-                console.log(error)
-            }
-          };
-          postProdutoAPI();
     }
   }
 

@@ -14,6 +14,8 @@ height: 100vh;
 justify-content: center;
 align-items: center;
 
+z-index: 5;
+
 .popup-tela {
     background-color: var(--fourth-color);
 
@@ -28,6 +30,8 @@ align-items: center;
     justify-content: center;
 
     border: 2px solid black;
+
+    z-index: 6;
     
 }
 
@@ -40,7 +44,7 @@ align-items: center;
     background-color: var(--secondary-color);
 
     font-size: 1.3em;
-    width: 5em;
+    width: 7em;
 
     padding: 3px;
 
@@ -52,9 +56,10 @@ align-items: center;
     background-color: var(--secondary-color);
 
     font-size: 1.3em;
-    width: 5em;
+    width: 7em;
 
-    padding: 3px;
+    padding: 4px;
+    margin-top: 10px;
 
     border-radius: 10px;
 

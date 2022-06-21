@@ -27,7 +27,6 @@ export const EditarPassword = (props) => {
     async function editarPassword() {
         const response = await api.put(`cliente?idCliente=${localStorage.getItem('idCliente')}`, {"nomeCompleto": props.cliente.nomeCompleto, "email": props.cliente.email, "password": newSenha1, "cpf": props.cliente.cpf, "telefone": props.cliente.telefone, "dataNascimento": props.cliente.dataNascimento, "idEndereco": props.cliente.idEndereco});
         if(response.status === 200){
-            alert("Alteração realizada com sucesso!")
             navigate("../perfil")
         }else{
             alert("Erro ao atualizar!")
@@ -76,7 +75,7 @@ export const EditarPassword = (props) => {
                 <div className='popup-tela'>
                 <Form onSubmit={handleSubmit}>
                     <p>Digite a nova senha:</p>
-                    <Input type="text" onChange={handlePasswordChange1} />                                                        
+                    <Input type="password" onChange={handlePasswordChange1} />                                                        
                     <ButtonContainer>
                     <CancelarButton onClick={props.handleEditarAtivo}>Cancelar</CancelarButton>
                     <RegistroButton onClick={handleLoading}>Alterar</RegistroButton>
@@ -90,7 +89,7 @@ export const EditarPassword = (props) => {
                 <div className='popup-tela'>
                 <Form onSubmit={handleSubmit}>
                     <p>Digite sua senha novamente:</p>
-                    <Input type="text" onChange={handlePasswordChange2} />                                                        
+                    <Input type="password" onChange={handlePasswordChange2} />                                                        
                     <ButtonContainer>
                     <RegistroButton onClick={() => {handleLoading(); verificarSenhas()}}>Alterar</RegistroButton>
                     </ButtonContainer>
@@ -103,7 +102,7 @@ export const EditarPassword = (props) => {
                 <div className='popup-tela'>
                 <Form onSubmit={handleSubmit}>
                     <p>Suas senhas não coincidem... tente novamente:</p>
-                    <Input type="text" onChange={handlePasswordChange2} />                                                        
+                    <Input type="password" onChange={handlePasswordChange2} />                                                        
                     <ButtonContainer>
                     <CancelarButton onClick={props.handleEditarAtivo}>Cancelar</CancelarButton>
                     <RegistroButton onClick={() => {handleLoading(); verificarSenhas()}}>Alterar</RegistroButton>
@@ -117,15 +116,15 @@ export const EditarPassword = (props) => {
                 <div className='popup-tela'>
                     <h1>Máximo de tentativas ultrapassadas</h1>
                     <p>Tente novamente mais tarde...</p>
-                    <button onClick={reloadPage}>OK</button>
+                    <RegistroButton onClick={reloadPage}>OK</RegistroButton>
                 </div>
                 </PopupStyle>
             </> : ''}
             {isSenhaIgual === true && isLoading === false ? <>
                 <PopupStyle>
                 <div className='popup-tela'>
-                    <h1>Senha alterada com sucesso!</h1>
-                    <button onClick={() => {reloadPage(); editarPassword()}}>OK</button>
+                    <h2>Senha alterada com sucesso!</h2>
+                    <RegistroButton className='botao' onClick={() => {reloadPage(); editarPassword()}}>OK</RegistroButton>
                 </div>
                 </PopupStyle>
             </> : ''}

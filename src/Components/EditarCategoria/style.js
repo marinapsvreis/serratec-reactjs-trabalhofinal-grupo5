@@ -14,6 +14,8 @@ height: 100vh;
 justify-content: center;
 align-items: center;
 
+z-index: 5;
+
 .popup-tela {
     background-color: gray;
 
@@ -26,13 +28,17 @@ align-items: center;
     align-items: center;
     justify-content: center;
 
+    text-align: center;
+
     border: 2px solid black;
     border-radius: 10px;
+
+    z-index: 6;
     
 }
 
 .popup-tela p {
-    font-size: 1.5em;
+    font-size: 1.7em;
 }
 
 .popup-tela .botoes {
@@ -44,6 +50,8 @@ align-items: center;
     background-color: var(--secondary-color);
 
     font-size: 1.3em;
+
+    width: 7em;
 
     padding: 3px;
 
@@ -79,11 +87,13 @@ export const Input = styled.input`
 
 export const ButtonContainer = styled.div`
     display: flex;
+    justify-content: center;
+    gap: 5em;
 `;
 
 export const RegistroButton = styled.button`
   height: 3rem;
-  width: 100%;
+  width: 8em;
   font-size: 1.5rem;
   background-color: var(--secondary-color);
   border-radius: 10px;
@@ -94,7 +104,7 @@ export const RegistroButton = styled.button`
 
 export const CancelarButton = styled.button`
     height: 3rem;
-    width: 100%;
+    width: 8em;
     font-size: 1.5rem;
     background-color: var(--secondary-color);
     border-radius: 10px;

@@ -1,24 +1,23 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Container, Titulo } from "../global-style";
 import { api } from "../../Services/api";
-import { DataContext } from "../../Context/data";
 import { ItemCarrinho } from "../../Components/ItemCarrinho";
+import NotLoggado from "../../Components/NotLoggado"
+import EmptyCarrinho from "../../Components/EmptyCarrinho"
 import { CarrinhoContainer, ConfirmarPedido, Descricao } from "./style";
+
 
 export const Carrinho = () => {
   const [pedidos, setPedidos] = useState([]);
   const [itemPedido, setItemPedido] = useState([]);
   const [produtos, setProdutos] = useState([]);
   const [display, setDisplay] = useState(null);
-  const [listExists, setListExists] = useState(false);
-  const [nextRequest, setNextRequest] = useState(false);
   const [descricao, setDescricao] = useState(null);
-  const { idUsuario, handleSetIdUsuario } = useContext(DataContext);
 
   async function getDados() {
     if (localStorage.getItem("idCliente") === null) {
       setDisplay(
-        <Titulo>Por favor faça login para vizualizar seu Carrinho</Titulo>
+        <NotLoggado/>
       );
     } else {
       const responsePedidos = await api.get(
@@ -30,7 +29,7 @@ export const Carrinho = () => {
         responsePedidos.data.length === 0 ||
         responsePedidos.data[responsePedidos.data.length - 1].status === true
       ) {
-        setDisplay(<Titulo>Não ha items em seu carrinho</Titulo>);
+        setDisplay(<EmptyCarrinho/>);
       } else {
         const responseItemPedido = await api.get(
           `itemPedido/pedido/${
@@ -39,7 +38,7 @@ export const Carrinho = () => {
         );
         await setItemPedido(responseItemPedido.data);
         if (responseItemPedido.data.length === 0) {
-          setDisplay(<Titulo>Não ha items em seu carrinho</Titulo>);
+          setDisplay(<EmptyCarrinho/>);
         } else {
           let newProduto = [];
           await Promise.all(
