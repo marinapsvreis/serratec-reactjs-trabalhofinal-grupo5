@@ -4,6 +4,8 @@ import { api } from "../../Services/api";
 import { DataContext } from "../../Context/data";
 import { ItemCarrinho } from "../../Components/ItemCarrinho";
 import { CarrinhoContainer, ConfirmarPedido, Descricao } from "./style";
+import EmptyCarrinho from "../../Components/EmptyCarrinho";
+import NotLoggado from "../../Components/NotLoggado";
 
 export const Carrinho = () => {
   const [pedidos, setPedidos] = useState([]);
@@ -18,7 +20,7 @@ export const Carrinho = () => {
   useEffect(() => {
     if (localStorage.getItem('idCliente') === null) {
       setDisplay(
-        <Titulo>Por favor faça login para vizualizar seu Carrinho</Titulo>
+        <NotLoggado/>
       );
     } else {
       const getPedidosByClienteId = async () => {
@@ -33,10 +35,10 @@ export const Carrinho = () => {
 
   useEffect(() => {
     if(pedidos.length === 0 && display === null){
-      setDisplay(<Titulo>Não ha items em seu carrinho</Titulo>);
+      setDisplay(<EmptyCarrinho/>);
     } else if (pedidos.length !== 0 && nextRequest === true) {
       if (pedidos[pedidos.length - 1].status === true) {
-        setDisplay(<Titulo>Não há items em seu carrinho</Titulo>);
+        setDisplay(<EmptyCarrinho/>);
       } else {
         setNextRequest(false);
         const getItemPedidoByPedidoId = async () => {
@@ -53,7 +55,8 @@ export const Carrinho = () => {
   useEffect(() => {
     if (nextRequest === true) {
       if (itemPedido.length === 0 && display === null) {
-        setDisplay(<Titulo>Não ha items em seu carrinho</Titulo>);
+        //NÃO HÁ ITENS NO CARRINHO
+        setDisplay(<EmptyCarrinho/>);
       } else {
         let newProduto = [];
         itemPedido.forEach((response) => {
