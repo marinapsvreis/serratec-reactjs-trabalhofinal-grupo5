@@ -111,7 +111,7 @@ export const Registro = () => {
         </ButtonContainer>
       </Form>
       {isLoading === true ? <Loader/> : ''}
-      {statusAPI === 201 ? <PopupRespostaAPI titulo={'cliente'} status={'sucesso'}/> : ''}
+      {statusAPI === 201 ? <PopupRespostaAPI titulo={'cliente'} status={'sucesso'} tipo={'registrar'}/> : ''}
       {statusAPI === 400 ? <PopupRespostaAPI titulo={'cliente'} status={'error'} errorHead={errorMessageHead} errorMessage={errorMessage} click={handleClick}/> : ''}
     </Container>
   );
