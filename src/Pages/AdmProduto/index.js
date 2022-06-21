@@ -1,11 +1,12 @@
 import React from "react";
 import { Container, Titulo } from "../global-style";
-import { Input, Form, ButtonContainer, RegistroButton } from "./style";
+import { Input, Form, ButtonContainer, RegistroButton, PopupStyle } from "./style";
 import { useEffect, useState } from "react";
 import { api } from "../../Services/api";
 import TabelaProdutos from "../../Components/TabelaProdutos";
 import BadRequest from "../../Components/BadRequest";
 import { Popup } from "../../Components/Popup";
+import { Loader } from "../../Components/Loader";
 
 export const AdmProduto = () => {
   const [listaProdutos, setListaProdutos] = useState([]);
@@ -16,12 +17,16 @@ export const AdmProduto = () => {
   const [nomeImagem, setNomeImagem] = useState('')
   const [idCategoria, setIdCategoria] = useState(0)
   const [statusAPI, setStatusAPI] = useState(0);
+  const [statusAPIPost, setStatusAPIPost] = useState(0);
   const [isConfirmado, setConfirmado] = useState(false);
   const [requisitarGet, setRequisitarGet] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [errorMessageHead, setErrorMessageHead] = useState('')
+  const [errorMessage, setErrorMessage] = useState('')
 
   useEffect(() => {
     carregarAPI();
-  }, [listaProdutos, requisitarGet]);
+  }, [requisitarGet]);
 
   function carregarAPI() {
     const getProdutoAPI = async () => {
@@ -38,24 +43,45 @@ export const AdmProduto = () => {
     getProdutoAPI();
   }
 
-  const handleFechar = (event) => {
-    setConfirmado(!isConfirmado);
-  };
+  function postarProduto() {
+    const postProdutoAPI = async () => {
+      try {
+        const res = await api.post("produto", {
+          nomeProduto: nome,
+          descricaoProduto: descricao,
+          qtdEstoqueProduto: parseInt(qtdEstoque),
+          valorUnitario: parseFloat(valorUnitario),
+          nomeImagemProduto: nomeImagem,
+          idCategoria: parseInt(idCategoria)
+        });
+        setStatusAPIPost(res.status)
+      } catch (error) {
+        console.log(error)
+        setStatusAPIPost(e => error.response.data.status)
+        setErrorMessageHead(e => error.response.data.message)
+        setErrorMessage(e => error.response.data.details[0])
+      }
+    };
+    postProdutoAPI();
+  }
 
   const handleConfirmar = (event) => {
-    setConfirmado(!isConfirmado)
     setRequisitarGet(!requisitarGet)
   }
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setNome("");
-    setDescricao("");
-    setQtdEstoque(0);
-    setValorUnitario(0.0);
-    setNomeImagem("");
-    setIdCategoria(0);
-  };
+  }
+
+  function load() {
+    setLoading(true)
+    setConfirmado(!isConfirmado)
+    postarProduto()
+    setTimeout(function() {
+      setLoading(false)
+      handleConfirmar()
+    }, 800)
+  }
 
   const verificarResponse =() => {
     if(statusAPI === 0) {
@@ -83,17 +109,49 @@ export const AdmProduto = () => {
           <RegistroButton type="submit" value="Cadastrar" onClick={() => setConfirmado(!isConfirmado)}/>
         </ButtonContainer>
       </Form>
-      {isConfirmado ? <Popup
-          titulo={"produto"}
-          informacoes={{
-            Nome: nome,
-            Descricao: descricao,
-            Quantidade: qtdEstoque,
-            ValorUnitario: valorUnitario,
-            IdCategoria: idCategoria,
-            NomeImagem: nomeImagem,}} clickFechar={handleFechar} clickConfirmar={handleConfirmar}/> : "" }
+      {isConfirmado ? <>
+        <PopupStyle>
+          <div className='popup-tela'>
+            <p>Tem certeza que deseja criar um novo produto? </p>
+            <div className="botoes">
+              <button onClick={() => setConfirmado(false)}>Cancelar</button>
+              <button onClick={() => load()}>Confirmar</button>
+            </div>
+            
+          </div>
+        </PopupStyle>
+        </> : "" }
       <Titulo>Listar Produtos</Titulo>
       {verificarResponse()}
+      {loading === true ? <>
+        <PopupStyle>
+          <div className='popup-tela'>
+            <p>Carregando...</p>
+            <Loader/>
+          </div>
+        </PopupStyle>
+      </> : ''}
+      {statusAPIPost === 201 && loading === false ? <>
+        <PopupStyle>
+          <div className='popup-tela'>
+            <p>Produto cadastrado com sucesso!</p>
+            <div className="botoes">
+              <button onClick={() => setStatusAPIPost(e => 0)}>OK</button>
+            </div>
+          </div>
+        </PopupStyle>
+      </> : ''}
+      {(statusAPIPost === 404 || statusAPIPost === 400)  && loading === false ? <>
+        <PopupStyle>
+          <div className='popup-tela'>
+            <p>{errorMessageHead}</p>
+            <p>{errorMessage}</p>
+            <div className="botoes">
+              <button onClick={() => setStatusAPIPost(e => 0)}>OK</button>
+            </div>
+          </div>
+        </PopupStyle>
+      </> : ''}
     </Container>
   );
 };

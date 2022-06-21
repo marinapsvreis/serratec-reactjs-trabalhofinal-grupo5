@@ -17,7 +17,7 @@ export const AdmCategoria = () => {
 
   useEffect(() => {
     carregarAPI();
-  }, [listaCategorias, requisitarGet]);
+  }, [requisitarGet]);
 
   function carregarAPI() {
     const getCategoriaAPI = async () => {
