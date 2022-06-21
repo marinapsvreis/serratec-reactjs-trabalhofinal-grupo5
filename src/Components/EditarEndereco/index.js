@@ -103,7 +103,7 @@ export const EditarEndereco = (props) => {
                     <div className='popup-tela'>
                         <p>Endereco alterado com sucesso!</p>
                         <div className='botoes'>
-                            <button onClick={window.location.reload(true)}>OK</button>
+                            <button onClick={() => window.location.reload(true)}>OK</button>
                         </div>
                     </div>
                 </PopupStyle>  
