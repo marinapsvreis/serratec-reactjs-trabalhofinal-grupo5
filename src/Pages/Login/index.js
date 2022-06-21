@@ -35,7 +35,7 @@ export const Login = () => {
     }else{
       idCliente = cliente[0].idCliente;
       localStorage.setItem('idCliente', cliente[0].idCliente)
-      localStorage.setItem('nomeCliente', cliente[0].nomeCompleto)
+      localStorage.setItem('nomeCliente', cliente[0].nomeCompleto)      
     }    
   }
 
@@ -48,19 +48,18 @@ export const Login = () => {
   }
 
   const allowLogin = async (email, password) => {
-    const response = await api.get(`cliente/logar_cliente?email=${email}&password=${password}`)
-    if (response) {
-      alert('Sucesso!');
-      handleSetIdUsuario(idCliente);
-      navigate("../catalogo");
-      window.location.reload(true);
-
-    } else {
+    try{
+      const response = await api.get(`cliente/logar_cliente?email=${email}&password=${password}`)
+        alert('Sucesso!');
+        handleSetIdUsuario(idCliente);
+        navigate("../catalogo");
+        window.location.reload(true);
+    }catch(e){
       alert('Senha incorreta!')
       localStorage.removeItem('idCliente')
       localStorage.removeItem('nomeCliente')
-      navigate("../login")
-    }      
+      window.location.reload(true);
+    }          
   }
 
   function logar() {
