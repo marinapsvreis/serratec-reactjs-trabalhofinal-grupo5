@@ -14,6 +14,8 @@ height: 100vh;
 justify-content: center;
 align-items: center;
 
+z-index: 5;
+
 .popup-tela {
     background-color: gray;
 
@@ -30,6 +32,8 @@ align-items: center;
 
     border: 2px solid black;
     border-radius: 10px;
+
+    z-index: 6;
     
 }
 
