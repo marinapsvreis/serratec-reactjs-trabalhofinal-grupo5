@@ -12,7 +12,6 @@ export const PopupRespostaAPI = (props) => {
   const [errorMessage, setErrorMessage] = useState('')
 
   function processarDelete() {
-    console.log('deletando pedido...')
     setTimeout(function(){
         const deleteAPI = async () => {
             try {
@@ -59,7 +58,7 @@ export const PopupRespostaAPI = (props) => {
     <>
       <PopupStyle>
         <div className="popup-tela">
-          {props.titulo === 'cliente' && props.status === 'sucesso' ? <><p>Sucesso ao registrar {props.titulo} de ID {props.id}</p>
+          {props.titulo === 'cliente' && props.status === 'sucesso' && props.tipo === 'registrar' ? <><p>Sucesso ao registrar {props.titulo}</p>
             <button className="botaoConfirmar" onClick={() => navigate("/login")}>OK</button></> : ''
           }
           {props.titulo === 'cliente' && props.status === 'error' ? <>
