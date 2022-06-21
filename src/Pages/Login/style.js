@@ -41,3 +41,13 @@ export const RegistroButton = styled.p`
     color: #456bf6;
   }
 `;
+
+export const AdmButton = styled.button`
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  background-color: var(--primary-color);
+  &:hover{
+    background-color: var(--secondary-color);
+  }
+`;

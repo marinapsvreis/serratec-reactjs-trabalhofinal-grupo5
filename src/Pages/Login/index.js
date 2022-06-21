@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useContext} from "react";
 import {Link, useNavigate} from "react-router-dom"
 import { Container, Titulo } from "../global-style";
-import { Form, FormInput, LoginButton, RegistroButton } from "./style";
+import { AdmButton, Form, FormInput, LoginButton, RegistroButton } from "./style";
 import {api} from '../../Services/api'
 import { DataContext } from "../../Context/data";
 
@@ -68,6 +68,10 @@ export const Login = () => {
     allowLogin(email, password);
   }  
 
+  function gotToAdm() {
+    navigate("../admlogin")
+  }
+
   return (
     <Container>
       <Titulo>Login Cliente</Titulo>
@@ -77,6 +81,8 @@ export const Login = () => {
         <LoginButton onClick={logar}>Entrar</LoginButton>
         <Link to="/registro" style={{textDecoration: "none"}}><RegistroButton>Não tem uma conta? Cadastre-se</RegistroButton></Link>                
       </Form>
+
+      <AdmButton onClick={gotToAdm}>Login Admin</AdmButton>
     </Container>
   );
 };
