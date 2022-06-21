@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {useNavigate} from "react-router-dom"
+import { Loader } from "../../Components/Loader";
 import { Container, Titulo } from "../global-style";
 import { StatusLogAdm, Form, FormInput, LoginButton, PopupStyle } from "./style";
 
@@ -8,6 +9,7 @@ export const AdmLogin = () => {
       
   const [login, setLogin] = useState('');
   const [senha, setSenha] = useState('');
+  const [loading, setLoading] = useState(false)
   const [status, setStatus] = useState({
     msgStatus: ''
   })
@@ -25,18 +27,21 @@ export const AdmLogin = () => {
   function handleSenhaChange(e){
     setSenha(e.target.value)
   }
-  function logar() {  
-    if (login === 'admin' && senha === 'admin') {
-      console.log(status)
-      setStatus({msgStatus: 'senhaCorreta'})  
-
-    } else if (login === '' || senha === '')  {
-      setStatus({msgStatus: 'camposVazios'})
-
-    } else {
-      setStatus({msgStatus: 'senhaIncorreta'})
-      
-    }
+  function logar() { 
+    setLoading(true)
+    setTimeout(function() {
+      setLoading(false)
+      if (login === 'admin' && senha === 'admin') {
+        console.log(status)
+        setStatus({msgStatus: 'senhaCorreta'})  
+  
+      } else if (login === '' || senha === '')  {
+        setStatus({msgStatus: 'camposVazios'})
+  
+      } else {
+        setStatus({msgStatus: 'senhaIncorreta'})
+      }
+    }, 500)
   }
 
   function limparLocalStorage(){
@@ -64,6 +69,7 @@ export const AdmLogin = () => {
         <FormInput onChange={e => handleLoginChange(e)} type="text" placeholder="Login"></FormInput>
         <FormInput onChange={e => handleSenhaChange(e)} type="password" placeholder="Senha"></FormInput>
       <LoginButton onClick={logar}>Entrar</LoginButton>
+      </Form>
       {status.msgStatus === 'senhaCorreta' ? <>
       <PopupStyle>
         <div className="popup-tela">
@@ -88,8 +94,15 @@ export const AdmLogin = () => {
           </div>
         </PopupStyle>
       </> : ''}
-               
-      </Form>
+      {loading === true ? <>
+        <PopupStyle>
+          <div className="popup-tela">
+            <p>Carregando...</p>
+            <Loader/>
+          </div>
+        </PopupStyle>
+      </> : ''}
+      
     </Container>
   );
 };
