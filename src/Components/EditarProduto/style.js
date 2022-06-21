@@ -26,13 +26,15 @@ align-items: center;
     align-items: center;
     justify-content: center;
 
+    text-align: center;
+
     border: 2px solid black;
     border-radius: 10px;
     
 }
 
 .popup-tela p {
-    font-size: 1.5em;
+    font-size: 1.7em;
 }
 
 .popup-tela .botoes {
@@ -44,6 +46,8 @@ align-items: center;
     background-color: var(--secondary-color);
 
     font-size: 1.3em;
+
+    width: 7em;
 
     padding: 3px;
 

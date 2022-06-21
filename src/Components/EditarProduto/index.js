@@ -19,12 +19,10 @@ props.produto.descricaoProduto
     props.produto.nomeImagemProduto
   );
   const [idCategoria, setIdCategoria] = useState(props.produto.idCategoria);
+  const [statusAPI, setStatusAPI] = useState(0)
   const [errorMessageHead, setErrorMessageHead] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
   const [loading, setLoading] = useState(false)
-  const [status, setStatus] = useState({
-        msgStatus: ''
-    })
 
   function handleNomeChange(e) {
     setNomeProduto(e.target.value);
@@ -67,24 +65,26 @@ props.produto.descricaoProduto
   }
 
   async function editarProduto() {
-    const response = await api.put(`produto?idProduto=${props.id}`, {
-      nomeProduto: nomeProduto,
-      descricaoProduto: descricaoProduto,
-      qtdEstoqueProduto: qtdEstoqueProduto,
-      valorUnitario: valorUnitario,
-      nomeImagemProduto: nomeImagemProduto,
-      idCategoria: idCategoria,
-    });
-    if (response.status === 200) {
-      setStatus({msgStatus: 'alteradoSucesso'})
-    } else {
-      setStatus({msgStatus: 'alteracaoErro'})
+    try {
+      const res = await api.put(`produto?idProduto=${props.id}`, {
+        nomeProduto: nomeProduto,
+        descricaoProduto: descricaoProduto,
+        qtdEstoqueProduto: qtdEstoqueProduto,
+        valorUnitario: valorUnitario,
+        nomeImagemProduto: nomeImagemProduto,
+        idCategoria: idCategoria,
+      });
+      setStatusAPI(e => res.status)
+    } catch (error) {
+      setStatusAPI(e => error.response.data.status)
+      setErrorMessageHead(e => error.response.data.message)
+      setErrorMessage(e => error.response.data.details[0])
     }
   }
 
   return (
     <>
-      {loading === false && status.msgStatus === '' ? <>
+      {loading === false && statusAPI === 0 ? <>
       <PopupStyle>
         <div className="popup-tela">
           <Form onSubmit={handleSubmit}>
@@ -133,19 +133,25 @@ props.produto.descricaoProduto
                     <Loader/>
                 </div>
         </PopupStyle></> : ''}
-        {status.msgStatus === 'alteradoSucesso' ? <>
+        {statusAPI === 200 ? <>
             <PopupStyle>
                 <div className='popup-tela'>
                     <p>Alterações feitas com sucesso!</p>
-                    <button onClick={reloadPage}>OK!</button>
+                    <div className="botoes">
+                    <button onClick={reloadPage}>OK</button>
+                    </div>
+                    
                 </div>
             </PopupStyle> 
             </> : ''}
-            {status.msgStatus === 'alteracaoErro' ? <>
+            {statusAPI === 400 ? <>
             <PopupStyle>
                 <div className='popup-tela'>
-                    <p>Ops... Parece que ocorreu um erro.</p>
-                    <button onClick={reloadPage}>OK!</button>
+                    <h1>{errorMessageHead}</h1>
+                    <p>{errorMessage}</p>
+                    <div className="botoes">
+                    <button onClick={() => {setStatusAPI(e => 0); props.click()}}>OK!</button>
+                    </div>
                 </div>
             </PopupStyle> 
             </> : ''}
