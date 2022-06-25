@@ -10,7 +10,7 @@ export const ProdutoCard = ({ produto, categoria, id }) => {
         <CardImagem src={`${produto.nomeImagemProduto}`} />
       
       <CardLink>
-        <strong>{produto.nomeProduto}</strong> R${produto.valorUnitario},00
+        <strong>{produto.nomeProduto}</strong>Valor(unidade): R${produto.valorUnitario},00
       </CardLink>
       </Link>
     </Cards>

@@ -36,7 +36,7 @@ export const Catalogo = () => {
     <>
       <CatalogoContainer>
         <Container className="container">
-          <Titulo className="titulo">Catalogo de Produtos</Titulo>
+          <Titulo className="titulo">Categorias</Titulo>
           <CardContainer>{display}</CardContainer>
         </Container>
       </CatalogoContainer>

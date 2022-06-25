@@ -9,7 +9,7 @@ export const CategoriaCard = ( {categoria} ) => {
   return (
     <Cards>
       <Link style={{textDecoration: "none"}}className= "link" to={`/catalogo/${categoria.nomeCategoria}&${categoria.idCategoria}`}>
-        <CardImagem src={`${categoria.imagemCategoria}`} />
+        <CardImagem src={`${categoria.imagemCategoria}`} width= '100%' />
       
       <CardLink>{categoria.nomeCategoria}</CardLink>
       </Link>

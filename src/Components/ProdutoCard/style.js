@@ -5,8 +5,9 @@ export const Cards = styled.div`
   justify-content: center;
   align-items: center;
   width: 28.6rem;
-  border-radius: 1rem;
-  background-color: var(--secondary-color);
+  border: 2px solid black;
+  border-radius: 0.5rem;
+  background-color: #fff;
   transition: 0.5s;
   word-wrap: break-word;
   .link{
@@ -19,19 +20,16 @@ export const Cards = styled.div`
     background-color: var(--primary-color);
     transform: scale(110%);
   }
-
-  @media (min-width: 1024px) {
-    width: 40.2rem;
-    height: 34.4rem;
-  }
 `;
 
 export const CardImagem = styled.img`
   width: 25rem;
   height: 35.4rem;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
+  border: 10px solid black;
   border: var(--primary-color);
   margin: 0.5rem;
+  margin-top: 2rem;
 
   @media (min-width: 1024px) {
     height: 26.8rem;

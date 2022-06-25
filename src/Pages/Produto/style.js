@@ -4,27 +4,23 @@ export const ProdutoDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  width: 28.2rem;
+  justify-content: space-between;
   height: max-content;
-  border-radius: 1rem;
-  background-color: var(--secondary-color);
+  border: 2px solid black;
+  border-radius: 0.5rem;
+  margin: 2rem;
+  background-color: #fff;
   transition: 0.5s;
 
   @media (min-width: 1024px) {
     flex-direction: row;
-    width: 80rem;
   }
 `;
 
 export const ProdutoImg = styled.img`
-  width: 24.6rem;
   height: 24.6rem;
-  margin: 2rem;
   border-radius: 1rem;
-  border: var(--primary-color);
   @media(min-width: 1024px){
-    width: 36rem;
     height: 36rem;
   }
 `;
@@ -32,17 +28,18 @@ export const ProdutoImg = styled.img`
 export const ProdutoDescricao = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
   justify-content:center;
-  padding: 3rem;
+  padding: 2rem;
   font-size: 2rem;
   text-align: center;
+  background-color: var(--secondary-color);
   
 `;
 
 export const ProdutoInput = styled.input`
   text-align: center;
-  margin: 1rem;
+  margin-bottom: 2rem;
 `
 
 export const ProdutoButton = styled.button`

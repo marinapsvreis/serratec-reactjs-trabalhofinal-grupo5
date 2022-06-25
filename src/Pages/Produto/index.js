@@ -116,7 +116,8 @@ export const Produto = () => {
       <ProdutoDiv>
         <ProdutoImg src={`${produto.nomeImagemProduto}`}></ProdutoImg>
         <ProdutoDescricao>
-          <strong>{produto.nomeProduto}</strong> <br />
+          <strong>{produto.nomeProduto}</strong>
+          {produto.descricaoProduto} <br /><br />
           <strong>Quantidade no estoque:</strong> {produto.qtdEstoqueProduto} <br /><br />
           <strong>Valor Unitário:</strong> R${produto.valorUnitario},00 <br /><br />
           <ProdutoInput

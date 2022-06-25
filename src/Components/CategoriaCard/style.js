@@ -4,12 +4,12 @@ export const Cards = styled.div`
   display:flex;
   justify-content: center;
   align-items: center;
-  width: 28.6rem;
   height: 45rem;
-  border-radius: 1rem;
-  background-color: var(--secondary-color);
+  border-radius: 0.5rem;
+  background-color: black;
   transition: 0.5s;
   word-wrap: break-word;
+  padding: 1rem;
 
   .link{
     display: flex;
@@ -18,22 +18,21 @@ export const Cards = styled.div`
     align-items: center;
   }
   &:hover {
-    background-color: var(--primary-color);
+    background-color: var(--secondary-color);
     transform: scale(110%);
+    color: var(--background);
   }
 
   @media (min-width: 1024px) {
-    width: 40.2rem;
     height: 34.4rem;
   }
 `;
 
 export const CardImagem = styled.img`
-  width: 25rem;
+  width: 100%;
   height: 35.4rem;
   border: var(--primary-color);
   border-radius: 1rem;
-  margin: 0.5rem;
 
   @media (min-width: 1024px) {
     height: 26.8rem;
@@ -47,7 +46,7 @@ export const CardLink = styled.div`
   text-decoration: none;
   text-transform: uppercase;
   text-align: center;
-  color: var(--background);
   font-size: 1.8rem;
   padding-top: 0.5rem;
+  color: var(--primary-color);
 `;
