@@ -94,7 +94,7 @@ export const Carrinho = () => {
 
   function finalizar() {
     api.put(
-      `pedido/processar?idPedido=${pedidos[pedidos.length - 1].idPedido}`
+      `pedido/processar?idPedido=${pedidos.idPedido}`
     );
     alert("Pedido finalizado");
     window.location.reload(false);
